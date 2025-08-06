@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #f9f9fa;
+  --color-surface: #ffffff;
+  --color-accent: #ed225d;
+  --color-heading: #222222;
+  --color-body: #1f1f1f;
+  --color-muted: #555555;
+  --color-border: #e6e8ec;
+  --radius-base: 0.75rem;
+  --radius-pill: 9999px;
+  --shadow-card:
+    0 2px 10px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover:
+    0 6px 18px rgba(0, 0, 0, 0.12),
+    0 10px 24px rgba(0, 0, 0, 0.12);
+  --focus-ring: 0 0 0 2px rgba(237, 34, 93, 0.6);
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --sidebar-width: 260px;
+  --container-max: 1120px;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --lh: 1.5;
+  --letter-h: 0.5px;
+  --transition-fast: 100ms ease;
+  --transition-med: 150ms ease;
+}
+
+.footer-row { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-xl); }
+
+/* Sidebar width + truncation & tooltips */
+.sidebar { width: var(--sidebar-width); }
+.nav-fixed { width: var(--sidebar-width); }
+.truncate-ell { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Tooltip using title attribute fallback + custom style hook */
+.has-tooltip { position: relative; }
+.has-tooltip[data-title]:hover::after {
+  content: attr(data-title);
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 240px;
+  background: #111;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: normal;
+  z-index: 50;
+}
+.has-tooltip[data-title]:hover::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: #111;
+}

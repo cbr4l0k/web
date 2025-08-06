@@ -1,0 +1,50 @@
+---
+const pathname = Astro.url.pathname;
+const sections = [
+  { label: 'Books', base: '/books', children: [
+    { label: 'El Amor En Los Tiempos Del Cólera', href: '/books/el_amor_en_los_tiempos_del_colera' },
+    { label: 'Book 2', href: '/books/book-2' },
+  ]},
+  { label: 'Projects', base: '/projects', children: [
+    { label: 'Project 1', href: '/projects/project-1' },
+    { label: 'Project 2', href: '/projects/project-2' },
+  ]},
+  { label: 'References', base: '/references', children: [] },
+];
+function isActive(href) {
+  return pathname === href || pathname.startsWith(href + '/');
+}
+const activeSection = sections.find((s) => pathname === s.base || pathname.startsWith(s.base + '/'));
+const showSub = activeSection && activeSection.children && activeSection.children.length > 0;
+---
+<div class="flex h-full flex-col shadow-md">
+  <a href="/" class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
+    <span class="text-[#222]">Site</span>
+  </a>
+  <nav class="flex-1 overflow-y-auto p-2">
+    <div class="mb-4 space-y-2 nav-fixed">
+      <a href="/" title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname==='/' ? 'bg-[#ed225d]/10 text-[#ed225d]' : 'hover:bg-gray-100'}`}>Home</a>
+      <ul class="space-y-1">
+        {sections.map((s) => (
+          <li>
+            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#ed225d]/10 text-[#ed225d]' : ''}`}>{s.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="my-4 flex justify-center nav-fixed" aria-hidden="true">
+      <div class="h-px w-4/5 bg-gray-200"></div>
+    </div>
+    {showSub && (
+      <div class="space-y-1 nav-fixed">
+        <ul class="space-y-1">
+          {activeSection.children.map((c) => (
+            <li>
+              <a href={c.href} title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(c.href) ? 'bg-[#ed225d]/10 text-[#ed225d]' : ''}`}>{c.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </nav>
+</div>

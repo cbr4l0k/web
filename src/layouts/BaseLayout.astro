@@ -1,0 +1,61 @@
+---
+const { title = 'Site', description = 'Astro site' } = Astro.props as { title?: string; description?: string };
+---
+<html lang="en" class="h-full" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="h-full" style="background:var(--color-bg); color:var(--color-body);">
+    <div class="flex h-screen overflow-hidden">
+      <aside id="sidebar" class="sidebar md:flex md:flex-col md:shrink-0">
+        <slot name="nav" />
+      </aside>
+      <div class="flex flex-1 flex-col min-w-0 main-with-sidebar">
+        <header class="header sticky top-0 z-30">
+          <slot name="header" />
+        </header>
+        <main class="flex-1 overflow-y-auto px-6 py-8">
+          <div class="container">
+            <slot />
+          </div>
+        </main>
+        <footer class="border-t" style="border-color:var(--color-border); background:var(--color-surface);">
+          <slot name="footer" />
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+      const root = document.documentElement;
+      function setTheme(mode) {
+        root.classList.toggle('dark', mode === 'dark');
+        root.setAttribute('data-theme', mode);
+        try { localStorage.setItem('theme', mode); } catch {}
+      }
+      const stored = (()=>{ try { return localStorage.getItem('theme'); } catch { return null; } })();
+      setTheme(stored ?? (prefersDark.matches ? 'dark' : 'light'));
+      prefersDark.addEventListener('change', (e)=>{
+        const manual = (()=>{ try { return localStorage.getItem('theme'); } catch { return null; } })();
+        if (!manual) setTheme(e.matches ? 'dark' : 'light');
+      });
+
+      const burger = document.getElementById('burger');
+      const main = document.querySelector('.main-with-sidebar');
+      const sidebar = document.getElementById('sidebar');
+      function toggleSidebar() {
+        const open = sidebar.classList.toggle('hidden');
+        if (!open) sidebar.classList.remove('hidden');
+      }
+      burger?.addEventListener('click', ()=>{
+        sidebar.classList.toggle('open');
+        main?.classList.toggle('full');
+        sidebar.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
