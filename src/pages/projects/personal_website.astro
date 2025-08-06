@@ -9,6 +9,9 @@ import Subsection from "../../components/Subsection.astro";
 import Grid from "../../components/Grid.astro";
 import Callout from "../../components/Callout.astro";
 import InfoList from "../../components/InfoList.astro";
+import InteractiveRoadmap from "../../components/InteractiveRoadmap.astro";
+
+
 export const meta = {
   title: "Personal Website",
   summary: "A minimal Astro-powered personal website with books and projects.",
@@ -37,6 +40,21 @@ export const meta = {
       </Callout>
     </Grid>
   </SectionBlock>
+
+  <SectionBlock title="Roadmap" subtitle="Planned phases and goals.">
+    <InteractiveRoadmap phases={[
+      { title: 'MVP', goals: [
+        { label: 'Home', done: true },
+        { label: 'Books', done: false },
+        { label: 'Lunch', done: true },
+        { label: 'Dinner', done: false },
+        { label: 'Projects', done: true },
+      ]},
+    ]} />
+  </SectionBlock>
+
+
+
 
   <SectionBlock title="Highlights">
     <Grid cols={1}>
