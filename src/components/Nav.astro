@@ -1,14 +1,18 @@
 ---
 const pathname = Astro.url.pathname;
+import type { AstroIntegrationLogger } from "astro";
+const books = Object.entries(import.meta.glob('../pages/books/**/*.astro', { eager: true }))
+  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
+  .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+const projects = Object.entries(import.meta.glob('../pages/projects/**/*.astro', { eager: true }))
+  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
+  .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+
 const sections = [
-  { label: 'Books', base: '/books', children: [
-    { label: 'El Amor En Los Tiempos Del Cólera', href: '/books/el_amor_en_los_tiempos_del_colera' },
-    { label: 'Book 2', href: '/books/book-2' },
-  ]},
-  { label: 'Projects', base: '/projects', children: [
-    { label: 'Project 1', href: '/projects/project-1' },
-    { label: 'Project 2', href: '/projects/project-2' },
-  ]},
+  { label: 'Books', base: '/books', children: books },
+  { label: 'Projects', base: '/projects', children: projects },
   { label: 'References', base: '/references', children: [] },
 ];
 function isActive(href) {
