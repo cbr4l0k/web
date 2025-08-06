@@ -1,0 +1,26 @@
+---
+export interface Props {
+  title: string;
+  summary?: string;
+  author?: string;
+  status?: string;
+  started?: string;
+  finished?: string;
+}
+const { title, summary, author, status, started, finished } = Astro.props as Props;
+const statusClasses = status === 'in-progress'
+  ? 'bg-[#ed225d]/10 text-[#ed225d] ring-[#ed225d]/30'
+  : 'bg-emerald-600/10 text-emerald-700 ring-emerald-600/30';
+---
+<header>
+  <h1 class="mb-4 text-3xl font-extrabold tracking-tight text-[#222]">{title}</h1>
+  {summary && <p class="mb-6 leading-relaxed">{summary}</p>}
+  <div class="mb-6 flex flex-wrap items-center gap-3">
+    {status && (
+      <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset ${statusClasses}`}>{status}</span>
+    )}
+    {author && <span class="text-xs opacity-70">Author: {author}</span>}
+    {started && <span class="text-xs opacity-70">Date started: {started}</span>}
+    {finished && <span class="text-xs opacity-70">Date finished: {finished}</span>}
+  </div>
+</header>
