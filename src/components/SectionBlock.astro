@@ -1,0 +1,11 @@
+---
+export interface Props { title?: string; subtitle?: string }
+const { title, subtitle } = Astro.props as Props;
+---
+<section class="mb-8">
+  {title && <h2 class="mb-1 text-lg font-semibold text-[#222]">{title}</h2>}
+  {subtitle && <p class="mb-4 opacity-80">{subtitle}</p>}
+  <div class="grid gap-4">
+    <slot />
+  </div>
+</section>

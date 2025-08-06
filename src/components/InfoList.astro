@@ -1,0 +1,13 @@
+---
+export interface Item { label: string; value: string }
+export interface Props { items: Item[] }
+const { items } = Astro.props as Props;
+---
+<dl class="grid gap-2">
+  {items.map((i) => (
+    <div class="grid grid-cols-[120px_1fr] items-baseline gap-2">
+      <dt class="text-xs uppercase tracking-wide opacity-60">{i.label}</dt>
+      <dd class="text-sm">{i.value}</dd>
+    </div>
+  ))}
+</dl>
