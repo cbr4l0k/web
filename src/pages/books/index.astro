@@ -4,22 +4,14 @@ import Nav from "../../components/Nav.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
-const books = [
-  {
-    slug: "el_amor_en_los_tiempos_del_colera",
-    title: "El Amor En Los Tiempos Del Cólera",
-    author: "Gabriel García Márquez",
-    summary: "Una historia de amor que perdura a través de décadas en el Caribe colombiano.",
-    status: "in-progress"
-  },
-  {
-    slug: "book-2",
-    title: "Example Title",
-    author: "Jane Doe",
-    summary: "A short description about this book. Placeholder summary.",
-    status: "done"
-  }
-];
+const modules = import.meta.glob('./*.astro', { eager: true });
+const books = Object.entries(modules)
+  .map(([path, mod]: any) => ({
+    ...(mod?.meta ?? {}),
+    slug: (mod?.meta?.slug) ?? path.replace(/^\.\/(.*)\.astro$/, '$1')
+  }))
+  .filter((b) => b && b.title && b.author)
+  .sort((a, b) => (a.title || '').localeCompare(b.title || ''));
 ---
 <BaseLayout title="Books">
   <Fragment slot="nav"><Nav /></Fragment>
@@ -33,7 +25,7 @@ const books = [
         <a href={`/books/${b.slug}`} class="no-underline">
           <div class="mb-2 flex items-center justify-between">
             <h2 class="text-lg font-semibold text-[#222]">{b.title}</h2>
-            <span class={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset ${b.status === 'in-progress' ? 'bg-[#ed225d]/10 text-[#ed225d] ring-[#ed225d]/30' : 'bg-emerald-600/10 text-emerald-700 ring-emerald-600/30'}`}>{b.status}</span>
+            <span class={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset ${b.status === 'in-progress' ? 'bg-[#ed225d]/10 text-[#ed225d] ring-[#ed225d]/30' : 'bg-emerald-600/10 text-emerald-700 ring-emerald-600/30'}`}>{b.status ?? 'tbd'}</span>
           </div>
           <p class="text-xs opacity-70 mb-2">{b.author}</p>
           <p class="text-sm opacity-90">{b.summary}</p>

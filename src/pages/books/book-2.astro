@@ -3,6 +3,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+export const meta = {
+  title: "Example Title",
+  author: "Jane Doe",
+  summary: "A short description about this book. Placeholder summary.",
+  status: "done",
+  slug: "book-2"
+};
 ---
 <BaseLayout title="Book 2">
   <Fragment slot="nav"><Nav /></Fragment>

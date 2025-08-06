@@ -3,20 +3,29 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-const title = "El Amor En Los Tiempos Del Cólera";
+export const meta = {
+  author: "Gabriel García Márquez",
+  started: "05-05-1997",
+  finished: "24-05-1997",
+  slug: "el_amor_en_los_tiempos_del_colera",
+  status: "in-progress",
+  summary: "Una historia de amor que perdura a través de décadas en el Caribe colombiano.",
+  title: "El Amor En Los Tiempos Del Cólera",
+};
 ---
-<BaseLayout title=`Libro | ${title}`>
-<Fragment slot="nav"><Nav /></Fragment>
-<Fragment slot="header"><Header /></Fragment>
-<Fragment slot="footer"><Footer /></Fragment>
+<BaseLayout title={`Libro | ${meta.title}`}>
+  <Fragment slot="nav"><Nav /></Fragment>
+  <Fragment slot="header"><Header /></Fragment>
+  <Fragment slot="footer"><Footer /></Fragment>
 
-<h1 class="mb-4 text-3xl font-extrabold tracking-tight text-[#222]">{title}</h1>
-<p class="mb-6 leading-relaxed">A short description about this book. Write what it’s about and why it matters. This is placeholder text.</p>
+<h1 class="mb-4 text-3xl font-extrabold tracking-tight text-[#222]">{meta.title}</h1>
+<p class="mb-6 leading-relaxed">{meta.summary}</p>
 
 <div class="mb-6 flex flex-wrap items-center gap-3">
     <span class="inline-flex items-center rounded-full bg-[#ed225d]/10 px-3 py-1 text-xs font-semibold text-[#ed225d] ring-1 ring-inset ring-[#ed225d]/30">In Progress</span>
-    <span class="text-xs opacity-70">Author: Jane Doe</span>
-    <span class="text-xs opacity-70">Date read: 2025-01-15</span>
+    <span class="text-xs opacity-70">Author: {meta.author}</span>
+    <span class="text-xs opacity-70">Date started: {meta.started}</span>
+    <span class="text-xs opacity-70">Date finished: {meta.finished}</span>
 </div>
 
 <article class="grid gap-4 md:grid-cols-1">
