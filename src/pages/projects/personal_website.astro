@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectHeader from "../../components/ProjectHeader.astro";
+export const meta = {
+  title: "Personal Website",
+  summary: "A minimal Astro-powered personal website with books and projects.",
+  role: "Developer",
+  status: "in-progress",
+  period: "2025",
+  stack: ["Astro", "TypeScript", "Tailwind"],
+  links: [
+  { label: "Repo", href: "https://github.com" },
+    { label: "Live", href: "/" },
+  ],
+  slug: "personal_website"
+};
+---
+<BaseLayout title={meta.name}>
+  <Fragment slot="nav"><Nav /></Fragment>
+  <Fragment slot="header"><Header /></Fragment>
+  <Fragment slot="footer"><Footer /></Fragment>
+
+  <ProjectHeader title={meta.title} summary={meta.summary} role={meta.role} status={meta.status} period={meta.period} stack={meta.stack} links={meta.links} />
+
+  <article class="grid gap-4 md:grid-cols-2">
+    <div class="card">
+      <h2>Overview</h2>
+      <p>High-level goals, scope, and outcomes.</p>
+    </div>
+    <div class="card">
+      <h2>Highlights</h2>
+      <ul>
+        <li>Feature A</li>
+        <li>Feature B</li>
+        <li>Feature C</li>
+      </ul>
+    </div>
+  </article>
+</BaseLayout>
