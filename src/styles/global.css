@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
   --color-bg: #f9f9fa;
@@ -30,13 +31,22 @@
     "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Google Sans Code", ui-monospace, SFMono-Regular, Menlo, Consolas,
     "Liberation Mono", monospace;
   --lh: 1.5;
   --letter-h: 0.5px;
   --transition-fast: 100ms ease;
   --transition-med: 150ms ease;
 }
+
+/* Global styles */
+body {
+  font-family: var(--font-mono);
+  line-height: var(--lh); color: var(--color-body);
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}   
 
 .footer-row { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-xl); }
 

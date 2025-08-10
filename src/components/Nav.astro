@@ -1,6 +1,7 @@
 ---
 const pathname = Astro.url.pathname;
 import type { AstroIntegrationLogger } from "astro";
+// Indexing subsections
 const books = Object.entries(import.meta.glob('../pages/books/**/*.astro', { eager: true }))
   .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
   .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
@@ -23,7 +24,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
 ---
 <div class="flex h-full flex-col shadow-md">
   <a href="/" class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
-    <span class="text-[#222]">Site</span>
+    <span class="text-[#222]">Small Elegant Web.Site</span>
   </a>
   <nav class="flex-1 overflow-y-auto p-2">
     <div class="mb-4 space-y-2 nav-fixed">
@@ -31,7 +32,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
       <ul class="space-y-1">
         {sections.map((s) => (
           <li>
-            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#ed225d]/10 text-[#ed225d]' : ''}`}>{s.label}</a>
+            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{s.label}</a>
           </li>
         ))}
       </ul>
@@ -44,7 +45,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
         <ul class="space-y-1">
           {activeSection.children.map((c) => (
             <li>
-              <a href={c.href} title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(c.href) ? 'bg-[#ed225d]/10 text-[#ed225d]' : ''}`}>{c.label}</a>
+              <a href={c.href} title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(c.href) ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{c.label}</a>
             </li>
           ))}
         </ul>
