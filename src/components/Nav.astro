@@ -15,12 +15,12 @@ const blog = Object.entries(import.meta.glob('../pages/blog/**/*.astro', { eager
   .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
   .sort((a, b) => a.label.localeCompare(b.label));
 
-const pageRoot = '/web/'
+const pageRoot = '/web'
 const sections = [
-{ label: 'Books', base: `${pageRoot}books`, children: books },
-  { label: 'Projects', base: `${pageRoot}projects`, children: projects },
-  { label: 'References', base: `${pageRoot}references`, children: [] },
-  { label: 'Blog', base: `${pageRoot}blog`, children: blog },
+{ label: 'Books', base: `${pageRoot}/books`, children: books },
+{ label: 'Projects', base: `${pageRoot}/projects`, children: projects },
+{ label: 'References', base: `${pageRoot}/references`, children: [] },
+{ label: 'Blog', base: `${pageRoot}/blog`, children: blog },
 ];
 function isActive(href) {
   return pathname === href || pathname.startsWith(href + '/');
