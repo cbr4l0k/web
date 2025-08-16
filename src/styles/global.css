@@ -172,39 +172,58 @@ body {
 }
 
 .animation-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    gap: 2rem;
-}
-
-.canvas-wrapper {
-    width: 400px;
-    height: 400px;
-    border-radius: 8px;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
 .flow-message {
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: #333;
-    text-align: center;
-    margin: 0;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+}
+
+#flow-canvas {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 400px;
 }
 
 @media (max-width: 768px) {
-    .canvas-wrapper {
-        width: 300px;
-        height: 300px;
-    }
+  .animation-container {
+    padding: 1rem;
+  }
+  
+  .canvas-wrapper {
+    max-width: 300px;
+  }
+  
+  .flow-message {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+}
 
-    .flow-message {
-        font-size: 2rem;
-        padding: 0 1rem;
-    }
+@media (max-width: 480px) {
+  .canvas-wrapper {
+    max-width: 250px;
+  }
+  
+  .flow-message {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
 }
