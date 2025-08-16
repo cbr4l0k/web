@@ -1,6 +1,8 @@
 ---
 const pathname = Astro.url.pathname;
 import type { AstroIntegrationLogger } from "astro";
+import { createPath, isActivePath } from '../utils/paths';
+
 // Indexing subsections
 const books = Object.entries(import.meta.glob('../pages/books/**/*.astro', { eager: true }))
   .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
@@ -15,15 +17,14 @@ const blog = Object.entries(import.meta.glob('../pages/blog/**/*.astro', { eager
   .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
   .sort((a, b) => a.label.localeCompare(b.label));
 
-const pageRoot = '/web'
 const sections = [
-{ label: 'Books', base: `${pageRoot}/books`, children: books },
-{ label: 'Projects', base: `${pageRoot}/projects`, children: projects },
-{ label: 'References', base: `${pageRoot}/references`, children: [] },
-{ label: 'Blog', base: `${pageRoot}/blog`, children: blog },
+{ label: 'Books', base: createPath('/books'), children: books },
+{ label: 'Projects', base: createPath('/projects'), children: projects },
+{ label: 'References', base: createPath('/references'), children: [] },
+{ label: 'Blog', base: createPath('/blog'), children: blog },
 ];
 function isActive(href) {
-  return pathname === href || pathname.startsWith(href + '/');
+  return isActivePath(pathname, href);
 }
 const activeSection = sections.find((s) => pathname === s.base || pathname.startsWith(s.base + '/'));
 const showSub = activeSection && activeSection.children && activeSection.children.length > 0;
@@ -43,11 +44,11 @@ const showSub = activeSection && activeSection.children && activeSection.childre
   </div>
   <nav class="flex-1 overflow-y-auto p-2">
     <div class="mb-4 space-y-2 nav-fixed">
-        <a href=`${pageRoot}` title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname==='/' ? 'bg-[#0b3828]/10 text-[#0b3828]' : 'hover:bg-gray-100'}`}>Home</a>
+        <a href={createPath('/')} title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname===createPath('/') ? 'bg-[#0b3828]/10 text-[#0b3828]' : 'hover:bg-gray-100'}`}>Home</a>
       <ul class="space-y-1">
         {sections.map((s) => (
           <li>
-            <a href=`${s.base}` title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{s.label}</a>
+            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{s.label}</a>
           </li>
         ))}
       </ul>
@@ -60,7 +61,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
         <ul class="space-y-1">
           {activeSection.children.map((c) => (
             <li>
-                <a href=`${pageRoot}${c.href}` title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(c.href) ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{c.label}</a>
+                <a href={createPath(c.href)} title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(createPath(c.href)) ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{c.label}</a>
             </li>
           ))}
         </ul>
