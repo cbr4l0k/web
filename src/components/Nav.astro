@@ -15,11 +15,12 @@ const blog = Object.entries(import.meta.glob('../pages/blog/**/*.astro', { eager
   .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
   .sort((a, b) => a.label.localeCompare(b.label));
 
+const pageRoot = '/web/'
 const sections = [
-  { label: 'Books', base: '/books', children: books },
-  { label: 'Projects', base: '/projects', children: projects },
-  { label: 'References', base: '/references', children: [] },
-  { label: 'Blog', base: '/blog', children: blog },
+{ label: 'Books', base: `${pageRoot}books`, children: books },
+  { label: 'Projects', base: `${pageRoot}projects`, children: projects },
+  { label: 'References', base: `${pageRoot}references`, children: [] },
+  { label: 'Blog', base: `${pageRoot}blog`, children: blog },
 ];
 function isActive(href) {
   return pathname === href || pathname.startsWith(href + '/');
@@ -46,7 +47,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
       <ul class="space-y-1">
         {sections.map((s) => (
           <li>
-            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{s.label}</a>
+            <a href=`${s.base}` title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{s.label}</a>
           </li>
         ))}
       </ul>
