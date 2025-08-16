@@ -9,5 +9,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
     site: 'https://cbr4l0k.github.io',
-    base: 'web',
+    base: '/web/',
 });
