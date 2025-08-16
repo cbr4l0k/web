@@ -5,11 +5,12 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import BookHeader from "../../components/BookHeader.astro";
 export const meta = {
-title: "How to Know a Person",
-author: "David Brooks",
-summary: "Creo que hay conversaciones en las que solo hablo yo, monologos donde creo que empatizo con el otro, pero al final de la interacción, no aprendí nada de esta otra persona. Empiezo este libro buscando cambiar esto.",
-started: "06/08/2025",
-status: "leyendo",
+title: "Los Ojos del Hermano Eterno",
+author: "Stefan Zweig",
+summary: "A profound story exploring human nature, brotherhood, and the moral complexities of life through Zweig's masterful storytelling.",
+started: "01/03/2025",
+finished: "31/03/2025",
+status: "done",
 };
 ---
 <BaseLayout title={meta.title}>
@@ -26,7 +27,7 @@ status: "leyendo",
     finished={meta.finished}
 />
 
-<article class="grid gap-4 md:grid-cols-3">
+<article class="grid gap-4 md:grid-cols-2">
     <div class="rounded border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow hover:-translate-y-0.5">
         <h2 class="mb-2 text-lg font-semibold text-[#222]">Key Takeaways</h2>
         <ul class="list-disc pl-5">

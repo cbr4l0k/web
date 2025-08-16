@@ -10,11 +10,16 @@ const projects = Object.entries(import.meta.glob('../pages/projects/**/*.astro',
   .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
   .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
   .sort((a, b) => a.label.localeCompare(b.label));
+const blog = Object.entries(import.meta.glob('../pages/blog/**/*.astro', { eager: true }))
+  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
+  .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
+  .sort((a, b) => a.label.localeCompare(b.label));
 
 const sections = [
   { label: 'Books', base: '/books', children: books },
   { label: 'Projects', base: '/projects', children: projects },
   { label: 'References', base: '/references', children: [] },
+  { label: 'Blog', base: '/blog', children: blog },
 ];
 function isActive(href) {
   return pathname === href || pathname.startsWith(href + '/');
@@ -24,11 +29,10 @@ const showSub = activeSection && activeSection.children && activeSection.childre
 ---
 <div class="flex h-full flex-col shadow-md">
   <a href="/" class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
-    <span class="text-[#222]">Small Elegant Web.Site</span>
   </a>
   <nav class="flex-1 overflow-y-auto p-2">
     <div class="mb-4 space-y-2 nav-fixed">
-      <a href="/" title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname==='/' ? 'bg-[#ed225d]/10 text-[#ed225d]' : 'hover:bg-gray-100'}`}>Home</a>
+      <a href="/" title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname==='/' ? 'bg-[#0b3828]/10 text-[#0b3828]' : 'hover:bg-gray-100'}`}>Home</a>
       <ul class="space-y-1">
         {sections.map((s) => (
           <li>

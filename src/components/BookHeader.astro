@@ -17,7 +17,7 @@ const statusClasses = status === 'in-progress'
   {summary && <p class="mb-6 leading-relaxed">{summary}</p>}
   <div class="mb-6 flex flex-wrap items-center gap-3">
     {status && (
-      <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset ${statusClasses}`}>{status}</span>
+      <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset`}>{status}</span>
     )}
     {author && <span class="text-xs opacity-70">Author: {author}</span>}
     {started && <span class="text-xs opacity-70">Date started: {started}</span>}

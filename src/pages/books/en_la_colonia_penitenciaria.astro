@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BookHeader from "../../components/BookHeader.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import Nav from "../../components/Nav.astro";
+import SectionBlock from "../../components/SectionBlock.astro";
+export const meta = {
+title: "En la Colonia Penitenciaria",
+author: "Franz Kafka",
+summary: "La influencia de varias lecturas pasadas generaron una reflexión no esperada sobre la obra de Kafka.",
+started: "01/08/2025",
+finished: "15/08/2025",
+status: "done",
+};
+---
+<BaseLayout title={meta.title}>
+<Fragment slot="nav"><Nav /></Fragment>
+<Fragment slot="header"><Header /></Fragment>
+<Fragment slot="footer"><Footer /></Fragment>
+
+<BookHeader 
+    title={meta.title} 
+    summary={meta.summary} 
+    author={meta.author} 
+    status={meta.status} 
+    started={meta.started}
+    finished={meta.finished}
+/>
+
+<article class="grid gap-4 md:grid-cols-1">
+    <SectionBlock title="Intro" subtitle="">
+    <p>
+    Tras la muerte del viejo comandante, la máquina sigue en funcionamiento. El condenado espera su ejecución; el nuevo comandtante y sus mujeres intentan acabar con ese legado a través de un explorador respetado; el oficial se jacta de la calidad de su herencia y lamenta su deterioro. El explorador observa, escucha, y de vez en cuando, pergunta.
+    </p>
+
+    <p>
+    En <i>La colonia penitenciaria</i>, Kafka plantea un sistema de relaciones tan complejo como la maquina en sí. La escencia de esta obra —acorde a las tendencias narrativas de su tiempo— se ha entendido como una crítica a los sistemas judiciales autoritarios, donde la ley y su aplicación se funden en un aparato arbitrario e inhumano. Y además revela la complicidad y la degradación de la dignidad humana cuando aquellos que podrían intervenir eligen no hacerlo: prefieren observar, escuchar, y de vez en cuando, preguntar.
+    </p>
+
+    <p>
+    Esta imágen sigue viva en los regímenes autoritarios actuales. Sin embargo, si la miramos desde la contemporaneidad, la tención entre estos actores abre otro plano de lectura: un diálogo sobre cómo se construyen, se mantienen y se transforman las tradiciones culturales. Tal vez la pregunta no sea solo quiíen tiene el poder de detener la máquina, sino que significa que siga en funcionamiento cuando su propósito original ya se ha desvanecido.
+    </p>
+    </SectionBlock>
+</article>
+</BaseLayout>
