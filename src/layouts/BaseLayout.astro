@@ -1,6 +1,5 @@
 ---
 const { title = 'Site', description = 'Astro site' } = Astro.props as { title?: string; description?: string };
-const pageRoot = "/web/"
 ---
 <html lang="en" class="h-full" data-theme="light">
   <head>
@@ -8,7 +7,7 @@ const pageRoot = "/web/"
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="stylesheet" href=`${pageRoot}src/styles/global.css` />
+    <link rel="stylesheet" href=`../styles/global.css` />
   </head>
   <body class="h-full" style="background:var(--color-bg); color:var(--color-body);">
     <div class="flex h-screen overflow-hidden">
