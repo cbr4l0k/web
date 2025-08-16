@@ -28,8 +28,18 @@ const activeSection = sections.find((s) => pathname === s.base || pathname.start
 const showSub = activeSection && activeSection.children && activeSection.children.length > 0;
 ---
 <div class="flex h-full flex-col shadow-md">
-  <a href="/" class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
-  </a>
+  <div class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
+    <button 
+      id="burger" 
+      class="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0b3828]" 
+      aria-label="Toggle navigation menu"
+      type="button"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </button>
+  </div>
   <nav class="flex-1 overflow-y-auto p-2">
     <div class="mb-4 space-y-2 nav-fixed">
       <a href="/" title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname==='/' ? 'bg-[#0b3828]/10 text-[#0b3828]' : 'hover:bg-gray-100'}`}>Home</a>

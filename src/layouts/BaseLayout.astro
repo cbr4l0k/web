@@ -11,6 +11,7 @@ const { title = 'Site', description = 'Astro site' } = Astro.props as { title?: 
   </head>
   <body class="h-full" style="background:var(--color-bg); color:var(--color-body);">
     <div class="flex h-screen overflow-hidden">
+      <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
       <aside id="sidebar" class="sidebar md:flex md:flex-col md:shrink-0">
         <slot name="nav" />
       </aside>
@@ -47,14 +48,69 @@ const { title = 'Site', description = 'Astro site' } = Astro.props as { title?: 
       const burger = document.getElementById('burger');
       const main = document.querySelector('.main-with-sidebar');
       const sidebar = document.getElementById('sidebar');
-      function toggleSidebar() {
-        const open = sidebar.classList.toggle('hidden');
-        if (!open) sidebar.classList.remove('hidden');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      
+      function isMobile() {
+        return window.innerWidth <= 768;
       }
-      burger?.addEventListener('click', ()=>{
-        sidebar.classList.toggle('open');
-        main?.classList.toggle('full');
-        sidebar.classList.toggle('hidden');
+      
+      function getSidebarState() {
+        try { 
+          return localStorage.getItem('sidebarCollapsed') === 'true'; 
+        } catch { 
+          return false; 
+        }
+      }
+      
+      function setSidebarState(collapsed) {
+        try { 
+          localStorage.setItem('sidebarCollapsed', collapsed.toString()); 
+        } catch {}
+      }
+      
+      function toggleSidebar() {
+        if (isMobile()) {
+          // Mobile behavior: overlay sidebar (no persistence needed)
+          sidebar.classList.toggle('open');
+          backdrop.classList.toggle('show');
+        } else {
+          // Desktop behavior: collapse to thin bar with persistence
+          const isCollapsed = sidebar.classList.toggle('collapsed');
+          main?.classList.toggle('expanded');
+          setSidebarState(isCollapsed);
+        }
+      }
+      
+      // Initialize sidebar state on page load for desktop
+      function initializeSidebarState() {
+        if (!isMobile() && getSidebarState()) {
+          sidebar.classList.add('collapsed');
+          main?.classList.add('expanded');
+        }
+      }
+      
+      // Initialize on load
+      initializeSidebarState();
+      
+      burger?.addEventListener('click', toggleSidebar);
+      backdrop?.addEventListener('click', () => {
+        if (isMobile()) {
+          sidebar.classList.remove('open');
+          backdrop.classList.remove('show');
+        }
+      });
+      
+      // Handle window resize to reset states appropriately
+      window.addEventListener('resize', () => {
+        if (!isMobile()) {
+          // Reset mobile classes when switching to desktop
+          sidebar.classList.remove('open');
+          backdrop.classList.remove('show');
+        } else {
+          // Reset desktop classes when switching to mobile
+          sidebar.classList.remove('collapsed');
+          main?.classList.remove('expanded');
+        }
       });
     </script>
   </body>
