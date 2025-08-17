@@ -6,6 +6,7 @@ import Header from "../../components/Header.astro";
 import Nav from "../../components/Nav.astro";
 import SectionBlock from "../../components/SectionBlock.astro";
 import LoadingScreen from "../../components/LoadingScreen.astro";
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 export const meta = {
 title: "En la Colonia Penitenciaria",
 author: "Franz Kafka",
@@ -15,11 +16,8 @@ finished: "15/08/2025",
 status: "done",
 };
 ---
-<BaseLayout title={meta.title}>
-<Fragment slot="nav"><Nav /></Fragment>
-<Fragment slot="header"><Header /></Fragment>
-<Fragment slot="footer"><Footer /></Fragment>
 
+<StandardPageLayout title={meta.title}>
 <BookHeader 
     title={meta.title} 
     summary={meta.summary} 
@@ -45,4 +43,4 @@ status: "done",
     </SectionBlock>
 </article>
 <LoadingScreen message="Sigue en proceso de redacción :D"/>
-</BaseLayout>
+</StandardPageLayout>

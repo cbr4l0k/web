@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -14,11 +14,7 @@ finished: "31/03/2025",
 status: "done",
 };
 ---
-<BaseLayout title={meta.title}>
-<Fragment slot="nav"><Nav /></Fragment>
-<Fragment slot="header"><Header /></Fragment>
-<Fragment slot="footer"><Footer /></Fragment>
-
+<StandardPageLayout title={meta.title}>
 <BookHeader 
     title={meta.title} 
     summary={meta.summary} 
@@ -29,4 +25,4 @@ status: "done",
 />
 
 <LoadingScreen message="En algún punto de mi vida voy a escribir algo acá."/>
-</BaseLayout>
+</StandardPageLayout>
