@@ -6,13 +6,7 @@ export interface Props {
 const { message = "... En desarrollo" } = Astro.props;
 
 ---
-<script hoist lang="ts">
-  import "../scripts/flow-canvas.ts";
-</script>
-<div class="animation-container">
+<div class="working-container">
   <h1 class="flow-message">{message}</h1>
-  <div class="canvas-wrapper">
-    <canvas id="flow-canvas"></canvas>
-  </div>
 </div>
 

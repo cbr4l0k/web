@@ -1,0 +1,24 @@
+---
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { createPath } from "../../utils/paths";
+
+const modules = import.meta.glob('./*.astro', { eager: true });
+const random_stuff = Object.entries(modules)
+.filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
+.map(([path, mod]: any) => ({
+...(mod?.meta ?? {}),
+slug: (mod?.meta?.slug) ?? path.replace(/^\.\/(.*)\.astro$/, '$1')
+}))
+.filter((p) => p && p.title)
+.sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+
+---
+<StandardPageLayout title="Random Stuff">
+<p> En algún punto, pienso usar este espacio para cosas random, como la razón de los settings que uso para lavar la ropa o la razón por la que me gusta tomar café de pie y en una taza pesada, tipo, no se...</p>
+<ul class="grid gap-4 sm:grid-cols-2">
+    {random_stuff.map((stuff) => (
+    <ProjectCard project={stuff} />
+    ))}
+</ul>
+</StandardPageLayout>

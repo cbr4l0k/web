@@ -1,13 +1,6 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Nav from "../components/Nav.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import StandardPageLayout from "../layouts/StandardPageLayout.astro";
 ---
-<BaseLayout title="Home">
-  <Fragment slot="nav"><Nav /></Fragment>
-  <Fragment slot="header"><Header /></Fragment>
-  <Fragment slot="footer"><Footer /></Fragment>
-
+<StandardPageLayout title="Home">
   <p class="opacity-80">No se lo que estoy haciendo, pero espero hacerlo mejor con el tiempo))))</p>
-</BaseLayout>
+</StandardPageLayout>

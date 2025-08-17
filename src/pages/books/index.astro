@@ -1,8 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Nav from "../../components/Nav.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import BookCard from "../../components/BookCard.astro";
 import { createPath } from "../../utils/paths";
 
@@ -52,10 +49,7 @@ const booksByYear = finishedBooks.reduce((acc, book) => {
 
 const sortedYears = Object.keys(booksByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
-<BaseLayout title="Books">
-  <Fragment slot="nav"><Nav /></Fragment>
-  <Fragment slot="header"><Header /></Fragment>
-  <Fragment slot="footer"><Footer /></Fragment>
+<StandardPageLayout title="Books">
   
   {currentlyReading.length > 0 && (
     <div class="mb-8">
@@ -92,4 +86,4 @@ const sortedYears = Object.keys(booksByYear).sort((a, b) => parseInt(b) - parseI
       </div>
     );
   })}
-</BaseLayout>
+</StandardPageLayout>

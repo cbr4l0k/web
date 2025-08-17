@@ -171,7 +171,7 @@ body {
   border-right-color: #111;
 }
 
-.animation-container {
+.working-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,29 +186,9 @@ body {
   font-size: 1.5rem;
 }
 
-.canvas-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 1;
-}
-
-#flow-canvas {
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
-  max-height: 400px;
-}
-
 @media (max-width: 768px) {
-  .animation-container {
+  .working-container {
     padding: 1rem;
-  }
-  
-  .canvas-wrapper {
-    max-width: 300px;
   }
   
   .flow-message {
@@ -218,10 +198,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .canvas-wrapper {
-    max-width: 250px;
-  }
-  
   .flow-message {
     font-size: 1rem;
     margin-bottom: 1rem;
