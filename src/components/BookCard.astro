@@ -1,0 +1,37 @@
+---
+import Card from './Card.astro';
+import { createPath } from '../utils/paths';
+
+export interface Props {
+  book: {
+    slug: string;
+    title: string;
+    author: string;
+    summary: string;
+    status?: string;
+    started?: string;
+    finished?: string;
+  };
+}
+
+const { book } = Astro.props;
+
+const metadata = [
+  { label: 'Author', value: book.author }
+];
+
+if (book.started && !book.finished) {
+  metadata.push({ label: 'Started', value: book.started });
+}
+---
+<Card 
+  href={createPath(`/books/${book.slug}`)} 
+  title={book.title}
+  status={book.status}
+  summary={book.summary}
+  metadata={metadata}
+>
+  {book.started && !book.finished && (
+    <p class="text-xs text-gray-500 mt-2">Started: {book.started}</p>
+  )}
+</Card>

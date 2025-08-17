@@ -1,0 +1,28 @@
+---
+export interface Props {
+  href: string;
+  title: string;
+  status?: string;
+  summary: string;
+  metadata?: Array<{ label: string; value: string }>;
+}
+
+const { href, title, status, summary, metadata = [] } = Astro.props;
+---
+<li class="rounded border border-gray-300  p-4 transition hover:shadow hover:-translate-y-0.5">
+  <a href={href} class="no-underline">
+    <div class="mb-2 flex items-center justify-between">
+      <h4 class="text-lg font-semibold text-[#222]">{title}</h4>
+      {status && (
+        <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset">
+          {status}
+        </span>
+      )}
+    </div>
+    {metadata.map(({ label, value }) => (
+      <p class="text-xs opacity-70 mb-1">{label}: {value}</p>
+    ))}
+    <p class="text-sm opacity-90">{summary}</p>
+    <slot />
+  </a>
+</li>
