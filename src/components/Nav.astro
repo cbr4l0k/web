@@ -33,7 +33,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
   <div class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
     <button 
       id="burger" 
-      class="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0b3828]" 
+      class="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-200" 
       aria-label="Toggle navigation menu"
       type="button"
     >
@@ -44,11 +44,11 @@ const showSub = activeSection && activeSection.children && activeSection.childre
   </div>
   <nav class="flex-1 overflow-y-auto p-2">
     <div class="mb-4 space-y-2 nav-fixed">
-        <a href={createPath('/')} title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname===createPath('/') ? 'bg-[#0b3828]/10 text-[#0b3828]' : 'hover:bg-gray-100'}`}>Home</a>
+        <a href={createPath('/')} title="Home" class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm ${pathname===createPath('/') ? 'bg-gray-200 text-text-black-200' : 'hover:bg-gray-100'}`}>Home</a>
       <ul class="space-y-1">
         {sections.map((s) => (
           <li>
-            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{s.label}</a>
+            <a href={s.base} title={s.label} data-title={s.label} class={`truncate-ell has-tooltip rounded px-3 py-2 text-sm hover:bg-gray-100 ${pathname===s.base ? 'bg-gray-200 text-black-200' : ''}`}>{s.label}</a>
           </li>
         ))}
       </ul>
@@ -61,7 +61,7 @@ const showSub = activeSection && activeSection.children && activeSection.childre
         <ul class="space-y-1">
           {activeSection.children.map((c) => (
             <li>
-                <a href={createPath(c.href)} title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(createPath(c.href)) ? 'bg-[#0b3828]/10 text-[#0b3828]' : ''}`}>{c.label}</a>
+                <a href={createPath(c.href)} title={c.label} data-title={c.label} class={`truncate-ell has-tooltip relative rounded px-3 py-1.5 text-sm hover:bg-gray-100 ${isActive(createPath(c.href)) ? 'bg-gray-200 text-black-200' : ''}`}>{c.label}</a>
             </li>
           ))}
         </ul>
