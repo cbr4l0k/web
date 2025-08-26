@@ -1,9 +1,23 @@
 ---
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
-import Nav from "../../components/Nav.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import ReferenceCard from "../../components/ReferenceCard.astro";
 ---
 <StandardPageLayout title="References">
   <p class="opacity-80">Resources and tools I reference.</p>
+  <br />
+  
+  <ul class="grid gap-4 sm:grid-cols-1">
+    <ReferenceCard 
+      title="Example Reference Title"
+      description="This is a sample description of a reference resource that would be useful for various purposes. It provides clear information about what this reference contains."
+      reference="Author, J. (2023). Example Title. Publisher Name."
+      url="https://example.com"
+    />
+    
+    <ReferenceCard 
+      title="Another Reference"
+      description="Description of another valuable reference that doesn't have a URL but is still important to document and reference."
+      reference="Smith, A. (2022). Important Work. Academic Press."
+    />
+  </ul>
 </StandardPageLayout>

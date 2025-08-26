@@ -1,0 +1,26 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  reference: string;
+  url?: string;
+}
+
+const { title, description, reference, url } = Astro.props;
+---
+
+<li class="rounded border border-gray-300 p-4 transition hover:shadow hover:-translate-y-0.5">
+  {url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" class="no-underline">
+      <h4 class="text-lg font-semibold text-[#222] mb-2">{title}</h4>
+      <p class="text-sm opacity-90 mb-3">{description}</p>
+      <p class="text-xs opacity-70 italic border-t border-gray-200 pt-2">{reference}</p>
+    </a>
+  ) : (
+    <div>
+      <h4 class="text-lg font-semibold text-[#222] mb-2">{title}</h4>
+      <p class="text-sm opacity-90 mb-3">{description}</p>
+      <p class="text-xs opacity-70 italic border-t border-gray-200 pt-2">{reference}</p>
+    </div>
+  )}
+</li>
