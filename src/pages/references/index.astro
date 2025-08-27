@@ -1,23 +1,21 @@
 ---
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
+import { references } from "../../data/references";
+
+const sortedReferences = references.sort((a, b) => a.title.localeCompare(b.title));
 ---
 <StandardPageLayout title="References">
-  <p class="opacity-80">Resources and tools I reference.</p>
-  <br />
-  
-  <ul class="grid gap-4 sm:grid-cols-1">
+<p class="opacity-80 mb-10">I just spend so much of my time browsing and finding such interesting fragments of the internet that it would be a waste not to have a place to store them... maybe later I'll add some fuzzy search 😯</p>
+
+<ul class="grid gap-4 sm:grid-cols-1">
+    {sortedReferences.map((reference) => (
     <ReferenceCard 
-      title="Example Reference Title"
-      description="This is a sample description of a reference resource that would be useful for various purposes. It provides clear information about what this reference contains."
-      reference="Author, J. (2023). Example Title. Publisher Name."
-      url="https://example.com"
+    title={reference.title}
+    description={reference.description}
+    reference={reference.reference}
+    url={reference.url}
     />
-    
-    <ReferenceCard 
-      title="Another Reference"
-      description="Description of another valuable reference that doesn't have a URL but is still important to document and reference."
-      reference="Smith, A. (2022). Important Work. Academic Press."
-    />
-  </ul>
+    ))}
+</ul>
 </StandardPageLayout>
