@@ -4,15 +4,13 @@ import ProjectCard from "../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 
 const allProjects = await getCollection("projects");
-console.log("All projects:", allProjects);
 
 const projects = allProjects.map((project) => ({
   ...project.data,
   slug: project.id.replace(/\.mdx?$/, '')
 })).sort((a, b) => (a.title || '').localeCompare(b.title || ''));
 
-console.log("Processed projects:", projects);
-  
+ 
 ---
 <StandardPageLayout title="Projects">
   {projects.length === 0 ? (
