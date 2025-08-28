@@ -1,21 +1,19 @@
 ---
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import BookCard from "../../components/BookCard.astro";
-import { createPath } from "../../utils/paths";
+import { getCollection } from "astro:content";
 
-const modules = import.meta.glob('./*.astro', { eager: true });
+const allBooks = await getCollection("books");
 const parseDate = (dateStr) => {
   if (!dateStr) return new Date('24/05/2025');
   const [day, month, year] = dateStr.split('/');
   return new Date(year, month - 1, day);
 };
 
-const books = Object.entries(modules)
-  .map(([path, mod]: any) => ({
-    ...(mod?.meta ?? {}),
-    slug: (mod?.meta?.slug) ?? path.replace(/^\.\/(.*)\.astro$/, '$1')
-  }))
-  .filter((b) => b && b.title && b.author);
+const books = allBooks.map((book) => ({
+  ...book.data,
+  slug: book.id.replace(/\.mdx?$/, '')
+}));
 
 const currentlyReading = books.filter(book => book.started && !book.finished)
   .sort((a, b) => {

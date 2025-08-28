@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from "astro:content";
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import BookHeader from "../../components/BookHeader.astro";
+
+export async function getStaticPaths() {
+  const books = await getCollection("books");
+  return books.map((book) => ({
+    params: { slug: book.id.replace(/\.mdx?$/, '') },
+    props: { book },
+  }));
+}
+
+const { book } = Astro.props;
+const { Content } = await render(book);
+---
+
+<StandardPageLayout title={book.data.title}>
+  <BookHeader 
+    title={book.data.title} 
+    summary={book.data.summary} 
+    author={book.data.author} 
+    status={book.data.status} 
+    started={book.data.started}
+    finished={book.data.finished}
+  />
+  
+  <article class="book-content grid gap-4 md:grid-cols-1">
+    <Content />
+  </article>
+</StandardPageLayout>

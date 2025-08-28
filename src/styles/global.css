@@ -203,3 +203,25 @@ body {
   }
 }
 
+/* MDX Book Content Styling */
+.book-content h1,
+.book-content h2 {
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.book-content p {
+  margin-bottom: 1rem;
+}
+
+.book-content h1:not(:first-child),
+.book-content h2:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.book-content em {
+  font-style: italic;
+}
+
