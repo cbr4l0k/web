@@ -1,0 +1,73 @@
+---
+title: "Personal Website"
+summary: "A minimal Astro-powered personal website with books and projects."
+role: "Developer"
+status: "in-progress"
+period: "2025"
+stack: ["Astro", "TypeScript", "Tailwind"]
+links:
+  - label: "Repo"
+    url: "https://github.com"
+  - label: "Live"
+    url: "https://example.com"
+---
+
+import Grid from '../../components/Grid.astro';
+import Callout from '../../components/Callout.astro';
+import InfoList from '../../components/InfoList.astro';
+import InteractiveRoadmap from '../../components/InteractiveRoadmap.astro';
+
+## Overview
+
+High-level goals, scope, and outcomes.
+
+<Grid cols={1}>
+  <InfoList items={[
+    { label: 'Tech', value: 'Astro' },
+    { label: 'Tech', value: 'TypeScript' },
+    { label: 'Tech', value: 'Tailwind' }
+  ]} />
+  <Callout type="danger" title="Status">
+    <InfoList items={[
+      { label: 'Current', value: 'in-progress' }, 
+      { label: 'Period', value: '2025' }
+    ]} />
+  </Callout>
+</Grid>
+
+## Roadmap
+
+Planned phases and goals.
+
+<InteractiveRoadmap phases={[
+  { 
+    title: 'MVP', 
+    goals: [
+    { label: 'Home', done: true },
+    { label: 'Books', done: false },
+      { label: 'Lunch', done: true },
+      { label: 'Dinner', done: false },
+      { label: 'Projects', done: true },
+    ]
+  },
+]} />
+
+## Highlights
+
+### Feature A
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem velit, volutpat vel egestas non, euismod sed neque. Nunc iaculis magna in neque aliquet, eu tincidunt turpis finibus. Maecenas non enim vestibulum, vestibulum mi sit amet, commodo lacus. Aliquam lacinia rutrum tincidunt. Proin blandit volutpat sapien et commodo. Vestibulum in elit sem. Nulla facilisi. Nullam at commodo orci. Donec nec tortor a tortor mollis viverra. Sed in tortor id ligula feugiat consequat.
+
+### Feature B
+
+Integer pellentesque ex vel leo tincidunt, sit amet congue purus cursus. Suspendisse mattis lorem in ante finibus, sit amet dignissim sem accumsan. Vestibulum eget odio nibh. Aenean sit amet sem vehicula, iaculis quam et, malesuada metus. Cras hendrerit porttitor turpis. Mauris varius massa vitae sagittis egestas. Etiam placerat consectetur tempus. Maecenas porta at nisi et sagittis. Vestibulum faucibus augue felis, eget fringilla turpis tempor cursus.
+
+### Feature C
+
+Nunc et bibendum ligula. Duis dignissim finibus nisl ut sagittis. Donec bibendum diam lectus, at varius risus porttitor in. Sed porttitor facilisis sem, vel aliquet massa venenatis vel. Morbi cursus rhoncus erat eget faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris quam justo, scelerisque eu scelerisque eget, gravida vel tellus. Nunc a mi ac augue vehicula convallis.
+
+### Next Steps
+
+**Status Update:**
+
+In in blandit ipsum. Maecenas tincidunt vestibulum tellus ac sodales. Pellentesque vel tellus non nulla egestas tempor. Aliquam vel dolor non nunc scelerisque aliquam. Maecenas vehicula dictum metus. Sed id sapien magna. Curabitur sit amet nisl vel augue efficitur tempor.

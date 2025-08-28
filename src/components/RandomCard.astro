@@ -1,0 +1,32 @@
+---
+import Card from './Card.astro';
+import { createPath } from '../utils/paths';
+
+export interface Props {
+  project: {
+    slug: string;
+    title: string;
+    summary: string;
+    status?: string;
+    role?: string;
+    period?: string;
+  };
+}
+
+const { project } = Astro.props;
+
+const metadata = [];
+if (project.role) {
+  metadata.push({ label: 'Role', value: project.role });
+}
+if (project.period) {
+  metadata.push({ label: 'Period', value: project.period });
+}
+---
+<Card 
+  href={createPath(`/random/${project.slug}`)} 
+  title={project.title}
+  status={project.status}
+  summary={project.summary}
+  metadata={metadata}
+/>

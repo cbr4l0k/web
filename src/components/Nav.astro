@@ -1,21 +1,28 @@
 ---
 const pathname = Astro.url.pathname;
-import type { AstroIntegrationLogger } from "astro";
+import { getCollection } from "astro:content";
 import { createPath, isActivePath } from '../utils/paths';
 
-// Indexing subsections
-const books = Object.entries(import.meta.glob('../pages/books/**/*.astro', { eager: true }))
-  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
-  .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
-  .sort((a, b) => a.label.localeCompare(b.label));
-const projects = Object.entries(import.meta.glob('../pages/projects/**/*.astro', { eager: true }))
-  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
-  .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
-  .sort((a, b) => a.label.localeCompare(b.label));
-const blog = Object.entries(import.meta.glob('../pages/blog/**/*.astro', { eager: true }))
-  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
-  .map(([p, m]: any) => ({ label: m?.meta?.title ?? p.replace(/^.*\/(.*)\.astro$/, '$1'), href: p.replace(/^\.\.\/(pages\/)?/, '/').replace(/\.astro$/, '') }))
-  .sort((a, b) => a.label.localeCompare(b.label));
+// Get content from collections
+const allBooks = await getCollection("books");
+const allProjects = await getCollection("projects");
+const allRandom = await getCollection("random");
+
+// Transform to navbar format
+const books = allBooks.map((book) => ({
+  label: book.data.title,
+  href: `/books/${book.id.replace(/\.mdx?$/, '')}`
+})).sort((a, b) => a.label.localeCompare(b.label));
+
+const projects = allProjects.map((project) => ({
+  label: project.data.title,
+  href: `/projects/${project.id.replace(/\.mdx?$/, '')}`
+})).sort((a, b) => a.label.localeCompare(b.label));
+
+const blog = allRandom.map((item) => ({
+  label: item.data.title,
+  href: `/random/${item.id.replace(/\.mdx?$/, '')}`
+})).sort((a, b) => a.label.localeCompare(b.label));
 
 const sections = [
 { label: 'Books', base: createPath('/books'), children: books },

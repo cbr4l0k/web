@@ -1,23 +1,27 @@
 ---
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
-import { createPath } from "../../utils/paths";
+import { getCollection } from "astro:content";
 
-const modules = import.meta.glob('./*.astro', { eager: true });
-const projects = Object.entries(modules)
-  .filter(([p]) => !/\/(index|\[.*\])\.astro$/.test(p))
-  .map(([path, mod]: any) => ({
-    ...(mod?.meta ?? {}),
-    slug: (mod?.meta?.slug) ?? path.replace(/^\.\/(.*)\.astro$/, '$1')
-  }))
-  .filter((p) => p && p.title)
-  .sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+const allProjects = await getCollection("projects");
+console.log("All projects:", allProjects);
+
+const projects = allProjects.map((project) => ({
+  ...project.data,
+  slug: project.id.replace(/\.mdx?$/, '')
+})).sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+
+console.log("Processed projects:", projects);
   
 ---
 <StandardPageLayout title="Projects">
-  <ul class="grid gap-4 sm:grid-cols-2">
-    {projects.map((project) => (
-      <ProjectCard project={project} />
-    ))}
-  </ul>
+  {projects.length === 0 ? (
+    <p>No tengo proyectos 😔</p>
+  ) : (
+    <ul class="grid gap-4 sm:grid-cols-2">
+      {projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </ul>
+  )}
 </StandardPageLayout>

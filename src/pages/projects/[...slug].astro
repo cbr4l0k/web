@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import ProjectHeader from "../../components/ProjectHeader.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id.replace(/\.mdx?$/, '') },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<StandardPageLayout title={project.data.title}>
+  <ProjectHeader 
+    title={project.data.title} 
+    summary={project.data.summary} 
+    role={project.data.role} 
+    status={project.data.status} 
+    period={project.data.period}
+    stack={project.data.stack}
+    links={project.data.links}
+  />
+  
+  <article class="project-content grid gap-4 md:grid-cols-1">
+    <Content />
+  </article>
+</StandardPageLayout>

@@ -203,25 +203,37 @@ body {
   }
 }
 
-/* MDX Book Content Styling */
+/* MDX Content Styling */
 .book-content h1,
-.book-content h2 {
+.book-content h2,
+.project-content h1,
+.project-content h2,
+.random-content h1,
+.random-content h2 {
   margin-bottom: 0.25rem;
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--color-heading);
 }
 
-.book-content p {
+.book-content p,
+.project-content p,
+.random-content p {
   margin-bottom: 1rem;
 }
 
 .book-content h1:not(:first-child),
-.book-content h2:not(:first-child) {
+.book-content h2:not(:first-child),
+.project-content h1:not(:first-child),
+.project-content h2:not(:first-child),
+.random-content h1:not(:first-child),
+.random-content h2:not(:first-child) {
   margin-top: 2rem;
 }
 
-.book-content em {
+.book-content em,
+.project-content em,
+.random-content em {
   font-style: italic;
 }
 
