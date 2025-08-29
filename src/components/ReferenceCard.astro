@@ -9,18 +9,41 @@ export interface Props {
 const { title, description, reference, url } = Astro.props;
 ---
 
-<li class="rounded border border-gray-300 p-4 transition hover:shadow hover:-translate-y-0.5">
-  {url ? (
-    <a href={url} target="_blank" rel="noopener noreferrer" class="no-underline">
-      <h4 class="text-lg font-semibold text-[#222] mb-2">{title}</h4>
-      <p class="text-sm opacity-90 mb-3">{description}</p>
-      <p class="text-xs opacity-70 italic border-t border-gray-200 pt-2">{reference}</p>
-    </a>
-  ) : (
-    <div>
-      <h4 class="text-lg font-semibold text-[#222] mb-2">{title}</h4>
-      <p class="text-sm opacity-90 mb-3">{description}</p>
-      <p class="text-xs opacity-70 italic border-t border-gray-200 pt-2">{reference}</p>
-    </div>
-  )}
+<li class="rounded border border-gray-300 p-4 transition hover:shadow hover:-translate-y-0.5 cursor-pointer reference-item">
+  <div class="flex items-center justify-between mb-2">
+    <h4 class="text-lg font-semibold text-[#222]">{title}</h4>
+    {url && (
+      <a 
+        href={url} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset hover:bg-gray-50 transition-colors external-link"
+        onclick="event.stopPropagation()"
+      >
+      Open<br/>URL 🔗
+      </a>
+    )}
+  </div>
+  <div class="reference-content hidden">
+    <p class="text-sm opacity-90 mb-3">{description}</p>
+    <p class="text-xs opacity-70 italic border-t border-gray-200 pt-2">{reference}</p>
+  </div>
 </li>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const referenceItems = document.querySelectorAll('.reference-item');
+    
+    referenceItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        const content = this.querySelector('.reference-content');
+        
+        if (content.classList.contains('hidden')) {
+          content.classList.remove('hidden');
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
