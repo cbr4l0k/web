@@ -15,15 +15,15 @@ const { title, summary, role, status, period, stack = [], links = [] } = Astro.p
   {summary && <p class="mb-4 leading-relaxed">{summary}</p>}
   <div class="mb-4 flex flex-wrap items-center gap-3">
     {status && (
-      <span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset`}>{status}</span>
+    <span class="text-xs opacity-70">Status:</span><span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset`}>{status}</span>
     )}
     {role && <span class="text-xs opacity-70">Role: {role}</span>}
     {period && <span class="text-xs opacity-70">Period: {period}</span>}
   </div>
   {(stack.length > 0 || links.length > 0) && (
-    <div class="mb-6 flex flex-wrap items-center gap-2">
+    <div class="mb-6 flex flex-wrap items-center gap-2 ">
       {stack.map((t) => (
-        <span class="badge muted">{t}</span>
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-xs ring-1 ring-inset">{t}</span>
       ))}
       {links.map((l) => (
         <a href={l.href} class="badge" style="border:1px solid var(--color-border);">{l.label}</a>

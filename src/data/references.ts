@@ -8,6 +8,12 @@ export interface Reference {
 
 export const references: Reference[] = [
     {
+        title: "0: NoHello[dot]com",
+        description: "It always bothered me how much time people waste on pleasantries on digital communication, like... One message to say 'Hi' and then waiting for a reply, and then another message to say 'How are you?' and then waiting for a reply... IDK... It's just way too much friction for me. If you wanna talk: please call me, invite me to an online meeting, or maybe tell me the address of the coffee shop where we can meet. Otherwise, just send me the actual message you want to say. This guys explains it better than I do.",
+        reference: "Please read it... is really good, and I think it will save you a lot of time.",
+        url: "https://nohello.net/",
+    },
+    {
         title: "Dialectics After Derrida",
         description: "En este articulo se hace una reflexión sobre la relevancia de Derrrida, más allá de las frases de cajón que se le atribuyen. Una de las cuestiones más interesantes que se mencionan, es cómo la ",
         reference: "A talk by Geoff Boucher... I should look up that guy.",
