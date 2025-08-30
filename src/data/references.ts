@@ -29,6 +29,12 @@ export const references: Reference[] = [
         description: "I really like Obsidian, the graph view and the connectivity dynamics help me a lot in my current thinking process/workflow. And Quartz just let me publish my notes as a website —hostable in GitHub Pages— with the graph view and all the Obsidian goodness. So yeah... NIIIICE.",
         reference: "Also... Notes can be public or private.",
         url: "https://quartz.jzhao.xyz/",
+    },
+    {
+        title: "On the working definition of Intelligence",
+        description: "Now that everyone is talking about AI, I think it's important to have a clear definition of what intelligence is. Mainly to avoid the hype and the marketing bullshit. This is a good starting point.",
+        reference: "By Pei Wang",
+        url: "https://www.researchgate.net/profile/Pei-Wang-41/publication/2339604_On_the_Working_Definition_of_Intelligence/links/00b7d534c738bd5ed7000000/On-the-Working-Definition-of-Intelligence.pdf",
     }
 ]
 
