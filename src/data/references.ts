@@ -1,3 +1,5 @@
+import referencesData from './references.json';
+
 export interface Reference {
     title: string;
     description: string;
@@ -5,36 +7,5 @@ export interface Reference {
     url?: string;
 }
 
-export const references: Reference[] = [
-    {
-        title: "0: NoHello[dot]com",
-        description: "It always bothered me how much time people waste on pleasantries on digital communication, like... One message to say 'Hi' and then waiting for a reply, and then another message to say 'How are you?' and then waiting for a reply... IDK... It's just way too much friction for me. If you wanna talk: please call me, invite me to an online meeting, or maybe tell me the address of the coffee shop where we can meet. Otherwise, just send me the actual message you want to say. This guys explains it better than I do.",
-        reference: "Please read it... is really good, and I think it will save you a lot of time.",
-        url: "https://nohello.net/",
-    },
-    {
-        title: "Dialectics After Derrida",
-        description: "En este articulo se hace una reflexión sobre la relevancia de Derrrida, más allá de las frases de cajón que se le atribuyen. Una de las cuestiones más interesantes que se mencionan, es cómo la ",
-        reference: "A talk by Geoff Boucher... I should look up that guy.",
-        url: "https://www.marxists.org/reference/archive/hegel/txt/gb2000_3.htm",
-    },
-    {
-        title: "How To Ask Questions The Smart Way",
-        description: "Y aunque este artículo está diseñado para la comunidad hacker, creo que refleja la desconexión generalizada entre el público general y la tecnología. Me recuerda cuando era monitor en la universidad, y alguno de mis estudiantes llegaba con preguntas por el grupo de WhatsApp y que la respuesta era literalmente el equivalente de copiar y pegar la pregunta en el buscador de Google, y responder en el chat con el link al primer resultado que frecuentemente era un post de Stack Overflow. Debería poner en mi hoja de vida que sé googlear como Dios manda.",
-        reference: "Por Eric Steven Raymond",
-        url: "http://www.catb.org/~esr/faqs/smart-questions.html",
-    },
-    {
-        title: "Quartz",
-        description: "I really like Obsidian, the graph view and the connectivity dynamics help me a lot in my current thinking process/workflow. And Quartz just let me publish my notes as a website —hostable in GitHub Pages— with the graph view and all the Obsidian goodness. So yeah... NIIIICE.",
-        reference: "Also... Notes can be public or private.",
-        url: "https://quartz.jzhao.xyz/",
-    },
-    {
-        title: "On the working definition of Intelligence",
-        description: "Now that everyone is talking about AI, I think it's important to have a clear definition of what intelligence is. Mainly to avoid the hype and the marketing bullshit. This is a good starting point.",
-        reference: "By Pei Wang",
-        url: "https://www.researchgate.net/profile/Pei-Wang-41/publication/2339604_On_the_Working_Definition_of_Intelligence/links/00b7d534c738bd5ed7000000/On-the-Working-Definition-of-Intelligence.pdf",
-    }
-]
+export const references: Reference[] = referencesData;
 
