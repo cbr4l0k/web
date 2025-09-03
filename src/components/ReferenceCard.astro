@@ -9,9 +9,9 @@ export interface Props {
 const { title, description, reference, url } = Astro.props;
 ---
 
-<li class="rounded border border-gray-300 p-4 transition hover:shadow hover:-translate-y-0.5 cursor-pointer reference-item">
-  <div class="flex items-center justify-between mb-2">
-    <h4 class="text-lg font-semibold text-[#222]">{title}</h4>
+<li class="rounded border border-gray-300 p-2 transition hover:shadow hover:-translate-y-0.5 cursor-pointer reference-item">
+  <div class="flex items-center justify-between mb-1">
+    <h4 class="text-sm font-semibold text-[#222]">{title}</h4>
     {url && (
       <a 
         href={url} 
