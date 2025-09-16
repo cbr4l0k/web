@@ -1,0 +1,30 @@
+---
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+
+const allBlog = await getCollection("blog");
+const parseDate = (dateStr) => {
+  if (!dateStr) return new Date('24/05/2025');
+  const [day, month, year] = dateStr.split('/');
+  return new Date(year, month - 1, day);
+};
+
+const blogs = allBlog
+  .filter(blog => !blog.data.private)
+  .map((blog) => ({
+    ...blog.data,
+    slug: blog.id.replace(/\.mdx?$/, '')
+  })).sort((a, b) => {
+    const dateA = parseDate(a.finished || a.started);
+    const dateB = parseDate(b.finished || b.started);
+    return dateB.getTime() - dateA.getTime();
+  });
+---
+<StandardPageLayout title="Blog">
+  <ul class="grid gap-4 sm:grid-cols-2">
+    {blogs.map((blog) => (
+      <BlogCard blog={blog} />
+    ))}
+  </ul>
+</StandardPageLayout>

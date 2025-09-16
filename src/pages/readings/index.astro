@@ -1,0 +1,26 @@
+---
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import ReadingCard from "../../components/ReadingCard.astro";
+import { readings } from "../../data/readings";
+
+const parseDate = (dateStr) => {
+  if (!dateStr) return new Date();
+  const [day, month, year] = dateStr.split('/');
+  return new Date(year, month - 1, day);
+};
+
+const sortedReadings = readings.sort((a, b) => {
+  const dateA = parseDate(a.date);
+  const dateB = parseDate(b.date);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+<StandardPageLayout title="Readings">
+<p class="opacity-80 mb-10">Quotes and notes from my readings. Simple fragments that caught my attention along the way.</p>
+
+<ul class="grid gap-4 sm:grid-cols-1">
+  {sortedReadings.map((reading) => (
+    <ReadingCard reading={reading} />
+  ))}
+</ul>
+</StandardPageLayout>

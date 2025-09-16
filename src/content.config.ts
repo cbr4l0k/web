@@ -1,8 +1,8 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-const books = defineCollection({
-    loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/books" }),
+const blog = defineCollection({
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
     schema: z.object({
         title: z.string(),
         author: z.string(),
@@ -10,6 +10,8 @@ const books = defineCollection({
         status: z.string().default("leyendo"),
         started: z.string().optional(),     // Format: DD/MM/YYYY
         finished: z.string().optional(),    // Format: DD/MM/YYYY
+        tags: z.array(z.string()).default([]),
+        private: z.boolean().default(true),
     }),
 });
 
@@ -22,6 +24,7 @@ const projects = defineCollection({
         status: z.string().optional(),
         period: z.string().optional(),
         stack: z.array(z.string()).default([]),
+        private: z.boolean().default(true),
         links: z.array(z.object({
             label: z.string(),
             url: z.string().url(),
@@ -37,11 +40,12 @@ const random = defineCollection({
         author: z.string().optional(),
         date: z.string().optional(), // Format: DD/MM/YYYY
         tags: z.array(z.string()).default([]),
+        private: z.boolean().default(true),
     }),
 });
 
 export const collections = {
-    books,
+    blog,
     projects,
     random,
 };

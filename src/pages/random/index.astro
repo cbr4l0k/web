@@ -5,7 +5,9 @@ import { getCollection } from "astro:content";
 
 const allRandom = await getCollection("random");
 
-const random_stuff = allRandom.map((item) => ({
+const random_stuff = allRandom
+	.filter(item => !item.data.private)
+	.map((item) => ({
   ...item.data,
   slug: item.id.replace(/\.mdx?$/, '')
 })).sort((a, b) => (a.title || '').localeCompare(b.title || ''));

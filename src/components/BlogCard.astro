@@ -1,0 +1,39 @@
+---
+import Card from './Card.astro';
+import { createPath } from '../utils/paths';
+
+export interface Props {
+  blog: {
+    slug: string;
+    title: string;
+    author: string;
+    summary: string;
+    status?: string;
+    started?: string;
+    finished?: string;
+    tags?: string[];
+  };
+}
+
+const { blog } = Astro.props;
+
+const metadata = [
+  { label: 'Author', value: blog.author }
+];
+
+if (blog.started && !blog.finished) {
+  metadata.push({ label: 'Started', value: blog.started });
+}
+
+if (blog.tags && blog.tags.length > 0) {
+  metadata.push({ label: 'Tags', value: blog.tags.join(', ') });
+}
+---
+<Card
+  href={createPath(`/blog/${blog.slug}`)}
+  title={blog.title}
+  status={blog.status}
+  summary={blog.summary}
+  metadata={metadata}
+>
+</Card>

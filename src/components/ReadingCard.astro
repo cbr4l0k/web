@@ -1,0 +1,55 @@
+---
+import type { Reading } from '../data/readings';
+
+export interface Props {
+  reading: Reading;
+}
+
+const { reading } = Astro.props;
+const hasQuotes = reading.quotes && reading.quotes.length > 0;
+---
+
+<li class={`rounded border border-gray-300 p-2 transition reading-item ${hasQuotes ? 'hover:shadow hover:-translate-y-0.5 cursor-pointer' : ''}`}>
+  <div class="flex items-center justify-between mb-1">
+    <h4 class="text-sm font-semibold text-[#222]">{reading.title}</h4>
+    {reading.date && (
+      <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset bg-gray-50 text-gray-600 ring-gray-500/10">
+        {reading.date}
+      </span>
+    )}
+  </div>
+  <p class="text-xs opacity-70 mb-2">{reading.author}</p>
+  <div class="reading-content hidden">
+    {reading.quotes.map((quoteItem) => (
+      <div class="mb-4 last:mb-0">
+        <blockquote class="text-sm italic border-l-4 border-gray-300 pl-4 mb-2 opacity-90">
+          "{quoteItem.quote}"
+        </blockquote>
+        {quoteItem.note && (
+          <p class="text-xs opacity-70 ml-6">{quoteItem.note}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</li>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const readingItems = document.querySelectorAll('.reading-item');
+
+    readingItems.forEach(item => {
+      const content = item.querySelector('.reading-content');
+      const hasQuotes = content && content.children.length > 0;
+
+      if (hasQuotes) {
+        item.addEventListener('click', function(e) {
+          if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+          } else {
+            content.classList.add('hidden');
+          }
+        });
+      }
+    });
+  });
+</script>

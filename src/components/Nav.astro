@@ -4,31 +4,38 @@ import { getCollection } from "astro:content";
 import { createPath, isActivePath } from '../utils/paths';
 
 // Get content from collections
-const allBooks = await getCollection("books");
+const allBlog = await getCollection("blog");
 const allProjects = await getCollection("projects");
 const allRandom = await getCollection("random");
 
 // Transform to navbar format
-const books = allBooks.map((book) => ({
-  label: book.data.title,
-  href: `/books/${book.id.replace(/\.mdx?$/, '')}`
-})).sort((a, b) => a.label.localeCompare(b.label));
+const blog = allBlog
+  .filter(blog => !blog.data.private)
+  .map((blog) => ({
+    label: blog.data.title,
+    href: `/blog/${blog.id.replace(/\.mdx?$/, '')}`
+  })).sort((a, b) => a.label.localeCompare(b.label));
 
-const projects = allProjects.map((project) => ({
-  label: project.data.title,
-  href: `/projects/${project.id.replace(/\.mdx?$/, '')}`
-})).sort((a, b) => a.label.localeCompare(b.label));
+const projects = allProjects
+  .filter(project => !project.data.private)
+  .map((project) => ({
+    label: project.data.title,
+    href: `/projects/${project.id.replace(/\.mdx?$/, '')}`
+  })).sort((a, b) => a.label.localeCompare(b.label));
 
-const blog = allRandom.map((item) => ({
+  const random = allRandom
+  .filter(item => !item.data.private)
+  .map((item) => ({
   label: item.data.title,
   href: `/random/${item.id.replace(/\.mdx?$/, '')}`
 })).sort((a, b) => a.label.localeCompare(b.label));
 
 const sections = [
-{ label: 'Books', base: createPath('/books'), children: books },
+{ label: 'Blog', base: createPath('/blog'), children: blog },
 { label: 'Projects', base: createPath('/projects'), children: projects },
+{ label: 'Readings', base: createPath('/readings'), children: [] },
 { label: 'References', base: createPath('/references'), children: [] },
-{ label: 'Random Stuff', base: createPath('/random'), children: blog },
+{ label: 'Random Stuff', base: createPath('/random'), children: random },
 ];
 function isActive(href) {
   return isActivePath(pathname, href);
