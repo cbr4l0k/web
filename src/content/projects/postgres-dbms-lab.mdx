@@ -1,0 +1,521 @@
+---
+title: "PostgreSQL DBMS Lab: User Management & Permissions"
+summary: "A hands-on lab exploring PostgreSQL user management, permission delegation, and authentication configuration using containerized deployment."
+role: "Student"
+status: "completed"
+period: "2025"
+stack: ["PostgreSQL", "Docker", "Podman", "pgAdmin"]
+links:
+  - label: "ITMO University"
+    url: "https://itmo.ru"
+private: false
+---
+
+import { createPath } from '../../utils/paths';
+
+I know this lab might have some learning goals, but while setting up everything, I encountered some technical questions I've always wanted to clarify, so I'll just take the chance to do it here. I'll try to give some interesting insights about each step and mid to high-level reasoning for my actions 🦀.
+
+## Deploy postgres instance.
+
+One thing about installing `Postgres` in my experience, is that usually is not fun. You could say that it's linked to my lack of interest in database configuration, or the fact that BTW I use Arch󰣇 —and something always breaks at some point—. But I guess, `containerization` just makes everything easier, and way nicer to debug when something goes wrong. So the first sub-step would be to...
+
+### Install postgres container
+
+And because doing the following would be to way too easy:
+
+```bash
+docker run \
+    --name dbms_postgres \
+    -e POSTGRES_USER=mod2_dbms \
+    -e POSTGRES_PASSWORD=mod2_dbms \
+    -e POSTGRES_DB=labdb \
+    -p 5432:5432 \
+    -d postgres
+```
+
+Y decided to make my own working lab using `docker-compose` file with not only the `Postgres` service, but also a `pgadmin` service to make screenshots way less cool and give me a better query editing experience.
+
+```yaml
+services:
+  db:
+    image: docker.io/library/postgres:latest
+    environment:
+      POSTGRES_USER: mod2_dbms
+      POSTGRES_PASSWORD: mod2_dbms
+      POSTGRES_DB: labdb
+    volumes:
+      - ./data:/var/lib/postgresql/data:Z
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mod2_dbms -d labdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: docker.io/dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: i_really_think_this_is_secur3
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+```
+
+And cool thing about composing both services: If the db service is not ready, the pgadmin service will not start. So you can be sure that when you access pgadmin, the database is already up and running. And one would say: "Juan, everything is working... just keep going, and complete this lab fast, you have many other labs/works/projects to do". But no, I figured out that I prefer to work in `podman` instead of `docker`, which normally is not a problem, but using `podman-compose` is not as nice as doing it with `docker-compose`. So...
+
+### Configure docker CLI to use podman backend
+
+... because I have this weird need to make things more complicated than they need to be, I decided to configure `docker` CLI to use `podman` as a backend. The reasoning? Well, I like rootless containers, and I don't like having daemons running in the background when I'm not using them. Also, it's fun to see if things break —spoiler: they usually do, but not this time—.
+
+The process is surprisingly straightforward (I know, shocking):
+
+```bash
+# Enable podman socket for user mode
+systemctl --user enable podman.socket
+systemctl --user start podman.socket
+
+# Create docker context pointing to podman
+docker context create podman --docker "host=unix:///run/user/$(id -u)/podman/podman.sock"
+
+# Switch to podman context
+docker context use podman
+
+# Verify it's working
+docker context show  # Should output: podman
+```
+
+And just like that, all my `docker` and `docker-compose` commands now use podman as the backend. The best part? Everything just works™. Now I can pretend I'm using docker while actually using podman. The duality of container runtimes, or something philosophical like that.
+
+### Verify the deployment
+
+And by running the following command, we can check the first item in the TODO list:
+
+```bash
+docker-compose up -d
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"
+```
+
+<img src={createPath('assets/projects/dbms/postgres_pgadmin_containers_running.png')} alt="Running containers" />
+
+Beautiful. Two containers, both alike in dignity, running in my userspace. No root privileges were harmed in the making of this setup.
+
+## Access the PostgreSQL shell.
+
+Now that we have a working database —or at least containers that claim to be working—, it's time to actually connect to the PostgreSQL shell. This is where the fun begins, and by fun I mean typing SQL queries and pretending I know what I'm doing 😎.
+
+```bash
+docker exec -it dbms-db-1 psql -U mod2_dbms -d labdb
+```
+
+<img src={createPath('/assets/projects/dbms/postgress_cli_connection.png')} alt="PostgreSQL CLI connection" />
+
+And there we go. We're in. The `psql` prompt stares back at me, judging my life choices. Time to create some tables.
+
+### Wait, I installed pgAdmin for a reason.
+
+Oh right, I almost forgot. I went through the trouble of setting up pgAdmin in the docker-compose file, and here I am being a terminal purist. Don't get me wrong —I prefer the CLI— but pgAdmin makes testing queries way easier with syntax highlighting, autocomplete, and the ability to edit results without writing UPDATE statements like a caveman.
+
+First, let's access pgAdmin at `http://localhost:5050`:
+
+**Login credentials:**
+- Email: `admin@example.com`
+- Password: `i_really_think_this_is_secur3`
+
+After logging in, we need to add our PostgreSQL server. Click on "Add New Server":
+
+```markdown 
+**General Tab:**
+- Name: `DBMS Lab`
+
+**Connection Tab:**
+- Host name/address: `db` (the service name from docker-compose)
+- Port: `5432`
+- Maintenance database: `labdb`
+- Username: `mod2_dbms`
+- Password: `mod2_dbms`
+- Save password: Yes
+```
+
+
+Click Save, and boom 🤯 —connected.
+
+<img src={createPath('/assets/projects/dbms/pgadmin_login.png')} alt="pgAdmin login" />
+
+<img src={createPath('/assets/projects/dbms/connecting_pgadmin_to_postgres.png')} alt="Connecting pgAdmin to PostgreSQL" />
+
+<img src={createPath('/assets/projects/dbms/pgadmin_connection_working.png')} alt="pgAdmin connection working" />
+
+Now I have a nice query editor for when I want to test things without typing `\c` and `\du` commands repeatedly.
+
+## Table Preparation.
+
+For this lab, I decided to create a simple schema that makes sense —or at least tries to—. Something about users and their data, because apparently that's all we do in computer science: store user data and hope we don't leak it.
+
+```sql
+-- Create a simple users table
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create a posts table because why not
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    title VARCHAR(200) NOT NULL,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- Insert some dummy data
+INSERT INTO users (username, email) VALUES
+    ('alice', 'alice@example.com'),
+    ('bob', 'bob@example.com'),
+    ('charlie', 'charlie@example.com');
+
+INSERT INTO posts (user_id, title, content) VALUES
+    (1, 'First Post', 'Hello, Database!'),
+    (2, 'Second Post', 'PostgreSQL MCP Server'),
+    (3, 'Third Post', 'Still writing SQL in 2025');
+```
+
+<img src={createPath('/assets/projects/dbms/dummy_table_creation.png')} alt="Table creation" />
+
+Tables created. Data inserted. Next up: user management, aka the part where I actually complete the assigment.
+
+## User Management and Permissions.
+
+This is the main event. Creating users with different permissions levels and watching them try to do things they're not allowed to do. It's like being a database bouncer, but less glamorous.
+
+### Generate user U1 with full access.
+
+User U1 is the VIP. Full access, all privileges, can do whatever they want. The database equivalent of sudo rights.
+
+```sql
+-- Create user U1
+CREATE USER u1 WITH PASSWORD 'u1_secure_password';
+
+-- Grant ALL privileges on all tables
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO u1;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO u1;
+
+-- Allow U1 to grant permissions to others (because power corrupts)
+GRANT ALL PRIVILEGES ON DATABASE labdb TO u1 WITH GRANT OPTION;
+
+-- Verify the permissions
+\du u1
+SELECT grantee, privilege_type, table_name
+FROM information_schema.role_table_grants
+WHERE grantee = 'u1';
+```
+
+<img src={createPath('/assets/projects/dbms/u1_user_creation.png')} alt="U1 user creation" />
+
+<img src={createPath('/assets/projects/dbms/u1_role_attributes.png')} alt="U1 role attributes" />
+
+U1 is now omnipotent. Time to create some peasants.
+
+### Generate user U2 with INSERT, SELECT, and UPDATE rights.
+
+U2 gets to read data, add data, and modify data. But deletion? That's above their pay grade.
+
+```sql
+-- Create user U2
+CREATE USER u2 WITH PASSWORD 'u2_secure_password';
+
+-- Grant specific privileges
+GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO u2;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA public TO u2;
+
+-- Verify permissions
+SELECT grantee, privilege_type, table_name
+FROM information_schema.role_table_grants
+WHERE grantee = 'u2';
+
+-- Test the permissions (CLI edition)
+-- Connect as u2
+\c labdb u2
+
+-- This should work
+SELECT * FROM users;
+INSERT INTO users (username, email) VALUES ('dave', 'dave@example.com');
+UPDATE users SET email = 'newemail@example.com' WHERE username = 'dave';
+
+-- This should fail
+DELETE FROM users WHERE username = 'dave';
+```
+
+<img src={createPath('/assets/projects/dbms/u2_permissions.jpg')} alt="U2 permissions" />
+
+<img src={createPath('/assets/projects/dbms/u2_permissions_work.png')} alt="U2 permissions work" />
+
+<img src={createPath('/assets/projects/dbms/u2_cant_delete.png')} alt="U2 can't delete" />
+
+Perfect. U2 tried to delete something and the database said "no". Security is working. I think 😬.
+
+### Generate user U3 with DELETE rights and delegation ability.
+
+U3 is special. They can delete things —dangerous—, and they can delegate that power to others —even more dangerous—. This is the "with great power comes great responsibility" user.
+
+```sql
+-- Connect back as the main user
+\c labdb mod2_dbms
+
+-- Create user U3
+CREATE USER u3 WITH PASSWORD 'im_a_responsible_user';
+-- let u3 see objects in the schema
+GRANT USAGE ON SCHEMA public TO u3;
+-- let u3 read rows (needed for DELETE ... WHERE ...)
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO u3 WITH GRANT OPTION;
+
+-- Give u3 DELETE permission on all existing tables
+GRANT DELETE ON ALL TABLES IN SCHEMA public TO u3 WITH GRANT OPTION;
+-- Ensure u3 automatically gets DELETE permission on future tables
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT DELETE ON TABLES TO u3 WITH GRANT OPTION;
+
+-- Verify permissions
+SELECT grantee, privilege_type, table_name, is_grantable
+FROM information_schema.role_table_grants
+WHERE grantee = 'u3';
+
+-- Test U3's delete ability
+\c labdb u3
+DELETE FROM posts WHERE id = 1;
+SELECT * FROM posts;  -- Verify the deletion
+```
+
+<img src={createPath('/assets/projects/dbms/u3_creation.png')} alt="U3 creation" />
+
+<img src={createPath('/assets/projects/dbms/u3_can_delete.png')} alt="U3 can delete" />
+
+<img src={createPath('/assets/projects/dbms/u3_can_grant.png')} alt="U3 can grant" />
+
+U3 can now delete things and give that power to others. What could possibly go wrong?
+
+### Generate user U4 with delegated DELETE rights from U3.
+
+This is where the delegation magic happens. U3 will grant their DELETE privileges to U4, proving that power can indeed be transferred —and probably abused—.
+
+```sql
+\c labdb mod2_dbms
+CREATE USER u4 WITH PASSWORD 'u4_secure_password';
+
+-- Connect as U3 (the delegator)
+\c labdb u3
+
+-- Create user U4 and grant DELETE rights
+GRANT DELETE ON ALL TABLES IN SCHEMA public TO u4;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO u4;
+
+-- Connect back to verify
+\c labdb mod2_dbms
+
+-- Verify U4's permissions
+SELECT grantee, privilege_type, table_name, grantor
+FROM information_schema.role_table_grants
+WHERE grantee = 'u4';
+
+-- Test U4's delete ability
+\c labdb u4
+DELETE FROM posts WHERE id = 2;
+SELECT * FROM posts;  -- Verify the deletion
+-- Try something U4 shouldn't be able to do
+INSERT INTO posts (user_id, title, content)
+    VALUES (1, 'First Post', 'Deleted before by mistake UPS :(');
+```
+
+<img src={createPath('/assets/projects/dbms/u4_full.png')} alt="U4 full demonstration" />
+
+The chain of delegation is complete. U3 granted power to U4, and U4 successfully deleted data while being appropriately restricted from other operations.
+
+<img src={createPath('/assets/projects/dbms/posts_db_current.png')} alt="Posts database current state" />
+
+## Permission Cleanup.
+
+Now comes the fun part: taking away everyone's toys. Time to revoke all the permissions we so graciously granted.
+
+```sql
+-- Connect as the owner
+\c labdb mod2_dbms
+
+-- Revoke all privileges from U1
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM u1;
+REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public FROM u1;
+REVOKE ALL PRIVILEGES ON DATABASE labdb FROM u1;
+
+-- Revoke all privileges from U2
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM u2;
+REVOKE USAGE ON ALL SEQUENCES IN SCHEMA public FROM u2;
+
+-- Revoke all privileges from U3
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM u3 CASCADE;
+
+-- Revoke all privileges from U4
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM u4;
+
+-- Verify all permissions are gone
+SELECT grantee, privilege_type, table_name
+FROM information_schema.role_table_grants
+WHERE grantee IN ('u1', 'u2', 'u3', 'u4');
+```
+
+And because I can admit when I'm wrong: pgAdmin was not as useful as I thought, so from the previous step and onwards, I will be using the CLI —glorious cli—.
+
+<img src={createPath('/assets/projects/dbms/no_permisssions_here.png')} alt="No permissions remaining" />
+
+And just like that, everyone's back to being powerless 😞.
+
+## Change Table Ownership.
+
+Time to transfer ownership of our tables to U1.
+
+```sql
+-- Change ownership of both tables to U1
+ALTER TABLE users OWNER TO u1;
+ALTER TABLE posts OWNER TO u1;
+
+-- Change ownership of sequences as well
+ALTER SEQUENCE users_id_seq OWNER TO u1;
+ALTER SEQUENCE posts_id_seq OWNER TO u1;
+
+-- Verify the ownership change
+SELECT tablename, tableowner
+FROM pg_tables
+WHERE schemaname = 'public';
+
+SELECT sequencename, sequenceowner
+FROM pg_sequences
+WHERE schemaname = 'public';
+```
+
+<img src={createPath('/assets/projects/dbms/alter_tables.png')} alt="Alter tables" />
+
+<img src={createPath('/assets/projects/dbms/the_boss_is_u1.png')} alt="U1 is the boss" />
+
+U1 is now the proud owner of two whole tables.
+
+## Change Default Postgres User Password.
+
+Last but not least, let's change the password for the default (`mod2_dbms` in our case... because of the container config stuff 😅) user. Because using default credentials is how you end up in a security breach blog post.
+
+```sql
+-- Connect as a superuser
+\c labdb mod2_dbms
+
+-- Change the postgres user password
+ALTER USER mod2_dbms WITH PASSWORD 'new_super_secure_postgres_password_2025';
+```
+
+To actually verify the password works, we need to reconnect:
+
+```bash
+docker exec -it m2-db-1 psql -U mod2_dbms -d labdb --password
+```
+
+<img src={createPath('/assets/projects/dbms/new_password.png')} alt="New password" />
+
+And there we have it. All tasks completed. The database is configured, users are created and subsequently neutered, permissions were granted and revoked, ownership was transferred, and passwords were changed.
+
+## That feeling when you think you're done, but plot twist: you're not.
+
+You know that moment when you're about to close your laptop, feeling accomplished, and then you remember there's *one more thing*? Yeah, that's happening right now. I just realized I completely skipped configuring `pg_hba.conf` to use `scram-sha-256` for authentication. Classic Juan moment.
+
+The fun part?
+
+I'm using containers.
+
+Which means I can't just `nvim /etc/postgresql/.../pg_hba.conf` like a normal person. No, I need to figure out the containerized way of doing this. Let's go.
+
+First, let's see what we're working with. We need to find and inspect the `pg_hba.conf` file:
+
+```bash
+# Find the pg_hba.conf location
+docker exec -it dbms-db-1 psql -U mod2_dbms -d labdb -c "SHOW hba_file;"
+
+# Copy it out just to inspect (backup, basically)
+docker cp dbms-db-1:/var/lib/postgresql/data/pg_hba.conf ./pg_hba.conf
+
+# Check current auth methods
+rg -v "^#" pg_hba.conf | rg -v "^$"
+```
+
+The output reveals we're currently using `trust` authentication for local connections. Translation: anyone on localhost can connect without a password. Great for development, terrible for security:
+
+```
+local   all             all                                     trust
+host    all             all             127.0.0.1/32            trust
+host    all             all             ::1/128                 trust
+```
+
+Now, the assignment asks for `scram-sha-256` on local connections, but honestly? While we're here, let's secure *all* the connection methods. Go big or go home.
+
+Time for some `sed` magic—because who needs text editors when you have stream editors:
+
+```bash
+# Replace ALL instances of 'trust' with 'scram-sha-256' directly in the container
+docker exec -it dbms-db-1 sed -i 's/trust/scram-sha-256/g' \
+    /var/lib/postgresql/18/docker/pg_hba.conf
+
+# Verify the changes took effect
+docker exec -it dbms-db-1 cat /var/lib/postgresql/18/docker/pg_hba.conf | \
+    rg -v "^#" | rg -v "^$"
+```
+
+<img src={createPath('/assets/projects/dbms/pg_hba_conf_updated.png')} alt="pg_hba.conf updated" />
+
+Beautiful. Now reload PostgreSQL to apply the changes (no full restart needed, thankfully):
+
+```bash
+# Reload configuration
+docker exec -it dbms-db-1 psql -U mod2_dbms -d labdb \
+    -c "SELECT pg_reload_conf();"
+
+# Should return 't' (true)
+```
+
+<img src={createPath('/assets/projects/dbms/reload_conf.png')} alt="Reload configuration" />
+
+*Plot twist:* Now that we've enabled password authentication everywhere, we need to ensure our user passwords are actually encrypted with `scram-sha-256` (not the older `md5` method). Let's verify —and fix if needed— that it works???:
+
+```sql
+-- Check current password encryption
+docker exec -it dbms-db-1 psql -U mod2_dbms -d labdb \
+    -c "SHOW password_encryption;"
+```
+
+<img src={createPath('/assets/projects/dbms/password_encryption.png')} alt="Password encryption" />
+
+Nice 😻, looks fine by me... Now test the connection to verify everything works:
+
+```bash
+# This should now prompt for password
+docker exec -it dbms-db-1 psql -U mod2_dbms -d labdb
+# (Password is cached from environment, but auth method is verified)
+```
+
+<img src={createPath('/assets/projects/dbms/successful_auth.png')} alt="Successful authentication" />
+
+And there we go. Not only did we complete the assignment requirement (local `scram-sha-256`), we also secured all connection methods and upgraded password hashing. All with `sed` one-liners because minimal container images don't come with text editors.
+
+*The lesson?* Always check requirements before claiming victory. And `sed` is surprisingly fun when you have no other choice.
+
+## Conclusions.
+
+What did we learn today? That PostgreSQL has a surprisingly granular permission system, that podman can indeed replace docker without breaking everything, and that writing SQL commands while making self-deprecating comments is a valid coping mechanism for database administration.
+
+Also, `docker-compose` with `podman` backend works flawlessly, which honestly surprised me more than it should have. The fact that I can run rootless containers while using familiar docker commands is genuinely nice. No daemons, no root, no problems —until there are problems, but that's future-me's concern—.
+
+The permission system in PostgreSQL is actually quite elegant once you get past the initial confusion. The ability to delegate permissions with `GRANT OPTION` is powerful, and the fine-grained control over who can do what is exactly what you want in a production environment. Not that this lab environment resembles production in any way.
+
+Had a fun time writing this lab report; hope you had fun reading it. Until next time, I'll try to keep my following labs less chaotic. No promises though 🦀.
+
+```bash
+docker-compose down -v
+```
