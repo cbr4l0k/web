@@ -9,6 +9,6 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()]
     },
-    site: 'https://cbr4l0k.github.io',
+    site: 'https://simple-elegant-web.site',
     base: process.env.NODE_ENV === 'production' ? '/web/' : undefined,
 });
