@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import ProjectHeader from "../../components/ProjectHeader.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
 ---
 
 <StandardPageLayout title={project.data.title}>
@@ -29,6 +30,7 @@ const { Content } = await render(project);
   />
   
   <article class="project-content grid gap-4 md:grid-cols-1">
+    <TableOfContents headings={headings} />
     <Content />
   </article>
 </StandardPageLayout>

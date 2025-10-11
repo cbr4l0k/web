@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import BookHeader from "../../components/BookHeader.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blog");
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { blog } = Astro.props;
-const { Content } = await render(blog);
+const { Content, headings } = await render(blog);
 ---
 
 <StandardPageLayout title={blog.data.title}>
@@ -28,6 +29,7 @@ const { Content } = await render(blog);
   />
   
   <article class="book-content grid gap-4 md:grid-cols-1">
+    <TableOfContents headings={headings} />
     <Content />
   </article>
 </StandardPageLayout>

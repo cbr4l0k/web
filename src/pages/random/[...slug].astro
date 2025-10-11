@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const randomPosts = await getCollection("random");
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <StandardPageLayout title={post.data.title}>
@@ -36,6 +37,7 @@ const { Content } = await render(post);
   </div>
   
   <article class="random-content grid gap-4 md:grid-cols-1">
+    <TableOfContents headings={headings} />
     <Content />
   </article>
 </StandardPageLayout>
