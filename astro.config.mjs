@@ -10,5 +10,5 @@ export default defineConfig({
         plugins: [tailwindcss()]
     },
     site: 'https://simple-elegant-web.site',
-    base: process.env.NODE_ENV === 'production' ? '/web/' : undefined,
+    base: process.env.NODE_ENV === 'production' ? undefined : undefined,
 });
