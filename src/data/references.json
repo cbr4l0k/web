@@ -46,5 +46,11 @@
     "description": "Like, the blog is really self explanatory... but adds should not be the norm, just google —and similar companies— actually profit out of them; but, because of them, the internet experience is just way worst. So, maybe install an AddBlocker, Please 😸?",
     "reference": "Not even 5 min read.",
     "url": "https://maurycyz.com/misc/ads/"
+  },
+  {
+    "title": "Rust names are important",
+    "description": "I should respect the way it's done.",
+    "reference": "→ Documentation ←",
+    "url": "https://rust-lang.github.io/api-guidelines/naming.html#ad-hoc-conversions-follow-as_-to_-into_-conventions-c-conv"
   }
 ]
