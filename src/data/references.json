@@ -52,5 +52,17 @@
     "description": "I should respect the way it's done.",
     "reference": "→ Documentation ←",
     "url": "https://rust-lang.github.io/api-guidelines/naming.html#ad-hoc-conversions-follow-as_-to_-into_-conventions-c-conv"
+  },
+  {
+    "title": "0: Sci Net. (Scientific Communication Support Network)",
+    "description": "Thinking that knowledge is for those who can pay for it, and not for those who need it, is really fucked up. And yeah, this is not free, but not for lack of trying. Sci-Hub made a huge, great impact on open science, and because \"free\" is usually a bad business model — not for profit, but just for keeping the project running — we now have Sci Net, with crypto, Web3 stuff, and nice things that encourage people to share good knowledge and quality stuff.",
+    "reference": "Link",
+    "url": "https://sci-net.xyz/"
+  },
+  {
+    "title": "Veilid",
+    "description": "Free software framework aiming to provide encrypted and anonymous communication.",
+    "reference": "Their web",
+    "url": "https://veilid.com/"
   }
 ]
