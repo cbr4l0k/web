@@ -14,7 +14,7 @@
   {
     "title": "How To Ask Questions The Smart Way",
     "description": "Y aunque este artículo está diseñado para la comunidad hacker, creo que refleja la desconexión generalizada entre el público general y la tecnología. Me recuerda cuando era monitor en la universidad, y alguno de mis estudiantes llegaba con preguntas por el grupo de WhatsApp y que la respuesta era literalmente el equivalente de copiar y pegar la pregunta en el buscador de Google, y responder en el chat con el link al primer resultado que frecuentemente era un post de Stack Overflow. Debería poner en mi hoja de vida que sé googlear como Dios manda.",
-    "reference": "Por Eric Steven Raymond",
+    "reference": "",
     "url": "http://www.catb.org/~esr/faqs/smart-questions.html"
   },
   {
@@ -32,13 +32,13 @@
   {
     "title": "OliveTin",
     "description": "Is just a tool I found while arranging some stuff for my university... The outcome of my work was mainly a collection of docker-compose files that would help deploy the infraestrucuture. For non IT people it was a bad idea 🫠. Using OliveTin is helping me give them a good way to interact with the developed infraestructure. ",
-    "reference": "Just the main website 😼",
+    "reference": "",
     "url": "https://www.olivetin.app/"
   },
   {
     "title": "Burn baby BURN",
     "description": "Ai toolkit to train AI using RUST 🦀. It's fast and backend flexible)))",
-    "reference": "Well... This is it's website)",
+    "reference": "",
     "url": "https://burn.dev/get-started/"
   },
   {
@@ -50,19 +50,19 @@
   {
     "title": "Rust names are important",
     "description": "I should respect the way it's done.",
-    "reference": "→ Documentation ←",
+    "reference": "",
     "url": "https://rust-lang.github.io/api-guidelines/naming.html#ad-hoc-conversions-follow-as_-to_-into_-conventions-c-conv"
   },
   {
     "title": "0: Sci Net. (Scientific Communication Support Network)",
     "description": "Thinking that knowledge is for those who can pay for it, and not for those who need it, is really fucked up. And yeah, this is not free, but not for lack of trying. Sci-Hub made a huge, great impact on open science, and because \"free\" is usually a bad business model — not for profit, but just for keeping the project running — we now have Sci Net, with crypto, Web3 stuff, and nice things that encourage people to share good knowledge and quality stuff.",
-    "reference": "Link",
+    "reference": "",
     "url": "https://sci-net.xyz/"
   },
   {
     "title": "Veilid",
     "description": "Free software framework aiming to provide encrypted and anonymous communication.",
-    "reference": "Their web",
+    "reference": "If someone to play with this, please let me know... I also want to do it.",
     "url": "https://veilid.com/"
   }
 ]
