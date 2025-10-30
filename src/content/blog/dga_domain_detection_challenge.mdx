@@ -1,0 +1,190 @@
+---
+title: "DGA Domain Detection Challenge — Writeup"
+author: "Me... or Positive Technologies, I don't know. Is my code and their challenge."
+summary: "Last-minute reasoning behind a rushed yet functional TF-IDF pipeline — powered by hope and caffeine."
+started: "29/10/2025"
+finished: "29/10/2025"
+status: "done"
+private: false
+---
+
+import { createPath } from '../../utils/paths';
+
+
+# Overview
+
+This article details the reasoning, challenges, and implementation of my submission for the [**Kaggle DGA Domain Detection Challenge**](https://www.kaggle.com/competitions/dga-domain-detection-challenge). The goal was to detect algorithmically generated domains (DGAs) from benign ones. Due to the last-minute nature of the attempt, I prioritized speed, clarity, and minimal compute requirements.
+
+
+# Motivation and Constraints
+
+I joined the competition just a few hours before the submission deadline, with limited local compute and a massive test set. My primary goals were:
+
+* **Efficiency:** Use a lightweight yet expressive model.
+* **Speed:** Minimize preprocessing and feature extraction time.
+* **Scalability:** Handle millions of rows efficiently.
+
+For these reasons, I chose **Polars** instead of Pandas. 🦀
+
+
+# Data Loading and Preprocessing
+
+The provided datasets contained labeled domain names (`domain`, `label`) and an unlabeled test set.
+
+When running some initial `df_train.describe()` and `df_test.describe()` checks, I noticed one null entry in the training set. Out of habit, I dropped all nulls without much thought using `.drop_nulls()`. Unfortunately, this removed one valid domain record with an empty label, causing a **row misalignment** that broke the submission format later on. I only discovered it after comparing my output to the test IDs with bash and regex tools. The missing entry was manually reinserted, classified as **benign (label = 0)** since it had no content to analyze. Lesson learned: small habits can bite back when racing against time.
+
+### Core Data Loading
+
+```python
+import polars as pl
+import numpy as np
+
+path_train = "https://github.com/cbr4l0k/DGADomainDetectionChallenge/releases/download/mango/train.parquet"
+path_test = "https://github.com/cbr4l0k/DGADomainDetectionChallenge/releases/download/mango/test.parquet"
+
+df_train = pl.read_parquet(path_train)
+df_test = pl.read_parquet(path_test)
+
+# Dropping nulls (a quick habit that caused a later headache)
+df_train = df_train.drop_nulls()
+```
+
+A small random fraction (`1%`) was used for prototyping due to limited time and memory:
+
+```python
+df_train_small = df_train.sample(fraction=0.01, seed=42)
+df_test_small = df_test.sample(fraction=0.01, seed=42)
+```
+
+
+# Feature Engineering
+
+DGA domains exhibit non-natural character patterns: long consonant sequences, digit ratios, and entropy-like randomness. These features complement TF-IDF-based textual representations.
+
+The goal of the feature engineering stage was to extract lightweight lexical attributes that could capture **structural irregularities** and **statistical cues** from domain strings without external data sources. Since DGAs often generate domains by combining pseudo-random substrings, we can rely entirely on internal string composition to discriminate them.
+
+### Lexical Features
+
+The lexical feature extraction focused on measurable surface statistics that generalize well across unseen DGAs:
+
+* **Length:** DGA domains tend to be longer and more uniform in structure.
+* **Digit Ratio:** Many DGAs insert digits to increase entropy; benign domains rarely have sustained numeric runs.
+* **Vowel Ratio:** Lower vowel ratios often indicate algorithmic generation, as real words contain vowel-consonant balance.
+* **Character Diversity:** Approximates entropy by counting unique characters per domain.
+
+```python
+lexical = df_train_small.select([
+    pl.col("domain"),
+    pl.col("domain").str.len_chars().alias("length"),
+    (pl.col("domain").str.count_matches(r"[0-9]") / pl.col("domain").str.len_chars()).alias("digit_ratio"),
+    (pl.col("domain").str.count_matches(r"[aeiouAEIOU]") / pl.col("domain").str.len_chars()).alias("vowel_ratio"),
+    (pl.col("domain").str.extract_all(r"(.)").list.unique().list.len() / pl.col("domain").str.len_chars()).alias("char_diversity"),
+])
+```
+
+I also experimented with additional features like **longest consonant runs** and **presence of common TLD patterns** (`.com`, `.net`, etc.), but these actually **hurt validation performance** on the reduced dataset. This can happen because with limited validation data, models might overfit spurious correlations — e.g., certain TLDs or character sequences that appear more in one class by chance. Removing them simplified the model and improved its generalization.
+
+By design, these lexical metrics were all **scalar, interpretable**, and quick to compute in Polars without excessive memory overhead.
+
+
+# Modeling Pipeline
+
+A **TF-IDF + Logistic Regression** pipeline was selected for its robustness and speed. Character-level n-grams (1–5) effectively capture structural cues like `com`, digit runs, and pseudo-random patterns.
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+X = df_train_small["domain"].to_list()
+y = df_train_small["label"].to_numpy()
+
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+
+tfidf = TfidfVectorizer(analyzer="char", ngram_range=(1,5), max_features=200000)
+X_train_vec = tfidf.fit_transform(X_train)
+X_val_vec = tfidf.transform(X_val)
+
+clf = LogisticRegression(max_iter=200, n_jobs=-1)
+clf.fit(X_train_vec, y_train)
+```
+
+The initial model achieved a strong **ROC-AUC** despite limited tuning.
+
+
+# Combining TF-IDF and Lexical Features
+
+For improved generalization, I combined lexical features with TF-IDF embeddings using `ColumnTransformer` and `Pipeline`.
+
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+
+preprocess = ColumnTransformer([
+    ("tfidf", TfidfVectorizer(analyzer="char", ngram_range=(1,5), max_features=200000), "domain"),
+    ("numeric", StandardScaler(), ["length", "digit_ratio", "vowel_ratio", "char_diversity"])
+])
+
+pipeline = Pipeline([
+    ("preprocess", preprocess),
+    ("clf", LogisticRegression(max_iter=300, n_jobs=-1))
+])
+```
+
+After limited hyperparameter tuning via `GridSearchCV`, the model was serialized using `pickle` for deployment. I tried `C` values of **0.1**, **1**, and **3**, and the latter performed best, so I hardcoded it afterward.
+
+```python
+from sklearn.model_selection import GridSearchCV
+import pickle
+
+grid = GridSearchCV(pipeline, {"clf__C": [3]}, scoring="roc_auc", cv=3, n_jobs=-1)
+grid.fit(X_train, y_train)
+
+with open("best_model.pkl", "wb") as f:
+    pickle.dump(grid.best_estimator_, f)
+```
+
+
+# Inference and Submission
+
+Inference was done on a remote machine due to the test set size. Lexical features were recomputed on the full test dataset.
+
+```python
+def get_lexical_features(df):
+    return df.select([
+        pl.col("domain"),
+        pl.col("domain").str.len_chars().alias("length"),
+        (pl.col("domain").str.count_matches(r"[0-9]") / pl.col("domain").str.len_chars()).alias("digit_ratio"),
+        (pl.col("domain").str.count_matches(r"[aeiouAEIOU]") / pl.col("domain").str.len_chars()).alias("vowel_ratio"),
+        (pl.col("domain").str.extract_all(r"(.)").list.unique().list.len() / pl.col("domain").str.len_chars()).alias("char_diversity"),
+    ])
+
+lexical_test = get_lexical_features(df_test)
+lexical_test_pd = lexical_test.to_pandas()
+
+proba = grid.predict_proba(lexical_test_pd)[:, 1]
+labels = (proba >= 0.5).astype(int)
+
+import pandas as pd
+submission_df = pd.DataFrame({'id': df_test['id'].to_numpy(), 'label': labels})
+submission_df.to_csv('submission.csv', index=False)
+```
+
+
+# Lessons Learned
+
+* **Rust is great 🦀**, even when coding in python (**Polars is written in rust**)
+* **Character-level TF-IDF** was a powerful baseline for DGA tasks.
+* **Lexical metrics** added interpretability and marginal boosts without slowing down the pipeline.
+* **Extra handcrafted features** can hurt on small validation sets — sometimes simpler is better.
+* **One empty label** caused more trouble than expected — meticulous row matching is critical.
+* **Manual validation** via regex and CLI tools saved the submission.
+* Logistic Regression + TF-IDF remains a competitive, explainable baseline under time pressure.
+
+# Conclusion
+
+In the end, the approach landed **35th place out of 180 participants** — not bad for a last-minute entry!
+
+
+<img src={createPath('assets/blog/dga_domain_detection_challenge/35_out_of_180.png')} alt="35th place" />
