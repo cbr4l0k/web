@@ -322,6 +322,109 @@ img {
   height: auto;
 }
 
+/* Code Block Styling */
+
+/* Inline code */
+.book-content code:not(pre code),
+.project-content code:not(pre code),
+.random-content code:not(pre code) {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: #c7254e;
+  font-weight: 500;
+}
+
+/* Code block containers */
+.book-content pre,
+.project-content pre,
+.random-content pre {
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: var(--radius-base);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  overflow-x: auto;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Code inside pre blocks */
+.book-content pre code,
+.project-content pre code,
+.random-content pre code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: #24292e;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  display: block;
+  font-weight: normal;
+}
+
+/* Language indicator (optional, for when language is specified) */
+.book-content pre[class*="language-"]::before,
+.project-content pre[class*="language-"]::before,
+.random-content pre[class*="language-"]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  font-size: 0.7em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+/* Scrollbar styling for code blocks */
+.book-content pre::-webkit-scrollbar,
+.project-content pre::-webkit-scrollbar,
+.random-content pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.book-content pre::-webkit-scrollbar-track,
+.project-content pre::-webkit-scrollbar-track,
+.random-content pre::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.book-content pre::-webkit-scrollbar-thumb,
+.project-content pre::-webkit-scrollbar-thumb,
+.random-content pre::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.book-content pre::-webkit-scrollbar-thumb:hover,
+.project-content pre::-webkit-scrollbar-thumb:hover,
+.random-content pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile responsiveness for code blocks */
+@media (max-width: 768px) {
+  .book-content pre,
+  .project-content pre,
+  .random-content pre {
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+    font-size: 0.85em;
+  }
+
+  .book-content pre code,
+  .project-content pre code,
+  .random-content pre code {
+    font-size: 0.85em;
+  }
+}
+
 /* Make content images clickable for zoom */
 .book-content img,
 .project-content img,
