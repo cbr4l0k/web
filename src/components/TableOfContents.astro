@@ -14,17 +14,21 @@ const filteredHeadings = headings.filter(h => h.depth <= 3);
   <nav class="toc" aria-label="Table of Contents">
     <button class="toc-header" type="button">
       <span class="toc-title">{title}</span>
-      <span class="toc-toggle">▼</span>
+      <svg class="toc-toggle w-4 h-4 transition-transform duration-200 opacity-60 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
     </button>
-    <ul class="toc-list hidden">
-      {filteredHeadings.map((heading) => (
-        <li class={`toc-item toc-level-${heading.depth}`}>
-          <a href={`#${heading.slug}`} class="toc-link">
-            {heading.text}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div class="toc-list-wrapper overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; opacity: 0;">
+      <ul class="toc-list">
+        {filteredHeadings.map((heading) => (
+          <li class={`toc-item toc-level-${heading.depth}`}>
+            <a href={`#${heading.slug}`} class="toc-link">
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </nav>
 )}
 
@@ -62,14 +66,13 @@ const filteredHeadings = headings.filter(h => h.depth <= 3);
     color: #222;
   }
 
-  .toc-toggle {
-    font-size: 0.75rem;
-    color: #6b7280;
-    transition: transform 150ms ease;
+  .toc.expanded .toc-toggle {
+    transform: rotate(90deg);
   }
 
-  .toc.open .toc-toggle {
-    transform: rotate(180deg);
+  .toc.expanded .toc-list-wrapper {
+    max-height: 1000px !important;
+    opacity: 1 !important;
   }
 
   .toc-list {
@@ -79,10 +82,6 @@ const filteredHeadings = headings.filter(h => h.depth <= 3);
     margin-top: 0.75rem;
     padding-top: 0.75rem;
     border-top: 1px solid #e5e7eb;
-  }
-
-  .toc-list.hidden {
-    display: none;
   }
 
   .toc-item {
@@ -155,13 +154,11 @@ const filteredHeadings = headings.filter(h => h.depth <= 3);
 
     tocElements.forEach(toc => {
       const header = toc.querySelector('.toc-header');
-      const list = toc.querySelector('.toc-list');
 
-      if (header && list) {
+      if (header) {
         header.addEventListener('click', function(e) {
           e.preventDefault();
-          list.classList.toggle('hidden');
-          toc.classList.toggle('open');
+          toc.classList.toggle('expanded');
         });
       }
     });

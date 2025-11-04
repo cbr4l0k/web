@@ -4,9 +4,20 @@ import CVSection from "../components/CVSection.astro";
 import CVEntry from "../components/CVEntry.astro";
 import CVProject from "../components/CVProject.astro";
 import CVPublication from "../components/CVPublication.astro";
+import TableOfContents from "../components/TableOfContents.astro";
 import { cvData } from "../data/me";
 
 const { personal_info, last_updated, welcome, education, experience, publications, projects, technologies } = cvData;
+
+// Build table of contents from available sections
+const headings = [
+  welcome && { depth: 2, slug: "welcome", text: welcome.title },
+  experience && experience.length > 0 && { depth: 2, slug: "experience", text: "Experience" },
+  education && education.length > 0 && { depth: 2, slug: "education", text: "Education" },
+  publications && publications.length > 0 && { depth: 2, slug: "publications", text: "Publications" },
+  projects && projects.length > 0 && { depth: 2, slug: "projects", text: "Projects" },
+  technologies && technologies.length > 0 && { depth: 2, slug: "technologies", text: "Technologies & Skills" },
+].filter(Boolean);
 ---
 <StandardPageLayout title="Me">
   <!-- Personal Header -->
@@ -76,9 +87,12 @@ const { personal_info, last_updated, welcome, education, experience, publication
     )}
   </div>
 
+  <!-- Table of Contents -->
+  <TableOfContents headings={headings} />
+
   <!-- Welcome Section (Optional) -->
   {welcome && (
-    <div class="mb-12 rounded-lg border border-[var(--color-border)] p-6 shadow-sm">
+    <div id="welcome" class="mb-12 rounded-lg border border-[var(--color-border)] p-6 shadow-sm">
       <h2 class="text-xl font-semibold text-[var(--color-heading)] mb-3">{welcome.title}</h2>
       {welcome.content.map((paragraph) => (
         <p class="text-sm text-[var(--color-body)] mb-3 last:mb-0 leading-relaxed">{paragraph}</p>
