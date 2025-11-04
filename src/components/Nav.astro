@@ -31,6 +31,7 @@ const projects = allProjects
 })).sort((a, b) => a.label.localeCompare(b.label));
 
 const sections = [
+{ label: 'Me', base: createPath('/me'), children: [] },
 { label: 'Blog', base: createPath('/blog'), children: blog },
 { label: 'Projects', base: createPath('/projects'), children: projects },
 { label: 'Readings', base: createPath('/readings'), children: [] },

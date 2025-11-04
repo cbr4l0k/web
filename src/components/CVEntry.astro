@@ -1,0 +1,37 @@
+---
+export interface Props {
+  title: string;
+  subtitle: string;
+  metadata?: string;
+  period?: string;
+  highlights?: string[];
+}
+
+const { title, subtitle, metadata, period, highlights } = Astro.props;
+---
+<div class="relative pl-6 pb-8 border-l-2 border-[var(--color-border)] last:pb-0">
+  <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-bg)] border-2 border-[var(--color-muted)]"></div>
+
+  <div class="rounded-lg border border-[var(--color-border)] p-5 shadow-sm hover:shadow-md transition-shadow">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+      <div>
+        <h3 class="text-lg font-semibold text-[var(--color-heading)] mb-1">{title}</h3>
+        <p class="text-base text-[var(--color-body)] font-medium">{subtitle}</p>
+        {metadata && <p class="text-sm text-[var(--color-muted)] mt-0.5">{metadata}</p>}
+      </div>
+      {period && (
+        <span class="text-sm text-[var(--color-muted)] whitespace-nowrap font-medium">
+          {period}
+        </span>
+      )}
+    </div>
+
+    {highlights && highlights.length > 0 && (
+      <ul class="mt-3 space-y-1.5 text-sm text-[var(--color-body)] leading-relaxed list-disc list-inside">
+        {highlights.map((highlight) => (
+          <li class="leading-relaxed" set:html={highlight} />
+        ))}
+      </ul>
+    )}
+  </div>
+</div>

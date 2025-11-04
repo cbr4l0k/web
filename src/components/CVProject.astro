@@ -1,0 +1,32 @@
+---
+export interface Props {
+  name: string;
+  link?: string;
+  date?: string;
+  highlights?: string[];
+}
+
+const { name, link, date, highlights } = Astro.props;
+---
+<div class="rounded-lg border border-[var(--color-border)] p-5 shadow-sm hover:shadow-md transition-shadow">
+  <div class="flex items-start justify-between gap-3 mb-2">
+    {link ? (
+      <a href={link} target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-[var(--color-heading)] hover:underline">
+        {name}
+      </a>
+    ) : (
+      <h3 class="text-lg font-semibold text-[var(--color-heading)]">{name}</h3>
+    )}
+    {date && (
+      <span class="text-sm text-[var(--color-muted)] whitespace-nowrap">{date}</span>
+    )}
+  </div>
+
+  {highlights && highlights.length > 0 && (
+    <ul class="space-y-1.5 text-sm text-[var(--color-body)] leading-relaxed list-disc list-inside">
+      {highlights.map((highlight) => (
+        <li class="leading-relaxed" set:html={highlight} />
+      ))}
+    </ul>
+  )}
+</div>

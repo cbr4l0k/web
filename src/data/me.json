@@ -1,0 +1,207 @@
+{
+    "personal_info": {
+        "name": "Juan Pablo Sierra Useche",
+        "location": "Saint-Petersburg, Russia",
+        "email": "jp.sierrau@gmail.com",
+        "phone": "+7(981)010-9582",
+        "website": "https://simple-elegant-web.site/",
+        "linkedin": "https://repos-in-a.simple-elegant-web.site",
+        "github": "https://github.com/cbr4l0k"
+    },
+    "last_updated": "November 2024",
+    "education": [
+        {
+            "institution": "ITMO University",
+            "degree": "Master's in Information Security",
+            "start_date": "Oct 2024",
+            "end_date": "Current",
+            "highlights": [
+                "Participating in university business accelerator program",
+                "Remote management of Sybil SAS while pursuing studies",
+                "Member of multiple sports teams: Swimming, Athletics, Boxing, Ice Swimming",
+                "Learning Russian language for cross-cultural communication"
+            ]
+        },
+        {
+            "institution": "Del Rosario University",
+            "degree": "Bachelor in Applied Mathematics and Computer Science",
+            "start_date": "Aug 2019",
+            "end_date": "Nov 2023",
+            "highlights": [
+                "GPA: 4.34/5",
+                "Minor in Artificial Intelligence",
+                "Led initiative to create protocols for cybersecurity students to access hacking/security websites through university network",
+                "Coursework: Algorithms and Data Structures, Cryptography, Machine Learning, Computer Vision, Natural Language Processing"
+            ]
+        },
+        {
+            "institution": "Lakehead University",
+            "degree": "ELAP Scholar (Exchange Program)",
+            "start_date": "Jan 2022",
+            "end_date": "May 2022",
+            "highlights": [
+                "GPA: 88.33/100",
+                "Studied Big Data, Numerical Analysis, and Academic English Writing",
+                "International exchange experience in Thunder Bay, Canada"
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "position": "CEO & Co-Founder",
+            "company": "Sybil SAS",
+            "location": "Bogotá, Colombia (Remote)",
+            "start_date": "Aug 2023",
+            "end_date": "Nov 2025",
+            "highlights": [
+                "Co-founded startup focused on AI-powered automation solutions for healthcare in Latin America",
+                "Built automation workflows using N8N, LangChain/LangGraph for AI orchestration",
+                "Implemented vector database solutions with ChromaDB for semantic search",
+                "Deployed MinIO for object storage and Apache Airflow for workflow orchestration",
+                "Established MLflow dashboard for machine learning experiment tracking",
+                "Developed information security solutions for the Colombian Navy",
+                "Conducting collaborative research with Universidad del Rosario on healthcare IT infrastructure in Colombia",
+                "Managing legal, financial setup and business development while studying at ITMO"
+            ]
+        },
+        {
+            "position": "Vulnerability Management (VM) Hunter",
+            "company": "SLB",
+            "location": "Bogotá, Colombia",
+            "start_date": "May 2024",
+            "end_date": "Aug 2024",
+            "highlights": [
+                "Designed and optimized solutions for automating digital resource scanning for vulnerability management",
+                "Coded, tested, and validated VM automation solutions",
+                "Provided expertise on OS and application vulnerabilities for severity assessment",
+                "Analyzed mitigation/remediation options for top 10 critical vulnerabilities and delivered playbooks",
+                "Maintained expertise on Qualys products and assisted with technical watch for VM tools"
+            ]
+        },
+        {
+            "position": "Cyber SOC Analyst",
+            "company": "SLB",
+            "location": "Bogotá, Colombia",
+            "start_date": "Jan 2023",
+            "end_date": "May 2024",
+            "highlights": [
+                "Monitored and analyzed security systems to identify cyber threats",
+                "Conducted malware analysis and assisted in identifying malicious software",
+                "Participated in incident response during security breaches",
+                "Co-created learning team to practice forensic skills through CTF-like exercises",
+                "Collaborated with teams to improve security measures and emergency response strategies"
+            ]
+        },
+        {
+            "position": "Cyber SOC Analyst Intern",
+            "company": "SLB",
+            "location": "Bogotá, Colombia",
+            "start_date": "Jul 2023",
+            "end_date": "Dec 2023",
+            "highlights": [
+                "Participated in incident response, managing and recovering from cybersecurity incidents",
+                "Conducted malware analysis including reverse engineering suspicious code",
+                "Identified social engineering forms and security risks in phishing analysis",
+                "Created documentation for company's cloud infrastructure",
+                "Predicted new attack vector (phishing via QR codes) and developed improved incident response method"
+            ]
+        },
+        {
+            "position": "Full Stack Developer",
+            "company": "Del Rosario University",
+            "location": "Bogotá, Colombia",
+            "start_date": "Jul 2021",
+            "end_date": "Dec 2021",
+            "highlights": [
+                "Developed backend-frontend interaction for data analytics website using React.js",
+                "Designed and implemented widgets for UI and data visualization",
+                "Implemented input validations ensuring data integrity and preventing security vulnerabilities",
+                "Conducted vulnerability checks and implemented security best practices",
+                "Translated stakeholder requirements into technical specifications"
+            ]
+        },
+        {
+            "position": "Programming Instructor (Volunteer)",
+            "company": "Del Rosario University",
+            "location": "Bogotá, Colombia",
+            "start_date": "Aug 2021",
+            "end_date": "Dec 2021",
+            "highlights": [
+                "Designed and delivered introductory Python programming course for underprivileged youth",
+                "Fostered positive learning environment to make programming accessible",
+                "Provided mentorship and support to help students overcome learning challenges",
+                "Tailored teaching methods to accommodate diverse learning styles"
+            ]
+        },
+        {
+            "position": "Course Monitor - Algorithms and Data Structures",
+            "company": "Del Rosario University",
+            "location": "Bogotá, Colombia",
+            "start_date": "Jul 2020",
+            "end_date": "May 2021",
+            "highlights": [
+                "Facilitated learning in algorithms and data structures concepts",
+                "Conducted interactive sessions to clarify doubts and reinforce principles",
+                "Guided students in implementing intermediate data structures in C++",
+                "Demonstrated problem-solving strategies and algorithmic thinking",
+                "Facilitated discussions on computational complexity and RAM model"
+            ]
+        }
+    ],
+    "publications": [],
+    "projects": [
+        {
+            "name": "Snoo.py - DevSavant Hackathon Finalist",
+            "link": "https://github.com/cbr4l0k/snoo.py",
+            "date": "Aug 2023 - Sep 2023",
+            "highlights": [
+                "Documentation tool generating interactive project tree, 3D graph, coupling & cohesion analysis",
+                "Uses Large Language Models for software development optimization",
+                "Generates comprehensive analysis for less than $2 USD",
+                "Finalist in Colombia's first Generative AI Hackathon"
+            ]
+        }
+    ],
+    "technologies": [
+        {
+            "category": "Programming Languages",
+            "items": "Python, Rust🦀, TypeScript, Bash, C++"
+        },
+        {
+            "category": "Operating Systems",
+            "items": "Linux, Arch Linux, Kali Linux, Parrot Security, Manjaro"
+        },
+        {
+            "category": "Databases",
+            "items": "PostgreSQL, MySQL, MongoDB, Firebase, ChromaDB"
+        },
+        {
+            "category": "Cybersecurity Tools",
+            "items": "BurpSuite, Nmap, Metasploit, Wireshark, Nessus, Qualys, Nikto, Evil-WinRm, OSINT tools (Maltego, Shodan, TheHarvester, Spiderfoot)"
+        },
+        {
+            "category": "ML & Data Science",
+            "items": "TensorFlow, Keras, PyTorch, scikit-learn, Polars🦀, Pandas, NumPy, Matplotlib, Seaborn, HuggingFace Transformers, spaCy, NLTK"
+        },
+        {
+            "category": "AI Orchestration & MLOps",
+            "items": "LangChain, LangGraph, N8N, Apache Airflow, MLflow"
+        },
+        {
+            "category": "CSOC Tools",
+            "items": "Splunk, Google Chronicle, Proofpoint TAP/TRAP, PaloAlto Cortex XDR/XSOAR, Velociraptor, VirusTotal"
+        },
+        {
+            "category": "Cloud & DevOps",
+            "items": "Docker, Git, Azure Cloud, Google Cloud Platform (GCP), MinIO, RESTful APIs"
+        },
+        {
+            "category": "Web Development",
+            "items": "Django, React.js, HTML, Bootstrap, UML"
+        },
+        {
+            "category": "Mathematics & CS Foundations",
+            "items": "Cryptography, Algorithms and Data Structures, Graph Theory, Computational Geometry, Quantum Computing"
+        }
+    ]
+}
