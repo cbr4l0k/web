@@ -10,28 +10,56 @@ const hasQuotes = reading.quotes && reading.quotes.length > 0;
 ---
 
 <li class={`rounded border border-gray-300 p-2 transition reading-item ${hasQuotes ? 'hover:shadow hover:-translate-y-0.5 cursor-pointer' : ''}`}>
-  <div class="flex items-center justify-between mb-1">
-    <h4 class="text-sm font-semibold text-[#222]">{reading.title}</h4>
+  <div class="flex items-start sm:items-center justify-between gap-3 mb-1">
+    <div class="flex items-start gap-2 flex-1 min-w-0">
+      {hasQuotes && (
+        <svg class="chevron w-4 h-4 mt-0.5 flex-shrink-0 transition-transform duration-200 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      )}
+      <div class="flex-1 min-w-0">
+        <h4 class="text-base sm:text-sm font-semibold text-[#222] leading-tight">{reading.title}</h4>
+        <p class="text-xs opacity-70 mt-1">{reading.author}</p>
+      </div>
+    </div>
     {reading.date && (
-      <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset bg-gray-50 text-gray-600 ring-gray-500/10">
+      <span class="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold ring-1 ring-inset bg-gray-50 text-gray-600 ring-gray-500/10 whitespace-nowrap flex-shrink-0">
         {reading.date}
       </span>
     )}
   </div>
-  <p class="text-xs opacity-70 mb-2">{reading.author}</p>
-  <div class="reading-content hidden">
-    {reading.quotes.map((quoteItem) => (
-      <div class="mb-4 last:mb-0">
-        <blockquote class="text-sm italic border-l-4 border-gray-300 pl-4 mb-2 opacity-90">
-          "{quoteItem.quote}"
-        </blockquote>
-        {quoteItem.note && (
-          <p class="text-xs opacity-70 ml-6">{quoteItem.note}</p>
-        )}
-      </div>
-    ))}
+  <div class="reading-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0; opacity: 0;">
+    <div class="pt-3 pl-6">
+      {reading.quotes.map((quoteItem) => (
+        <div class="mb-4 last:mb-0">
+          <blockquote class="text-sm italic border-l-4 border-gray-300 pl-4 mb-2 opacity-90">
+            "{quoteItem.quote}"
+          </blockquote>
+          {quoteItem.note && (
+            <p class="text-xs opacity-70 ml-6">{quoteItem.note}</p>
+          )}
+        </div>
+      ))}
+    </div>
   </div>
 </li>
+
+<style>
+  .reading-item.expanded .chevron {
+    transform: rotate(90deg);
+  }
+
+  .reading-item.expanded .reading-content {
+    max-height: 2000px !important;
+    opacity: 1 !important;
+  }
+
+  @media (max-width: 640px) {
+    .reading-item {
+      padding: 1rem;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -43,10 +71,19 @@ const hasQuotes = reading.quotes && reading.quotes.length > 0;
 
       if (hasQuotes) {
         item.addEventListener('click', function(e) {
-          if (content.classList.contains('hidden')) {
-            content.classList.remove('hidden');
-          } else {
-            content.classList.add('hidden');
+          this.classList.toggle('expanded');
+        });
+
+        // Make keyboard accessible
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-expanded', 'false');
+
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.classList.toggle('expanded');
+            this.setAttribute('aria-expanded', this.classList.contains('expanded').toString());
           }
         });
       }
