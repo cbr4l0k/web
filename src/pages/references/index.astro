@@ -8,7 +8,7 @@ const sortedReferences = references.sort((a, b) => a.title.localeCompare(b.title
 <StandardPageLayout title="References">
 <p class="opacity-80 mb-10">I just spend so much of my time browsing and finding such interesting fragments of the internet that it would be a waste not to have a place to store them... maybe later I'll add some fuzzy search 😯</p>
 
-<ul class="grid gap-4 sm:grid-cols-1">
+<ul class="grid gap-2 sm:grid-cols-1">
     {sortedReferences.map((reference) => (
     <ReferenceCard 
     title={reference.title}
