@@ -54,13 +54,20 @@ const headings = [
 
     <div class="flex flex-wrap gap-3">
       {personal_info.website && (
-        <a href={personal_info.website} target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium border border-[var(--color-border)] rounded-lg hover:bg-gray-50 transition">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-          </svg>
-          Website
-        </a>
+        <span class="group" data-tooltip-trigger>
+          <a href={personal_info.website} target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium border border-[var(--color-border)] rounded-lg hover:bg-gray-50 transition">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+            </svg>
+            Website
+          </a>
+          <div class="fixed px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg z-[100]" data-tooltip style="left: -9999px;">
+            <div class="font-medium">You're already here! 🌀</div>
+            <div class="text-gray-300 mt-0.5">Congrats on finding the recursive button</div>
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 -mb-1 border-4 border-transparent border-b-gray-900"></div>
+          </div>
+        </span>
       )}
       {personal_info.linkedin && (
         <a href={personal_info.linkedin} target="_blank" rel="noopener noreferrer"
@@ -182,3 +189,35 @@ const headings = [
     </CVSection>
   )}
 </StandardPageLayout>
+
+<script>
+  // Position the tooltip on hover
+  const trigger = document.querySelector('[data-tooltip-trigger]');
+  const tooltip = document.querySelector('[data-tooltip]');
+
+  if (trigger && tooltip) {
+    trigger.addEventListener('mouseenter', () => {
+      const rect = trigger.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const padding = 16; // padding from viewport edge
+
+      // Calculate centered position
+      let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+      const top = rect.bottom + 8;
+
+      // Check if tooltip would overflow on the right
+      if (left + tooltipRect.width + padding > viewportWidth) {
+        left = viewportWidth - tooltipRect.width - padding;
+      }
+
+      // Check if tooltip would overflow on the left
+      if (left < padding) {
+        left = padding;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    });
+  }
+</script>
