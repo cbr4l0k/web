@@ -27,7 +27,7 @@ const projects = defineCollection({
         private: z.boolean().default(true),
         links: z.array(z.object({
             label: z.string(),
-            url: z.string().url(),
+            href: z.string().url(),
         })).default([]), 
     }),
 });

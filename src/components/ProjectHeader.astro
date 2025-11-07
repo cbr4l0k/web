@@ -26,7 +26,14 @@ const { title, summary, role, status, period, stack = [], links = [] } = Astro.p
         <span class="inline-flex items-center rounded-full px-3 py-1 text-xs ring-1 ring-inset">{t}</span>
       ))}
       {links.map((l) => (
-        <a href={l.href} class="badge" style="border:1px solid var(--color-border);">{l.label}</a>
+      <a
+          class="relative z-10 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset transition-colors duration-200 ease-in-out hover:text-gray-900 hover:ring-2 hover:ring-inset"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={l.href}
+          >
+          »{l.label}«
+      </a>
       ))}
     </div>
   )}
