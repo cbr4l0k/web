@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from "astro:content";
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import RecipeHeader from "../../components/RecipeHeader.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return recipes
+    .filter(recipe => !recipe.data.private)
+    .map((recipe) => ({
+      params: { slug: recipe.id.replace(/\.mdx?$/, '') },
+      props: { recipe },
+    }));
+}
+
+const { recipe } = Astro.props;
+const { Content, headings } = await render(recipe);
+---
+
+<StandardPageLayout title={recipe.data.title}>
+  <RecipeHeader
+    title={recipe.data.title}
+    summary={recipe.data.summary}
+    cuisine={recipe.data.cuisine}
+    prepTime={recipe.data.prepTime}
+    cookTime={recipe.data.cookTime}
+    servings={recipe.data.servings}
+    difficulty={recipe.data.difficulty}
+    tags={recipe.data.tags}
+  />
+
+  <article class="project-content grid gap-4 md:grid-cols-1">
+    <TableOfContents headings={headings} />
+    <Content />
+  </article>
+</StandardPageLayout>

@@ -44,8 +44,24 @@ const random = defineCollection({
     }),
 });
 
+const recipes = defineCollection({
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/recipes" }),
+    schema: z.object({
+        title: z.string(),
+        summary: z.string(),
+        cuisine: z.string().optional(),
+        prepTime: z.string().optional(),
+        cookTime: z.string().optional(),
+        servings: z.string().optional(),
+        difficulty: z.string().optional(),
+        tags: z.array(z.string()).default([]),
+        private: z.boolean().default(true),
+    }),
+});
+
 export const collections = {
     blog,
     projects,
     random,
+    recipes,
 };

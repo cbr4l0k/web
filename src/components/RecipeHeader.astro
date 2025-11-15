@@ -1,0 +1,37 @@
+---
+export interface Props {
+  title: string;
+  summary?: string;
+  cuisine?: string;
+  prepTime?: string;
+  cookTime?: string;
+  servings?: string;
+  difficulty?: string;
+  tags?: string[];
+}
+const { title, summary, cuisine, prepTime, cookTime, servings, difficulty, tags = [] } = Astro.props as Props;
+---
+<header>
+  <h1 class="mb-3 text-3xl font-extrabold tracking-tight text-[#222]">{title}</h1>
+  {summary && <p class="mb-4 leading-relaxed">{summary}</p>}
+  <div class="mb-4 flex flex-wrap items-center gap-3">
+    {difficulty && (
+    <span class="text-xs opacity-70">Difficulty:</span><span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset`}>{difficulty}</span>
+    )}
+    {cuisine && <span class="text-xs opacity-70">Cuisine: {cuisine}</span>}
+    {servings && <span class="text-xs opacity-70">Servings: {servings}</span>}
+  </div>
+  {(prepTime || cookTime) && (
+    <div class="mb-4 flex flex-wrap items-center gap-3">
+      {prepTime && <span class="text-xs opacity-70">Prep Time: {prepTime}</span>}
+      {cookTime && <span class="text-xs opacity-70">Cook Time: {cookTime}</span>}
+    </div>
+  )}
+  {tags.length > 0 && (
+    <div class="mb-6 flex flex-wrap items-center gap-2 ">
+      {tags.map((tag) => (
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-xs ring-1 ring-inset">{tag}</span>
+      ))}
+    </div>
+  )}
+</header>

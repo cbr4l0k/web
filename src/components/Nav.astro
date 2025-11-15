@@ -7,6 +7,7 @@ import { createPath, isActivePath } from '../utils/paths';
 const allBlog = await getCollection("blog");
 const allProjects = await getCollection("projects");
 const allRandom = await getCollection("random");
+const allRecipes = await getCollection("recipes");
 
 // Transform to navbar format
 const blog = allBlog
@@ -30,10 +31,18 @@ const projects = allProjects
   href: `/random/${item.id.replace(/\.mdx?$/, '')}`
 })).sort((a, b) => a.label.localeCompare(b.label));
 
+const recipes = allRecipes
+  .filter(recipe => !recipe.data.private)
+  .map((recipe) => ({
+    label: recipe.data.title,
+    href: `/recipes/${recipe.id.replace(/\.mdx?$/, '')}`
+  })).sort((a, b) => a.label.localeCompare(b.label));
+
 const sections = [
 { label: 'Me', base: createPath('/me'), children: [] },
 { label: 'Blog', base: createPath('/blog'), children: blog },
 { label: 'Projects', base: createPath('/projects'), children: projects },
+{ label: 'Recipes', base: createPath('/recipes'), children: recipes },
 { label: 'Readings', base: createPath('/readings'), children: [] },
 { label: 'References', base: createPath('/references'), children: [] },
 // { label: 'Random Stuff', base: createPath('/random'), children: random },

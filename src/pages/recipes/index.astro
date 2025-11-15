@@ -1,0 +1,43 @@
+---
+import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
+import RecipeCard from "../../components/RecipeCard.astro";
+import { getCollection } from "astro:content";
+
+const allRecipes = await getCollection("recipes");
+const filteredRecipes = allRecipes.filter(recipe => !recipe.data.private);
+
+const recipes = filteredRecipes.map((recipe) => ({
+  ...recipe.data,
+  slug: recipe.id.replace(/\.mdx?$/, '')
+})).sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+
+
+---
+<StandardPageLayout title="Recipes">
+<p>
+Creo que fui conciente de mi relación con el acto de compartir comida, al recibir mis primeros sueldos. Siempre el plan de la semana era llevar a cada uno de mis padres y a mis hermanas a un restaurante distinto. Era una oportunidad para poder saber como estaban, que estaba pasando en sus vidas, y pues comer rico es rico haha 🤣.
+</p>
+<p>
+Al verlo en retrospectiva; para mi, la comida siempre ha sido una oportunidad de conectar. El exponerse y sér vulnerable por un instante le permite a la otra persona sentirse cómoda para hacer lo mismo.
+</p>
+<p>
+Por otro lado, la vida me ha llevado a estar en contacto con mucha gente que cocina muy rico: uno aprende 😉.
+</p>
+<p>
+Las siguientes son recetas que me gustaría tener a la mano, siempre que tenga ganas de compartir con alguién. 
+</p>
+<p>Sobra decir que <b>el ingrediente más importante de todas las recetas es el amor</b>. Puede sonar a cliche, pero es que cuando uno cocina con amor, le pone atención a los detalles, uno tiene cuidado de no confundir la sal con el azucar, o cosas así haha. Eso es como las matas, la comida se llena de buenas vibras y uno lo siente. No tengo pruebas pero tampoco tengo dudas.
+<br/>
+<br/>
+<br/>
+  {recipes.length === 0 ? (
+  <p class="mb-[100%]">No tengo recetas 😔</p>
+  <p>(O puede que esten escondidas 🤫)</p>
+  ) : (
+    <ul class="grid gap-4 sm:grid-cols-2">
+      {recipes.map((recipe) => (
+        <RecipeCard recipe={recipe} />
+      ))}
+    </ul>
+  )}
+</StandardPageLayout>

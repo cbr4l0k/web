@@ -1,0 +1,40 @@
+---
+import Card from './Card.astro';
+import { createPath } from '../utils/paths';
+
+export interface Props {
+  recipe: {
+    slug: string;
+    title: string;
+    summary: string;
+    cuisine?: string;
+    prepTime?: string;
+    cookTime?: string;
+    servings?: string;
+    difficulty?: string;
+  };
+}
+
+const { recipe } = Astro.props;
+
+const metadata = [];
+if (recipe.cuisine) {
+  metadata.push({ label: 'Cuisine', value: recipe.cuisine });
+}
+if (recipe.servings) {
+  metadata.push({ label: 'Servings', value: recipe.servings });
+}
+if (recipe.prepTime || recipe.cookTime) {
+  const times = [];
+  if (recipe.prepTime) times.push(`Prep: ${recipe.prepTime}`);
+  if (recipe.cookTime) times.push(`Cook: ${recipe.cookTime}`);
+  metadata.push({ label: 'Time', value: times.join(', ') });
+}
+---
+<Card
+  href={createPath(`/recipes/${recipe.slug}`)}
+  title={recipe.title}
+  status={recipe.difficulty}
+  summary={recipe.summary}
+  metadata={metadata}
+/>
