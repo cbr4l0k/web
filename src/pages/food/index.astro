@@ -3,7 +3,7 @@ import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import RecipeCard from "../../components/RecipeCard.astro";
 import { getCollection } from "astro:content";
 
-const allRecipes = await getCollection("recipes");
+const allRecipes = await getCollection("food");
 const filteredRecipes = allRecipes.filter(recipe => !recipe.data.private);
 
 const recipes = filteredRecipes.map((recipe) => ({
@@ -13,7 +13,7 @@ const recipes = filteredRecipes.map((recipe) => ({
 
 
 ---
-<StandardPageLayout title="Recipes">
+<StandardPageLayout title="Food">
 <p>
 Creo que fui conciente de mi relación con el acto de compartir comida, al recibir mis primeros sueldos. Siempre el plan de la semana era llevar a cada uno de mis padres y a mis hermanas a un restaurante distinto. Era una oportunidad para poder saber como estaban, que estaba pasando en sus vidas, y pues comer rico es rico haha 🤣.
 </p>

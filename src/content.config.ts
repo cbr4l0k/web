@@ -44,8 +44,8 @@ const random = defineCollection({
     }),
 });
 
-const recipes = defineCollection({
-    loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/recipes" }),
+const food = defineCollection({
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/food" }),
     schema: z.object({
         title: z.string(),
         summary: z.string(),
@@ -63,5 +63,5 @@ export const collections = {
     blog,
     projects,
     random,
-    recipes,
+    food,
 };
