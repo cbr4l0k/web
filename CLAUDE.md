@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Development commands (run from project root):
 
-- `pnpm run dev` - Start development server at localhost:4321
-- `pnpm run build` - Build production site to ./dist/
+- `bun run dev` - Start development server at localhost:4321
+- `bun build` - Build production site to ./dist/
 
 ## Architecture Overview
 
