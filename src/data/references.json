@@ -94,5 +94,11 @@
     "description": "Reverse proxy management. ",
     "reference": "Docs",
     "url": "https://docs.pangolin.net/"
+  },
+  {
+    "title": "37signals",
+    "description": "I just love how this company works (minus ruby). This home page is art and should be placed in a frame in every business schools.",
+    "reference": "Read it... is short",
+    "url": "https://37signals.com/"
   }
 ]
