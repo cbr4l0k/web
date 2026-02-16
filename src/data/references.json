@@ -82,5 +82,17 @@
     "description": "Este fue el mejor lugar para guardar esta canción... luego quiero analizarla más a fondo.",
     "reference": "Link al video clip",
     "url": "https://music.youtube.com/watch?v=GcTdSZZUyF0&si=X9SyLBDKgaj2fMWG"
+  },
+  {
+    "title": "Intro to Digital Image Processing",
+    "description": "Playlist that I'm using to learn some image processing with gonzalez book in digital image processing.",
+    "reference": "YouTube Video",
+    "url": "https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUf60vkjePfcOQc8sHxmnDX"
+  },
+  {
+    "title": "Pangolin",
+    "description": "Reverse proxy management. ",
+    "reference": "Docs",
+    "url": "https://docs.pangolin.net/"
   }
 ]

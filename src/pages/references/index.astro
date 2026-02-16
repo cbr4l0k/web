@@ -10,7 +10,7 @@ const sortedReferences = references.sort((a, b) => a.title.localeCompare(b.title
 
 <ul class="grid gap-2 sm:grid-cols-1">
     {sortedReferences.map((reference) => (
-    <ReferenceCard 
+    <ReferenceCard
     title={reference.title}
     description={reference.description}
     reference={reference.reference}
