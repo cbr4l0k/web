@@ -10,7 +10,6 @@ const blog = defineCollection({
         status: z.string().default("leyendo"),
         started: z.string().optional(),     // Format: DD/MM/YYYY
         finished: z.string().optional(),    // Format: DD/MM/YYYY
-        tags: z.array(z.string()).default([]),
         private: z.boolean().default(true),
     }),
 });
@@ -39,7 +38,6 @@ const random = defineCollection({
         summary: z.string(),
         author: z.string().optional(),
         date: z.string().optional(), // Format: DD/MM/YYYY
-        tags: z.array(z.string()).default([]),
         private: z.boolean().default(true),
     }),
 });
@@ -48,13 +46,6 @@ const food = defineCollection({
     loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/food" }),
     schema: z.object({
         title: z.string(),
-        summary: z.string(),
-        cuisine: z.string().optional(),
-        prepTime: z.string().optional(),
-        cookTime: z.string().optional(),
-        servings: z.string().optional(),
-        difficulty: z.string().optional(),
-        tags: z.array(z.string()).default([]),
         private: z.boolean().default(true),
     }),
 });

@@ -1,0 +1,10 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+}
+import { createPath } from '../utils/paths';
+const { src, alt, class: className } = Astro.props;
+---
+<img src={createPath(`/assets/food/${src}`)} alt={alt} class={className} />

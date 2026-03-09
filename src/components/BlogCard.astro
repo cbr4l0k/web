@@ -11,7 +11,6 @@ export interface Props {
     status?: string;
     started?: string;
     finished?: string;
-    tags?: string[];
   };
 }
 
@@ -23,10 +22,6 @@ const metadata = [
 
 if (blog.started && !blog.finished) {
   metadata.push({ label: 'Started', value: blog.started });
-}
-
-if (blog.tags && blog.tags.length > 0) {
-  metadata.push({ label: 'Tags', value: blog.tags.join(', ') });
 }
 ---
 <Card

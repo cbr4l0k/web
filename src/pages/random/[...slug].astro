@@ -27,13 +27,6 @@ const { Content, headings } = await render(post);
     {post.data.date && (
       <p class="text-sm text-gray-500">{post.data.date}</p>
     )}
-    {post.data.tags && post.data.tags.length > 0 && (
-      <div class="flex gap-2 mt-2">
-        {post.data.tags.map((tag) => (
-          <span class="px-2 py-1 bg-gray-100 text-xs rounded">{tag}</span>
-        ))}
-      </div>
-    )}
   </div>
   
   <article class="random-content grid gap-4 md:grid-cols-1">

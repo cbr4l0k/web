@@ -3,7 +3,7 @@ export interface Props {
   href: string;
   title: string;
   status?: string;
-  summary: string;
+  summary?: string;
   metadata?: Array<{ label: string; value: string }>;
 }
 
@@ -22,7 +22,7 @@ const { href, title, status, summary, metadata = [] } = Astro.props;
     {metadata.map(({ label, value }) => (
       <p class="text-xs opacity-70 mb-1">{label}: {value}</p>
     ))}
-    <p class="text-sm opacity-90">{summary}</p>
+    {summary && <p class="text-sm opacity-90">{summary}</p>}
     <slot />
   </a>
 </li>

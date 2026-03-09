@@ -7,7 +7,7 @@ const allRecipes = await getCollection("food");
 const filteredRecipes = allRecipes.filter(recipe => !recipe.data.private);
 
 const recipes = filteredRecipes.map((recipe) => ({
-  ...recipe.data,
+  title: recipe.data.title,
   slug: recipe.id.replace(/\.mdx?$/, '')
 })).sort((a, b) => (a.title || '').localeCompare(b.title || ''));
 
