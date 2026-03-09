@@ -1,8 +1,69 @@
 ---
-import { createPath } from '../utils/paths';
+import { createPath, isActivePath } from '../utils/paths';
+const pathname = Astro.url.pathname;
+
+let sectionTitle: string;
+const isProjects = isActivePath(pathname, createPath('/projects'));
+
+if (isActivePath(pathname, createPath('/me'))) {
+  sectionTitle = 'Simple Elegant CV';
+} else if (isActivePath(pathname, createPath('/blog'))) {
+  sectionTitle = 'Simple Elegant Blog';
+} else if (isProjects) {
+  sectionTitle = 'Things I\'m Working On';
+} else if (isActivePath(pathname, createPath('/food'))) {
+  sectionTitle = 'Simple Elegant Cooking Book';
+} else if (isActivePath(pathname, createPath('/readings'))) {
+  sectionTitle = 'Simple Elegant Reading List';
+} else if (isActivePath(pathname, createPath('/references'))) {
+  sectionTitle = 'Simple Elegant Interesting Stuff';
+} else {
+  sectionTitle = 'Simple Elegant Web.Site';
+}
 ---
 <div class="flex items-center gap-2 px-4 py-2">
-    <a href={createPath('/')} class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
-    <span class="text-[#222]">» Simple Elegant Web.Site «</span>
+  <a href={createPath('/')} class="flex items-center gap-3 p-4 text-xl font-extrabold tracking-tight border-b border-gray-200">
+    <span class="text-[#222]">
+      »{' '}
+      {isProjects ? (
+        <span class="group relative inline-flex items-center gap-1" data-header-tooltip-trigger>
+          <span class="line-through">Simple Elegant</span>
+          <div class="fixed px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg z-[100]" data-header-tooltip style="left: -9999px;">
+            <div class="font-medium">I'm trying my best to keep it simple</div>
+            <div class="text-gray-300 mt-0.5">Spoiler: it's not going great</div>
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 -mb-1 border-4 border-transparent border-b-gray-900"></div>
+          </div>
+          {' '}{sectionTitle}
+        </span>
+      ) : sectionTitle}
+      {' '}«
+    </span>
   </a>
 </div>
+
+<script>
+  const trigger = document.querySelector('[data-header-tooltip-trigger]');
+  const tooltip = document.querySelector('[data-header-tooltip]') as HTMLElement | null;
+
+  if (trigger && tooltip) {
+    trigger.addEventListener('mouseenter', () => {
+      const rect = trigger.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const padding = 16;
+
+      let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+      const top = rect.bottom + 8;
+
+      if (left + tooltipRect.width + padding > viewportWidth) {
+        left = viewportWidth - tooltipRect.width - padding;
+      }
+      if (left < padding) {
+        left = padding;
+      }
+
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    });
+  }
+</script>
