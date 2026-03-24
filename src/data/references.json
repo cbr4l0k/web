@@ -100,5 +100,23 @@
     "description": "I just love how this company works (minus ruby). This home page is art and should be placed in a frame in every business schools.",
     "reference": "Read it... is short",
     "url": "https://37signals.com/"
+  },
+  {
+    "title": "The Anarchist Library",
+    "description": "Free books on freedom, technology, and society. Just great) ",
+    "reference": "Link",
+    "url": "https://theanarchistlibrary.org/"
+  },
+  {
+    "title": "The Pudding ",
+    "description": "This is just one of the greatest ways I've seen infromation being showcased. This is just great. So much love, so much effort, this is amazing, the only think I'm going to advice is to whoever look at this, please open the link :D",
+    "reference": "Home Page",
+    "url": "https://pudding.cool/"
+  },
+  {
+    "title": "OS Data Quality",
+    "description": "By my experience, the thing that makes the worst experience for a developer, that's trying to develop stuff with ai, is the awful quality/quantity of the data available for free... This is just a good blog on how to mantain the quality of the data.",
+    "reference": "Blog",
+    "url": "https://datakitchen.io/the-2026-open-source-data-quality-and-data-observability-landscape"
   }
 ]
