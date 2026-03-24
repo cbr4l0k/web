@@ -1,0 +1,79 @@
+<section class="grid gap-2">
+  <label class="grid gap-2">
+    <span class="font-semibold text-[#222]">Language</span>
+    <select
+      data-ml-security-language
+      class="rounded border border-gray-300 bg-white px-3 py-2"
+    >
+      <option value="eng">English</option>
+      <option value="ru">Russian</option>
+    </select>
+  </label>
+</section>
+
+<script>
+  const languageSelect = document.querySelector("[data-ml-security-language]");
+  const challengeSelects = document.querySelectorAll("[data-ml-security-challenge]");
+  const languageBlocks = document.querySelectorAll("[data-language-content]");
+  const articleBlocks = document.querySelectorAll("[data-challenge-article]");
+  const challengeWrappers = document.querySelectorAll("[data-challenge-control]");
+
+  function getActiveChallenge(language) {
+    const activeSelect = document.querySelector(
+      `[data-ml-security-challenge][data-challenge-language="${language}"]`
+    );
+
+    if (activeSelect instanceof HTMLSelectElement) {
+      return activeSelect.value;
+    }
+
+    return "challenge_1";
+  }
+
+  function updateVisibleContent() {
+    if (!(languageSelect instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    const selectedLanguage = languageSelect.value;
+    const selectedChallenge = getActiveChallenge(selectedLanguage);
+
+    languageBlocks.forEach((node) => {
+      if (!(node instanceof HTMLElement)) {
+        return;
+      }
+
+      node.hidden = node.dataset.languageContent !== selectedLanguage;
+    });
+
+    challengeWrappers.forEach((node) => {
+      if (!(node instanceof HTMLElement)) {
+        return;
+      }
+
+      node.hidden = node.dataset.challengeControl !== selectedLanguage;
+    });
+
+    articleBlocks.forEach((node) => {
+      if (!(node instanceof HTMLElement)) {
+        return;
+      }
+
+      node.hidden =
+        node.dataset.articleLanguage !== selectedLanguage ||
+        node.dataset.articleChallenge !== selectedChallenge;
+    });
+  }
+
+  if (languageSelect instanceof HTMLSelectElement) {
+    languageSelect.addEventListener("change", updateVisibleContent);
+  }
+
+  challengeSelects.forEach((node) => {
+    if (node instanceof HTMLSelectElement) {
+      node.addEventListener("change", updateVisibleContent);
+    }
+  });
+
+  updateVisibleContent();
+</script>

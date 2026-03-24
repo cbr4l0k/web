@@ -1,0 +1,33 @@
+---
+const language = Astro.props.language;
+
+const labels = {
+  eng: [
+    { value: "challenge_1", text: "Challenge 1: Adversarial Attack" },
+    { value: "challenge_2", text: "Challenge 2: Mask Detection" },
+    { value: "challenge_3", text: "Challenge 3: Model Extraction" },
+    { value: "challenge_4", text: "Challenge 4: Backdoor Detection" },
+  ],
+  ru: [
+    { value: "challenge_1", text: "Задание 1: Adversarial Attack" },
+    { value: "challenge_2", text: "Задание 2: Mask Detection" },
+    { value: "challenge_3", text: "Задание 3: Model Extraction" },
+    { value: "challenge_4", text: "Задание 4: Backdoor Detection" },
+  ],
+};
+---
+
+<section class="grid gap-2" data-challenge-control={language}>
+  <label class="grid gap-2">
+    <span class="font-semibold text-[#222]">Challenge</span>
+    <select
+      data-ml-security-challenge
+      data-challenge-language={language}
+      class="rounded border border-gray-300 bg-white px-3 py-2"
+    >
+      {labels[language].map((item) => (
+        <option value={item.value}>{item.text}</option>
+      ))}
+    </select>
+  </label>
+</section>

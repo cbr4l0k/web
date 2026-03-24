@@ -1,0 +1,98 @@
+---
+title: "Alpha Bank ML Security Challenge"
+summary: "If you think using ML is fun, just wait to start attacking it..."
+role: "Attacker"
+status: "in-progress"
+period: "2026"
+stack: []
+links:
+  - label: "Repo"
+    href: "https://github.com/cbr4l0k/ml_security/"
+private: true
+---
+import MLSecurityChallengeLanguageControl from "../../components/MLSecurityChallengeLanguageControl.astro";
+import MLSecurityChallengeArticleControl from "../../components/MLSecurityChallengeArticleControl.astro";
+import Challenge1Eng from "../../partials/ml_security_challenge/challenge_1.eng.mdx";
+import Challenge1Ru from "../../partials/ml_security_challenge/challenge_1.ru.mdx";
+import Challenge2Eng from "../../partials/ml_security_challenge/challenge_2.eng.mdx";
+import Challenge2Ru from "../../partials/ml_security_challenge/challenge_2.ru.mdx";
+import Challenge3Eng from "../../partials/ml_security_challenge/challenge_3.eng.mdx";
+import Challenge3Ru from "../../partials/ml_security_challenge/challenge_3.ru.mdx";
+import Challenge4Eng from "../../partials/ml_security_challenge/challenge_4.eng.mdx";
+import Challenge4Ru from "../../partials/ml_security_challenge/challenge_4.ru.mdx";
+
+<MLSecurityChallengeLanguageControl />
+
+<section data-language-content="eng" class="grid gap-6">
+
+# Procedure
+
+This page is a structured wrapper around the four challenge tracks from the repository linked above. The language selector changes the visible project text first, and then the challenge selector narrows the page down to the specific writeup I want to work on.
+
+The content blocks below are split into separate files so I can write each challenge independently without changing the page structure again.
+
+## Disclaimers
+
+- The challenge descriptions come from the linked repository, not from this page.
+- The writeups below are placeholders for future notes and final writeups.
+- English and Russian versions are maintained separately and may diverge.
+- API details, scoring rules, and mechanics should be treated as repository-sourced context.
+
+## Challenge Writeups
+
+<MLSecurityChallengeArticleControl language="eng" />
+
+<section data-challenge-article data-article-language="eng" data-article-challenge="challenge_1">
+  <Challenge1Eng />
+</section>
+
+<section data-challenge-article data-article-language="eng" data-article-challenge="challenge_2" hidden>
+  <Challenge2Eng />
+</section>
+
+<section data-challenge-article data-article-language="eng" data-article-challenge="challenge_3" hidden>
+  <Challenge3Eng />
+</section>
+
+<section data-challenge-article data-article-language="eng" data-article-challenge="challenge_4" hidden>
+  <Challenge4Eng />
+</section>
+
+</section>
+
+<section data-language-content="ru" class="grid gap-6" hidden>
+
+# Процедура
+
+Эта страница служит оболочкой для четырёх challenge-треков из репозитория выше. Сначала селектор языка переключает весь видимый текст проекта, а затем селектор challenge показывает нужный текст для конкретной задачи.
+
+Блоки ниже вынесены в отдельные файлы, чтобы я мог писать каждую статью отдельно и не менять структуру страницы заново.
+
+## Дисклеймеры
+
+- Описания задач берутся из привязанного репозитория, а не с этой страницы.
+- Тексты ниже пока оставлены как заготовки для будущих заметок и writeup.
+- Английская и русская версии поддерживаются отдельно и могут отличаться.
+- Детали API, правила оценки и механики нужно считать контекстом из репозитория.
+
+## Разборы Challenge
+
+<MLSecurityChallengeArticleControl language="ru" />
+
+<section data-challenge-article data-article-language="ru" data-article-challenge="challenge_1" hidden>
+  <Challenge1Ru />
+</section>
+
+<section data-challenge-article data-article-language="ru" data-article-challenge="challenge_2" hidden>
+  <Challenge2Ru />
+</section>
+
+<section data-challenge-article data-article-language="ru" data-article-challenge="challenge_3" hidden>
+  <Challenge3Ru />
+</section>
+
+<section data-challenge-article data-article-language="ru" data-article-challenge="challenge_4" hidden>
+  <Challenge4Ru />
+</section>
+
+</section>
