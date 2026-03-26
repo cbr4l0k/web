@@ -8,7 +8,7 @@ stack: ["PostgreSQL", "Docker", "Podman", "pgAdmin"]
 links:
   - label: "ITMO University"
     href: "https://itmo.ru"
-private: false
+private: true
 ---
 
 import { createPath } from '../../utils/paths';
@@ -128,7 +128,7 @@ First, let's access pgAdmin at `http://localhost:5050`:
 
 After logging in, we need to add our PostgreSQL server. Click on "Add New Server":
 
-```markdown 
+```markdown
 **General Tab:**
 - Name: `DBMS Lab`
 
