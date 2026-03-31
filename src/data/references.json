@@ -118,5 +118,11 @@
     "description": "By my experience, the thing that makes the worst experience for a developer, that's trying to develop stuff with ai, is the awful quality/quantity of the data available for free... This is just a good blog on how to mantain the quality of the data.",
     "reference": "Blog",
     "url": "https://datakitchen.io/the-2026-open-source-data-quality-and-data-observability-landscape"
+  },
+  {
+    "title": "Deffinition of Slop",
+    "description": "I think is a good idea to have a way to understand what it is; so that is possible to have an acutal understanding of what makes it good or bad. And today, I just found a good definition.",
+    "reference": "youtube vid.",
+    "url": "https://www.youtube.com/watch?v=dT5IJExTUR4"
   }
 ]
