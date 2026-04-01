@@ -1,0 +1,48 @@
+---
+import ButterEveryWeekItem from "./ButterEveryWeekItem.astro";
+import { sortButterEveryWeekPaths } from "../utils/butterEveryWeek.js";
+
+interface ButterEveryWeekFrontmatter {
+  title?: string;
+  type?: "entry" | "fact";
+  summary?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+interface ButterEveryWeekModule {
+  default: any;
+  frontmatter?: ButterEveryWeekFrontmatter;
+}
+
+const modules = import.meta.glob("../partials/butter_every_week/*.mdx", { eager: true });
+
+const items = sortButterEveryWeekPaths(Object.keys(modules)).map((path) => {
+  const module = modules[path] as ButterEveryWeekModule;
+  const frontmatter = module.frontmatter ?? {};
+
+  if (!frontmatter.title) {
+    throw new Error(`Butter Every Week partial is missing a title: ${path}`);
+  }
+
+  if (frontmatter.type !== "entry" && frontmatter.type !== "fact") {
+    throw new Error(`Butter Every Week partial has invalid type: ${path}`);
+  }
+
+  return {
+    path,
+    title: frontmatter.title,
+    type: frontmatter.type,
+    summary: frontmatter.summary,
+    image: frontmatter.image,
+    imageAlt: frontmatter.imageAlt,
+    Content: module.default,
+  };
+});
+---
+
+<div class="grid gap-8">
+  {items.map((item) => (
+    <ButterEveryWeekItem {...item} />
+  ))}
+</div>
