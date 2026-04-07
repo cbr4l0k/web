@@ -55,14 +55,10 @@
             "start_date": "Aug 2023",
             "end_date": "Nov 2025",
             "highlights": [
-                "Co-founded startup focused on AI-powered automation solutions for healthcare in Latin America",
-                "Built automation workflows using N8N, LangChain/LangGraph for AI orchestration",
-                "Implemented vector database solutions with ChromaDB for semantic search",
-                "Deployed MinIO for object storage and Apache Airflow for workflow orchestration",
-                "Established MLflow dashboard for machine learning experiment tracking",
-                "Developed information security solutions for the Colombian Navy",
-                "Conducting collaborative research with Universidad del Rosario on healthcare IT infrastructure in Colombia",
-                "Managing legal, financial setup and business development while studying at ITMO"
+                "Co-founded a startup building AI-powered automation for healthcare providers in Latin America, leading product vision, technical architecture, and business development",
+                "Designed and deployed end-to-end ML infrastructure, spanning AI orchestration, semantic search, data pipelines, and experiment tracking",
+                "Delivered information security solutions for the Colombian Navy and conducted collaborative research on healthcare IT infrastructure with Universidad del Rosario",
+                "Managed legal, financial, and operational aspects of the company remotely while pursuing graduate studies at ITMO"
             ]
         },
         {
