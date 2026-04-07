@@ -15,7 +15,7 @@ const { title, summary, role, status, period, stack = [], links = [] } = Astro.p
   {summary && <p class="mb-4 leading-relaxed">{summary}</p>}
   <div class="mb-4 flex flex-wrap items-center gap-3">
     {status && (
-    <span class="text-xs opacity-70">Status:</span><span class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset`}>{status}</span>
+    <span class="text-xs opacity-70">Status:</span><span class="surface-label px-3 py-1 text-xs font-semibold">{status}</span>
     )}
     {role && <span class="text-xs opacity-70">Role: {role}</span>}
     {period && <span class="text-xs opacity-70">Period: {period}</span>}
@@ -23,11 +23,11 @@ const { title, summary, role, status, period, stack = [], links = [] } = Astro.p
   {(stack.length > 0 || links.length > 0) && (
     <div class="mb-6 flex flex-wrap items-center gap-2 ">
       {stack.map((t) => (
-        <span class="inline-flex items-center rounded-full px-3 py-1 text-xs ring-1 ring-inset">{t}</span>
+        <span class="surface-label px-3 py-1 text-xs">{t}</span>
       ))}
       {links.map((l) => (
       <a
-          class="relative z-10 inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ring-inset transition-colors duration-200 ease-in-out hover:text-gray-900 hover:ring-2 hover:ring-inset"
+          class="surface-label relative z-10 px-3 py-1 text-xs font-semibold transition-colors duration-200 ease-in-out hover:bg-gray-50 hover:text-gray-900"
           target="_blank"
           rel="noopener noreferrer"
           href={l.href}

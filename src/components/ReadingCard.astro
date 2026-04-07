@@ -9,7 +9,7 @@ const { reading } = Astro.props;
 const hasQuotes = reading.quotes && reading.quotes.length > 0;
 ---
 
-<li class={`rounded border border-gray-300 p-2 transition reading-item ${hasQuotes ? 'hover:shadow hover:-translate-y-0.5 cursor-pointer' : ''}`}>
+<li class={`content-surface p-2 reading-item ${hasQuotes ? 'content-surface--interactive cursor-pointer' : ''}`}>
   <div class="flex items-start sm:items-center justify-between gap-3 mb-1">
     <div class="flex items-start gap-2 flex-1 min-w-0">
       {hasQuotes && (
@@ -23,7 +23,7 @@ const hasQuotes = reading.quotes && reading.quotes.length > 0;
       </div>
     </div>
     {reading.date && (
-      <span class="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold ring-1 ring-inset bg-gray-50 text-gray-600 ring-gray-500/10 whitespace-nowrap flex-shrink-0">
+      <span class="surface-label px-2.5 py-1 text-[10px] font-semibold text-gray-600 whitespace-nowrap flex-shrink-0">
         {reading.date}
       </span>
     )}

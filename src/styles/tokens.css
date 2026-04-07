@@ -9,8 +9,8 @@
   --color-border: #e6e8ec;
 
   /* Radii */
-  --radius-base: 0.75rem;
-  --radius-pill: 9999px;
+  --radius-base: 0;
+  --radius-pill: 0;
 
   /* Shadows */
   --shadow-card:
@@ -313,16 +313,13 @@ a:focus-visible {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-base);
   padding: var(--space-lg);
-  box-shadow: var(--shadow-card);
   transition:
-    transform 120ms ease,
-    box-shadow 120ms ease,
+    background-color var(--transition-fast),
     border-color var(--transition-fast);
 }
 
 .card:hover {
-  transform: scale(1.01);
-  box-shadow: var(--shadow-card-hover);
+  background: color-mix(in oklab, var(--color-surface) 88%, var(--color-bg));
 }
 
 .card.selected {
@@ -333,8 +330,8 @@ a:focus-visible {
 .badge {
   display: inline-flex;
   align-items: center;
-  height: 24px;
-  padding: 0 12px;
+  min-height: 24px;
+  padding: 4px 12px;
   border-radius: var(--radius-pill);
   font-weight: 600;
   letter-spacing: 0.25px;

@@ -8,7 +8,7 @@ export interface Props {
 
 const { name, link, date, highlights } = Astro.props;
 ---
-<div class="rounded-lg border border-[var(--color-border)] p-5 shadow-sm hover:shadow-md transition-shadow">
+<div class="p-5 shadow-sm hover:shadow-md transition-shadow">
   <div class="flex items-start justify-between gap-3 mb-2">
     {link ? (
       <a href={link} target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-[var(--color-heading)] hover:underline">

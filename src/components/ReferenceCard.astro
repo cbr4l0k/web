@@ -13,7 +13,7 @@ const contentId = `reference-${reference.category}-${reference.title}`
   .replace(/^-+|-+$/g, "");
 ---
 
-<li class="reference-item rounded border border-gray-300 p-2 transition hover:shadow hover:-translate-y-0.5">
+<li class="reference-item content-surface content-surface--interactive p-2">
   <div class="flex items-start gap-3">
     <button
       type="button"
@@ -41,7 +41,7 @@ const contentId = `reference-${reference.category}-${reference.title}`
         href={reference.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="reference-open inline-flex flex-shrink-0 items-center rounded-full px-2.5 py-1 text-[10px] font-semibold ring-1 ring-inset transition-colors hover:bg-gray-50 whitespace-nowrap"
+        class="reference-open surface-label inline-flex flex-shrink-0 px-2.5 py-1 text-[10px] font-semibold transition-colors hover:bg-gray-50 whitespace-nowrap"
         aria-label={`Open ${reference.title} in a new tab`}
       >
         Open

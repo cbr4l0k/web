@@ -10,9 +10,9 @@ export interface Props {
 const { title, subtitle, metadata, period, highlights } = Astro.props;
 ---
 <div class="relative pl-6 pb-8 border-l-2 border-[var(--color-border)] last:pb-0">
-  <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--color-bg)] border-2 border-[var(--color-muted)]"></div>
+  <div class="absolute -left-[7px] top-1 h-3 w-3 bg-[var(--color-muted)]"></div>
 
-  <div class="rounded-lg border border-[var(--color-border)] p-5 shadow-sm hover:shadow-md transition-shadow">
+  <div class="p-5 shadow-sm hover:shadow-md transition-shadow">
     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
       <div>
         <h3 class="text-lg font-semibold text-[var(--color-heading)] mb-1">{title}</h3>
