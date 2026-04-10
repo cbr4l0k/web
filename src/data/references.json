@@ -1,149 +1,162 @@
-[
-  {
-    "title": "0: NoHello[dot]com",
-    "description": "It always bothered me how much time people waste on pleasantries on digital communication, like... One message to say 'Hi' and then waiting for a reply, and then another message to say 'How are you?' and then waiting for a reply... IDK... It's just way too much friction for me. If you wanna talk: please call me, invite me to an online meeting, or maybe tell me the address of the coffee shop where we can meet. Otherwise, just send me the actual message you want to say. This guys explains it better than I do.",
-    "reference": "Please read it... is really good, and I think it will save you a lot of time.",
-    "category": "Communication",
-    "url": "https://nohello.net/"
-  },
-  {
-    "title": "Dialectics After Derrida",
-    "description": "En este articulo se hace una reflexión sobre la relevancia de Derrrida, más allá de las frases de cajón que se le atribuyen. Una de las cuestiones más interesantes que se mencionan, es cómo la ",
-    "reference": "A talk by Geoff Boucher... I should look up that guy.",
-    "category": "Theory & Society",
-    "url": "https://www.marxists.org/reference/archive/hegel/txt/gb2000_3.htm"
-  },
-  {
-    "title": "How To Ask Questions The Smart Way",
-    "description": "Y aunque este artículo está diseñado para la comunidad hacker, creo que refleja la desconexión generalizada entre el público general y la tecnología. Me recuerda cuando era monitor en la universidad, y alguno de mis estudiantes llegaba con preguntas por el grupo de WhatsApp y que la respuesta era literalmente el equivalente de copiar y pegar la pregunta en el buscador de Google, y responder en el chat con el link al primer resultado que frecuentemente era un post de Stack Overflow. Debería poner en mi hoja de vida que sé googlear como Dios manda.",
-    "reference": "",
-    "category": "Communication",
-    "url": "http://www.catb.org/~esr/faqs/smart-questions.html"
-  },
-  {
-    "title": "Quartz",
-    "description": "I really like Obsidian, the graph view and the connectivity dynamics help me a lot in my current thinking process/workflow. And Quartz just let me publish my notes as a website —hostable in GitHub Pages— with the graph view and all the Obsidian goodness. So yeah... NIIIICE.",
-    "reference": "Also... Notes can be public or private.",
-    "category": "Knowledge Systems",
-    "url": "https://quartz.jzhao.xyz/"
-  },
-  {
-    "title": "On the working definition of Intelligence",
-    "description": "Now that everyone is talking about AI, I think it's important to have a clear definition of what intelligence is. Mainly to avoid the hype and the marketing bullshit. This is a good starting point.",
-    "reference": "By Pei Wang",
-    "category": "AI & Data",
-    "url": "https://www.researchgate.net/profile/Pei-Wang-41/publication/2339604_On_the_Working_Definition_of_Intelligence/links/00b7d534c738bd5ed7000000/On-the-Working-Definition-of-Intelligence.pdf"
-  },
-  {
-    "title": "OliveTin",
-    "description": "Is just a tool I found while arranging some stuff for my university... The outcome of my work was mainly a collection of docker-compose files that would help deploy the infraestrucuture. For non IT people it was a bad idea 🫠. Using OliveTin is helping me give them a good way to interact with the developed infraestructure. ",
-    "reference": "",
-    "category": "Tools & Infra",
-    "url": "https://www.olivetin.app/"
-  },
-  {
-    "title": "Burn baby BURN",
-    "description": "Ai toolkit to train AI using RUST 🦀. It's fast and backend flexible)))",
-    "reference": "",
-    "category": "AI & Data",
-    "url": "https://burn.dev/get-started/"
-  },
-  {
-    "title": "Use an add blocker please ",
-    "description": "Like, the blog is really self explanatory... but adds should not be the norm, just google —and similar companies— actually profit out of them; but, because of them, the internet experience is just way worst. So, maybe install an AddBlocker, Please 😸?",
-    "reference": "Not even 5 min read.",
-    "category": "Internet & Media",
-    "url": "https://maurycyz.com/misc/ads/"
-  },
-  {
-    "title": "Rust names are important",
-    "description": "I should respect the way it's done.",
-    "reference": "",
-    "category": "Programming",
-    "url": "https://rust-lang.github.io/api-guidelines/naming.html#ad-hoc-conversions-follow-as_-to_-into_-conventions-c-conv"
-  },
-  {
-    "title": "0: Sci Net. (Scientific Communication Support Network)",
-    "description": "Thinking that knowledge is for those who can pay for it, and not for those who need it, is really fucked up. And yeah, this is not free, but not for lack of trying. Sci-Hub made a huge, great impact on open science, and because \"free\" is usually a bad business model — not for profit, but just for keeping the project running — we now have Sci Net, with crypto, Web3 stuff, and nice things that encourage people to share good knowledge and quality stuff.",
-    "reference": "",
-    "category": "Knowledge Systems",
-    "url": "https://sci-net.xyz/"
-  },
-  {
-    "title": "Veilid",
-    "description": "Free software framework aiming to provide encrypted and anonymous communication.",
-    "reference": "If someone to play with this, please let me know... I also want to do it.",
-    "category": "Networks & Crypto",
-    "url": "https://veilid.com/"
-  },
-  {
-    "title": "Please, let's just let LinkedIn die",
-    "description": "No one likes it, is really fake, and the worst part, people behave like it matters. And is this behaviour, the generalization of importance of this awful place, what makes it so relevance. So please... let's just let LinkedIn die, once and for all.",
-    "reference": "Link to a great article about it.",
-    "category": "Theory & Society",
-    "url": "https://www.thepavement.xyz/p/abolish-linkedin"
-  },
-  {
-    "title": "Make youtube great again",
-    "description": "After using this addon/plugin for a while, using youtube without it feels really bad... it sucks for that to be the normal experience for most YouTube users. Only subscriptions, no recomendations, not shorts... JUST GREAT 💞",
-    "reference": "Link to the website",
-    "category": "Internet & Media",
-    "url": "https://unhook.app/"
-  },
-  {
-    "title": "De lo real como que queda poco...",
-    "description": "Este fue el mejor lugar para guardar esta canción... luego quiero analizarla más a fondo.",
-    "reference": "Link al video clip",
-    "category": "Internet & Media",
-    "url": "https://music.youtube.com/watch?v=GcTdSZZUyF0&si=X9SyLBDKgaj2fMWG"
-  },
-  {
-    "title": "Intro to Digital Image Processing",
-    "description": "Playlist that I'm using to learn some image processing with gonzalez book in digital image processing.",
-    "reference": "YouTube Video",
-    "category": "AI & Data",
-    "url": "https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUf60vkjePfcOQc8sHxmnDX"
-  },
-  {
-    "title": "Pangolin",
-    "description": "Reverse proxy management. ",
-    "reference": "Docs",
-    "category": "Tools & Infra",
-    "url": "https://docs.pangolin.net/"
-  },
-  {
-    "title": "37signals",
-    "description": "I just love how this company works (minus ruby). This home page is art and should be placed in a frame in every business schools.",
-    "reference": "Read it... is short",
-    "category": "Product & Craft",
-    "url": "https://37signals.com/"
-  },
-  {
-    "title": "The Anarchist Library",
-    "description": "Free books on freedom, technology, and society. Just great) ",
-    "reference": "Link",
-    "category": "Theory & Society",
-    "url": "https://theanarchistlibrary.org/"
-  },
-  {
-    "title": "The Pudding ",
-    "description": "This is just one of the greatest ways I've seen infromation being showcased. This is just great. So much love, so much effort, this is amazing, the only think I'm going to advice is to whoever look at this, please open the link :D",
-    "reference": "Home Page",
-    "category": "Internet & Media",
-    "url": "https://pudding.cool/"
-  },
-  {
-    "title": "OS Data Quality",
-    "description": "By my experience, the thing that makes the worst experience for a developer, that's trying to develop stuff with ai, is the awful quality/quantity of the data available for free... This is just a good blog on how to mantain the quality of the data.",
-    "reference": "Blog",
-    "category": "AI & Data",
-    "url": "https://datakitchen.io/the-2026-open-source-data-quality-and-data-observability-landscape"
-  },
-  {
-    "title": "Deffinition of Slop",
-    "description": "I think is a good idea to have a way to understand what it is; so that is possible to have an acutal understanding of what makes it good or bad. And today, I just found a good definition.",
-    "reference": "youtube vid.",
-    "category": "AI & Data",
-    "url": "https://www.youtube.com/watch?v=dT5IJExTUR4"
-  }
-]
+{
+    "categories": [
+        { "id": 1, "label": "AI & Data" },
+        { "id": 2, "label": "Communication" },
+        { "id": 3, "label": "Internet & Media" },
+        { "id": 4, "label": "Knowledge Systems" },
+        { "id": 5, "label": "Networks" },
+        { "id": 6, "label": "Product & Craft" },
+        { "id": 7, "label": "Programming" },
+        { "id": 8, "label": "Theory & Society" },
+        { "id": 9, "label": "Tools & Infra" }
+    ],
+    "references": [
+        {
+            "title": "0: NoHello[dot]com",
+            "description": "It always bothered me how much time people waste on pleasantries on digital communication, like... One message to say 'Hi' and then waiting for a reply, and then another message to say 'How are you?' and then waiting for a reply... IDK... It's just way too much friction for me. If you wanna talk: please call me, invite me to an online meeting, or maybe tell me the address of the coffee shop where we can meet. Otherwise, just send me the actual message you want to say. This guys explains it better than I do.",
+            "reference": "Please read it... is really good, and I think it will save you a lot of time.",
+            "category": 2,
+            "url": "https://nohello.net/"
+        },
+        {
+            "title": "Dialectics After Derrida",
+            "description": "En este articulo se hace una reflexión sobre la relevancia de Derrrida, más allá de las frases de cajón que se le atribuyen. Una de las cuestiones más interesantes que se mencionan, es cómo la ",
+            "reference": "A talk by Geoff Boucher... I should look up that guy.",
+            "category": 8,
+            "url": "https://www.marxists.org/reference/archive/hegel/txt/gb2000_3.htm"
+        },
+        {
+            "title": "How To Ask Questions The Smart Way",
+            "description": "Y aunque este artículo está diseñado para la comunidad hacker, creo que refleja la desconexión generalizada entre el público general y la tecnología. Me recuerda cuando era monitor en la universidad, y alguno de mis estudiantes llegaba con preguntas por el grupo de WhatsApp y que la respuesta era literalmente el equivalente de copiar y pegar la pregunta en el buscador de Google, y responder en el chat con el link al primer resultado que frecuentemente era un post de Stack Overflow. Debería poner en mi hoja de vida que sé googlear como Dios manda.",
+            "reference": "",
+            "category": 2,
+            "url": "http://www.catb.org/~esr/faqs/smart-questions.html"
+        },
+        {
+            "title": "Quartz",
+            "description": "I really like Obsidian, the graph view and the connectivity dynamics help me a lot in my current thinking process/workflow. And Quartz just let me publish my notes as a website —hostable in GitHub Pages— with the graph view and all the Obsidian goodness. So yeah... NIIIICE.",
+            "reference": "Also... Notes can be public or private.",
+            "category": 4,
+            "url": "https://quartz.jzhao.xyz/"
+        },
+        {
+            "title": "On the working definition of Intelligence",
+            "description": "Now that everyone is talking about AI, I think it's important to have a clear definition of what intelligence is. Mainly to avoid the hype and the marketing bullshit. This is a good starting point.",
+            "reference": "By Pei Wang",
+            "category": 1,
+            "url": "https://www.researchgate.net/profile/Pei-Wang-41/publication/2339604_On_the_Working_Definition_of_Intelligence/links/00b7d534c738bd5ed7000000/On-the-Working-Definition-of-Intelligence.pdf"
+        },
+        {
+            "title": "OliveTin",
+            "description": "Is just a tool I found while arranging some stuff for my university... The outcome of my work was mainly a collection of docker-compose files that would help deploy the infraestrucuture. For non IT people it was a bad idea 🫠. Using OliveTin is helping me give them a good way to interact with the developed infraestructure. ",
+            "reference": "",
+            "category": 9,
+            "url": "https://www.olivetin.app/"
+        },
+        {
+            "title": "Burn baby BURN",
+            "description": "Ai toolkit to train AI using RUST 🦀. It's fast and backend flexible)))",
+            "reference": "",
+            "category": 1,
+            "url": "https://burn.dev/get-started/"
+        },
+        {
+            "title": "Use an add blocker please ",
+            "description": "Like, the blog is really self explanatory... but adds should not be the norm, just google —and similar companies— actually profit out of them; but, because of them, the internet experience is just way worst. So, maybe install an AddBlocker, Please 😸?",
+            "reference": "Not even 5 min read.",
+            "category": 3,
+            "url": "https://maurycyz.com/misc/ads/"
+        },
+        {
+            "title": "Rust names are important",
+            "description": "I should respect the way it's done.",
+            "reference": "",
+            "category": 7,
+            "url": "https://rust-lang.github.io/api-guidelines/naming.html#ad-hoc-conversions-follow-as_-to_-into_-conventions-c-conv"
+        },
+        {
+            "title": "0: Sci Net. (Scientific Communication Support Network)",
+            "description": "Thinking that knowledge is for those who can pay for it, and not for those who need it, is really fucked up. And yeah, this is not free, but not for lack of trying. Sci-Hub made a huge, great impact on open science, and because \"free\" is usually a bad business model — not for profit, but just for keeping the project running — we now have Sci Net, with crypto, Web3 stuff, and nice things that encourage people to share good knowledge and quality stuff.",
+            "reference": "",
+            "category": 4,
+            "url": "https://sci-net.xyz/"
+        },
+        {
+            "title": "Veilid",
+            "description": "Free software framework aiming to provide encrypted and anonymous communication.",
+            "reference": "If someone to play with this, please let me know... I also want to do it.",
+            "category": 5,
+            "url": "https://veilid.com/"
+        },
+        {
+            "title": "Please, let's just let LinkedIn die",
+            "description": "No one likes it, is really fake, and the worst part, people behave like it matters. And is this behaviour, the generalization of importance of this awful place, what makes it so relevance. So please... let's just let LinkedIn die, once and for all.",
+            "reference": "Link to a great article about it.",
+            "category": 8,
+            "url": "https://www.thepavement.xyz/p/abolish-linkedin"
+        },
+        {
+            "title": "Make youtube great again",
+            "description": "After using this addon/plugin for a while, using youtube without it feels really bad... it sucks for that to be the normal experience for most YouTube users. Only subscriptions, no recomendations, not shorts... JUST GREAT 💞",
+            "reference": "Link to the website",
+            "category": 3,
+            "url": "https://unhook.app/"
+        },
+        {
+            "title": "De lo real como que queda poco...",
+            "description": "Este fue el mejor lugar para guardar esta canción... luego quiero analizarla más a fondo.",
+            "reference": "Link al video clip",
+            "category": 3,
+            "url": "https://music.youtube.com/watch?v=GcTdSZZUyF0&si=X9SyLBDKgaj2fMWG"
+        },
+        {
+            "title": "Intro to Digital Image Processing",
+            "description": "Playlist that I'm using to learn some image processing with gonzalez book in digital image processing.",
+            "reference": "YouTube Video",
+            "category": 1,
+            "url": "https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUf60vkjePfcOQc8sHxmnDX"
+        },
+        {
+            "title": "Pangolin",
+            "description": "Reverse proxy management. ",
+            "reference": "Docs",
+            "category": 9,
+            "url": "https://docs.pangolin.net/"
+        },
+        {
+            "title": "37signals",
+            "description": "I just love how this company works (minus ruby). This home page is art and should be placed in a frame in every business schools.",
+            "reference": "Read it... is short",
+            "category": 6,
+            "url": "https://37signals.com/"
+        },
+        {
+            "title": "The Anarchist Library",
+            "description": "Free books on freedom, technology, and society. Just great) ",
+            "reference": "Link",
+            "category": 8,
+            "url": "https://theanarchistlibrary.org/"
+        },
+        {
+            "title": "The Pudding ",
+            "description": "This is just one of the greatest ways I've seen infromation being showcased. This is just great. So much love, so much effort, this is amazing, the only think I'm going to advice is to whoever look at this, please open the link :D",
+            "reference": "Home Page",
+            "category": 3,
+            "url": "https://pudding.cool/"
+        },
+        {
+            "title": "OS Data Quality",
+            "description": "By my experience, the thing that makes the worst experience for a developer, that's trying to develop stuff with ai, is the awful quality/quantity of the data available for free... This is just a good blog on how to mantain the quality of the data.",
+            "reference": "Blog",
+            "category": 1,
+            "url": "https://datakitchen.io/the-2026-open-source-data-quality-and-data-observability-landscape"
+        },
+        {
+            "title": "Deffinition of Slop",
+            "description": "I think is a good idea to have a way to understand what it is; so that is possible to have an acutal understanding of what makes it good or bad. And today, I just found a good definition.",
+            "reference": "youtube vid.",
+            "category": 1,
+            "url": "https://www.youtube.com/watch?v=dT5IJExTUR4"
+        }
+    ]
+}

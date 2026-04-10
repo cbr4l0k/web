@@ -1,53 +1,31 @@
-function normalizeCategory(category) {
-  const normalized = String(category ?? "")
-    .trim()
-    .replace(/\s+/g, " ");
-
-  return normalized || "Unsorted";
-}
-
-function toTitleCase(value) {
-  return value.replace(/\b([a-z])/g, (match) => match.toUpperCase());
-}
-
-function formatCategoryTitle(category) {
-  return category === category.toLowerCase()
-    ? toTitleCase(category)
-    : category;
-}
-
-export function getReferenceCategoryAnchor(category) {
-  return normalizeCategory(category)
+function labelToAnchor(label) {
+  return label
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
 
-export function groupReferencesByCategory(references) {
-  const grouped = new Map();
+export function groupReferencesByCategory(categories, references) {
+  const categoryMap = new Map(
+    categories.map((cat) => [
+      cat.id,
+      { key: cat.id, title: cat.label, anchor: labelToAnchor(cat.label), references: [] },
+    ])
+  );
 
   for (const reference of references) {
-    const normalizedCategory = normalizeCategory(reference.category);
-    const key = normalizedCategory.toLowerCase();
-
-    if (!grouped.has(key)) {
-      grouped.set(key, {
-        key,
-        title: formatCategoryTitle(normalizedCategory),
-        anchor: getReferenceCategoryAnchor(normalizedCategory),
-        references: [],
-      });
+    const group = categoryMap.get(reference.category);
+    if (group) {
+      group.references.push(reference);
     }
-
-    grouped.get(key).references.push(reference);
   }
 
-  return [...grouped.values()]
+  return [...categoryMap.values()]
+    .filter((group) => group.references.length > 0)
     .map((group) => ({
       ...group,
-      references: [...group.references].sort((left, right) =>
-        left.title.localeCompare(right.title),
+      references: [...group.references].sort((a, b) =>
+        a.title.localeCompare(b.title)
       ),
-    }))
-    .sort((left, right) => left.title.localeCompare(right.title));
+    }));
 }

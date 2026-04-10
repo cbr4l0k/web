@@ -49,7 +49,7 @@
     ],
     "experience": [
         {
-            "position": "CEO & Co-Founder",
+            "position": "CEO \u0026 Co-Founder",
             "company": "Sybil SAS",
             "location": "Bogotá, Colombia (Remote)",
             "start_date": "Aug 2023",
@@ -145,14 +145,13 @@
             ]
         }
     ],
-    "publications": [],
     "projects": [
         {
             "name": "Snoo.py - DevSavant Hackathon Finalist",
             "link": "https://github.com/cbr4l0k/snoo.py",
             "date": "Aug 2023 - Sep 2023",
             "highlights": [
-                "Documentation tool generating interactive project tree, 3D graph, coupling & cohesion analysis",
+                "Documentation tool generating interactive project tree, 3D graph, coupling \u0026 cohesion analysis",
                 "Uses Large Language Models for software development optimization",
                 "Generates comprehensive analysis for less than $2 USD",
                 "Finalist in Colombia's first Generative AI Hackathon"
@@ -177,11 +176,11 @@
             "items": "BurpSuite, Nmap, Metasploit, Wireshark, Nessus, Qualys, Nikto, Evil-WinRm, OSINT tools (Maltego, Shodan, TheHarvester, Spiderfoot)"
         },
         {
-            "category": "ML & Data Science",
+            "category": "ML \u0026 Data Science",
             "items": "TensorFlow, Keras, PyTorch, scikit-learn, Polars🦀, Pandas, NumPy, Matplotlib, Seaborn, HuggingFace Transformers, spaCy, NLTK"
         },
         {
-            "category": "AI Orchestration & MLOps",
+            "category": "AI Orchestration \u0026 MLOps",
             "items": "LangChain, LangGraph, N8N, Apache Airflow, MLflow"
         },
         {
@@ -189,7 +188,7 @@
             "items": "Splunk, Google Chronicle, Proofpoint TAP/TRAP, PaloAlto Cortex XDR/XSOAR, Velociraptor, VirusTotal"
         },
         {
-            "category": "Cloud & DevOps",
+            "category": "Cloud \u0026 DevOps",
             "items": "Docker, Git, Azure Cloud, Google Cloud Platform (GCP), MinIO, RESTful APIs"
         },
         {
@@ -197,7 +196,7 @@
             "items": "Django, React.js, HTML, Bootstrap, UML"
         },
         {
-            "category": "Mathematics & CS Foundations",
+            "category": "Mathematics \u0026 CS Foundations",
             "items": "Cryptography, Algorithms and Data Structures, Graph Theory, Computational Geometry, Quantum Computing"
         }
     ]

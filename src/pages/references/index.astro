@@ -1,10 +1,10 @@
 ---
 import StandardPageLayout from "../../layouts/StandardPageLayout.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
-import { references } from "../../data/references";
+import { categories, references } from "../../data/references";
 import { groupReferencesByCategory } from "../../utils/references.js";
 
-const groupedReferences = groupReferencesByCategory(references);
+const groupedReferences = groupReferencesByCategory(categories, references);
 
 const formatCount = (count: number) => `${count} ${count === 1 ? "entry" : "entries"}`;
 ---
