@@ -1,0 +1,151 @@
+{
+  "tests": [
+    {
+      "id": "motion_verbs",
+      "title": "Verbs of Motion",
+      "description": "Prefixes, aspect, and foot vs. vehicle — fill in the blank with the right motion verb form.",
+      "questions": [
+        {
+          "s": ["Завтра я ", " в библиотеку пешком."],
+          "opts": ["пойду", "буду идти", "хожу", "поеду"],
+          "ans": 0,
+          "tags": ["по- = start moving", "perfective", "on foot"],
+          "fb": "«Завтра» + one specific trip = perfective. По- signals the start of a single movement. You're going on foot, so it's the идти family → пойду."
+        },
+        {
+          "s": ["Каждый день она ", " на работу на автобусе."],
+          "opts": ["едет", "ездит", "поедет", "приедет"],
+          "ans": 1,
+          "tags": ["no prefix", "imperfective", "by vehicle"],
+          "fb": "«Каждый день» is your habit alarm — always imperfective. Bus = vehicle, so ездить (habitual, no prefix). Едет would mean she's on the bus right now, in this moment."
+        },
+        {
+          "s": ["Когда я ", " домой, я позвоню тебе."],
+          "opts": ["вернусь", "возвращаюсь", "буду возвращаться", "вернулся"],
+          "ans": 0,
+          "tags": ["вер- = return", "perfective", "after «когда» rule"],
+          "fb": "After «когда» in a future chain, Russian uses perfective — the return has to be DONE before the call happens. Sequence logic, not future tense."
+        },
+        {
+          "s": ["Он опоздал, потому что долго ", " на такси."],
+          "opts": ["ехал", "поехал", "приехал", "едет"],
+          "ans": 0,
+          "tags": ["no prefix", "imperfective", "by vehicle"],
+          "fb": "«Долго» = ongoing duration in the past. That's imperfective. Taxi = vehicle → ехал (the ride was in progress, not a completed event)."
+        },
+        {
+          "s": ["По дороге домой я ", " в магазин за хлебом."],
+          "opts": ["зайду", "выйду", "войду", "дойду"],
+          "ans": 0,
+          "tags": ["за- = stop by on the way", "perfective", "on foot"],
+          "fb": "За- specifically means 'stop by while passing.' You're not just entering (в-) or exiting (вы-) — you're making a quick detour on a route. Classic за-."
+        },
+        {
+          "s": ["Каждое утро она ", " из дома в восемь часов."],
+          "opts": ["выходит", "выйдет", "вышла", "выходила"],
+          "ans": 0,
+          "tags": ["вы- = exit", "imperfective", "on foot"],
+          "fb": "«Каждое утро» = habit → imperfective. Вы- means going from inside to outside. Present tense habitual = выходит."
+        },
+        {
+          "s": ["Завтра мы ", " в Москву на поезде."],
+          "opts": ["поедем", "пойдём", "едем", "ездим"],
+          "ans": 0,
+          "tags": ["по- = start moving", "perfective", "by vehicle"],
+          "fb": "Train = vehicle. One specific trip tomorrow = perfective. По- + vehicle family = поедем. Compare: пойдём would mean you're walking to Moscow."
+        },
+        {
+          "s": ["Туристы ", " мимо нашего дома каждый час."],
+          "opts": ["проходят", "пройдут", "прошли", "проходили"],
+          "ans": 0,
+          "tags": ["про- = pass through/by", "imperfective", "on foot"],
+          "fb": "«Каждый час» = repeated event → imperfective. Про- means passing by or through something. On foot → проходят."
+        },
+        {
+          "s": ["Он ", " к нам в гости на прошлой неделе."],
+          "opts": ["приходил", "пришёл", "приходит", "придёт"],
+          "ans": 0,
+          "tags": ["при- = arrival", "imperfective past = round trip", "on foot"],
+          "fb": "При- = arrival. Here's a subtle one: приходил (ipfv past) implies he came AND left — the whole visit is packaged as a round trip. Пришёл (pfv) would focus on the moment of arrival itself."
+        },
+        {
+          "s": ["Осторожно! Машина ", " прямо на нас!"],
+          "opts": ["едет", "ездит", "поедет", "приедет"],
+          "ans": 0,
+          "tags": ["no prefix", "imperfective", "by vehicle"],
+          "fb": "Right now, in this moment, in one direction = directed imperfective (едет). This is the 'camera is on it happening' form. Ездит would mean the car drives here regularly."
+        },
+        {
+          "s": ["Он ", " из комнаты и закрыл дверь."],
+          "opts": ["вышел", "выходил", "выходит", "выйдет"],
+          "ans": 0,
+          "tags": ["вы- = exit", "perfective", "on foot"],
+          "fb": "Two quick completed actions in sequence — he exited, then closed the door. Sequence of completed events = perfective. Вышел, then закрыл."
+        },
+        {
+          "s": ["Раньше я ", " на велосипеде на работу каждый день."],
+          "opts": ["ездил", "ехал", "поехал", "приезжал"],
+          "ans": 0,
+          "tags": ["no prefix", "imperfective", "by vehicle"],
+          "fb": "«Раньше» + «каждый день» = habitual past → imperfective. Bicycle = vehicle → ездил. (Ехал would mean you were mid-ride, not describing a habit.)"
+        },
+        {
+          "s": ["Когда я окончу университет, я ", " в другой город."],
+          "opts": ["перееду", "переезжаю", "перееду на машине", "буду переезжать"],
+          "ans": 0,
+          "tags": ["пере- = relocate", "perfective", "by vehicle"],
+          "fb": "Пере- = crossing or relocating. After «когда окончу» the chain of events continues with perfective. Moving to a new city by definition involves transport → переехать."
+        },
+        {
+          "s": ["Я иду к тебе! Я ", " через десять минут."],
+          "opts": ["приду", "прихожу", "прийти", "буду приходить"],
+          "ans": 0,
+          "tags": ["при- = arrival", "perfective", "on foot"],
+          "fb": "При- = arrival. One specific arrival, in ten minutes → perfective. Walking (already established in context) → foot family → приду."
+        },
+        {
+          "s": ["Когда я ", " до остановки, я увидел друга."],
+          "opts": ["дошёл", "доходил", "дохожу", "дойду"],
+          "ans": 0,
+          "tags": ["до- = reach a destination", "perfective", "on foot"],
+          "fb": "До- means reaching a specific endpoint. «Увидел» after it means the reaching was a completed event that triggered something else — classic perfective chain. Foot → дошёл."
+        },
+        {
+          "s": ["В следующем году она ", " в Петербург работать."],
+          "opts": ["переедет", "переезжает", "переходит", "перейдёт"],
+          "ans": 0,
+          "tags": ["пере- = relocate", "perfective", "by vehicle"],
+          "fb": "Relocating to a city = пере- prefix. Future, one event = perfective. Moving cities = transport → переехать. Don't use перейти — that's crossing on foot (crossing a street, crossing a border)."
+        },
+        {
+          "s": ["Мы шли час, потом ", " через реку на лодке."],
+          "opts": ["переехали", "перешли", "переходили", "переезжали"],
+          "ans": 0,
+          "tags": ["пере- = cross", "perfective", "by vehicle"],
+          "fb": "Boat = vehicle, so переехать. The crossing was a completed event (then it was done) → perfective. Note: перешли would mean crossing on foot."
+        },
+        {
+          "s": ["Если не хочешь идти, я ", " туда один."],
+          "opts": ["схожу", "ухожу", "пойду", "хожу"],
+          "ans": 0,
+          "tags": ["с- = go and come back", "perfective", "on foot"],
+          "fb": "С- (сходить) is a special prefix meaning 'make a quick round trip' — go there and come back. It's efficient and colloquial. Пойду just means 'I'll go' with no implication of return."
+        },
+        {
+          "s": ["Автобус ", " от остановки, пока я бежал."],
+          "opts": ["отъехал", "отходил", "уехал", "отъезжал"],
+          "ans": 0,
+          "tags": ["от- = move away from", "perfective", "by vehicle"],
+          "fb": "От- = moving away from a point (the stop). It was a completed departure at a specific moment (while you were running) → perfective. Bus = vehicle → отъехал."
+        },
+        {
+          "s": ["Я обещаю! Я всегда буду ", " на занятия вовремя!"],
+          "opts": ["приходить", "прийти", "прихожу", "приду"],
+          "ans": 0,
+          "tags": ["при- = arrival", "imperfective", "habitual promise"],
+          "fb": "«Всегда буду» = always will (habitual future) → imperfective. You're not promising one arrival — you're promising a pattern. Буду + imperfective infinitive = habitual future."
+        }
+      ]
+    }
+  ]
+}

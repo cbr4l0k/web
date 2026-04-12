@@ -1,0 +1,397 @@
+---
+import testsData from "../data/russian_tests.json";
+
+const serialized = JSON.stringify(testsData.tests);
+---
+
+<div class="rg-wrap">
+
+  <div id="selector">
+    <p class="rg-section-label">Choose a test</p>
+    <div class="rg-grid" id="test-grid"></div>
+  </div>
+
+  <div id="game" style="display:none">
+    <div class="rg-topbar">
+      <button class="rg-back" id="back-btn">← Tests</button>
+      <span class="surface-label px-3 py-1 text-xs" id="score-display">0 / 0</span>
+    </div>
+    <div class="rg-progress-wrap">
+      <div class="rg-progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+
+    <div id="q-area">
+      <div class="content-surface rg-q-card">
+        <div class="rg-q-label" id="q-label"></div>
+        <div class="rg-sentence" id="sentence"></div>
+      </div>
+      <div class="rg-options" id="options"></div>
+      <div class="content-surface rg-feedback" id="feedback">
+        <div class="rg-verdict" id="verdict"></div>
+        <div class="rg-tags" id="tags"></div>
+        <div class="rg-feedback-text" id="feedback-text"></div>
+      </div>
+      <button class="content-surface content-surface--interactive rg-next-btn" id="next-btn" style="display:none" onclick="nextQ()">
+        Next →
+      </button>
+    </div>
+
+    <div id="end-area" style="display:none">
+      <div class="content-surface rg-end-card">
+        <div class="rg-end-score" id="end-score"></div>
+        <div class="rg-end-label" id="end-label"></div>
+        <div class="rg-end-message" id="end-message"></div>
+        <button class="content-surface content-surface--interactive rg-restart-btn" onclick="restart()">Play again</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style is:global>
+  .rg-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: var(--space-lg) 0;
+  }
+
+  .rg-section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .rg-grid {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .rg-test-card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
+  }
+
+  .rg-test-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 4px;
+  }
+
+  .rg-test-card-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+  }
+
+  .rg-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .rg-back {
+    font-size: 13px;
+    color: var(--color-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color var(--transition-fast);
+  }
+
+  .rg-back:hover { color: var(--color-body); }
+
+  .rg-progress-wrap {
+    height: 3px;
+    background: var(--color-border);
+    margin-bottom: var(--space-lg);
+  }
+
+  .rg-progress-fill {
+    height: 100%;
+    background: var(--color-body);
+    transition: width 0.4s ease;
+  }
+
+  .rg-q-card {
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .rg-q-label {
+    font-size: 12px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .rg-sentence {
+    font-size: 18px;
+    color: var(--color-heading);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .rg-blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 2px solid var(--color-body);
+    color: var(--color-body);
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .rg-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .rg-opt {
+    padding: 12px var(--space-md);
+    font-size: 15px;
+    color: var(--color-body);
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .rg-opt.correct {
+    background: #EAF3DE !important;
+    border-color: #639922 !important;
+    color: #3B6D11 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .rg-opt.wrong {
+    background: #FCEBEB !important;
+    border-color: #A32D2D !important;
+    color: #791F1F !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .rg-opt:disabled { cursor: default; }
+
+  .rg-feedback {
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+    display: none;
+  }
+
+  .rg-feedback.show { display: block; }
+
+  .rg-verdict {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+  }
+
+  .rg-verdict-correct { color: #3B6D11; }
+  .rg-verdict-wrong   { color: #A32D2D; }
+
+  .rg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .rg-feedback-text {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  .rg-next-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .rg-restart-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .rg-end-card {
+    text-align: center;
+    padding: 2rem var(--space-md);
+  }
+
+  .rg-end-score {
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--color-heading);
+    margin-bottom: var(--space-xs);
+  }
+
+  .rg-end-label {
+    font-size: 16px;
+    color: var(--color-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .rg-end-message {
+    font-size: 14px;
+    color: var(--color-muted);
+    margin-bottom: var(--space-lg);
+    line-height: 1.6;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+</style>
+
+<script define:vars={{ serialized }}>
+  const ALL_TESTS = JSON.parse(serialized);
+
+  let questions = [];
+  let current = 0, score = 0, answered = false, order = [];
+
+  function buildSelector() {
+    const grid = document.getElementById("test-grid");
+    grid.innerHTML = "";
+    ALL_TESTS.forEach((test) => {
+      const btn = document.createElement("button");
+      btn.className = "content-surface content-surface--interactive rg-test-card";
+      btn.innerHTML = `
+        <div class="rg-test-card-title">${test.title}</div>
+        <div class="rg-test-card-desc">${test.description}</div>
+        <span class="surface-label px-3 py-0.5 text-xs">${test.questions.length} questions</span>
+      `;
+      btn.onclick = () => startTest(test);
+      grid.appendChild(btn);
+    });
+  }
+
+  function startTest(test) {
+    questions = test.questions;
+    document.getElementById("selector").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    restart();
+  }
+
+  document.getElementById("back-btn").onclick = () => {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("selector").style.display = "block";
+    document.getElementById("end-area").style.display = "none";
+    document.getElementById("q-area").style.display = "block";
+  };
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function restart() {
+    current = 0; score = 0; answered = false;
+    order = shuffle([...Array(questions.length).keys()]);
+    document.getElementById("end-area").style.display = "none";
+    document.getElementById("q-area").style.display = "block";
+    renderQ();
+  }
+
+  function renderQ() {
+    answered = false;
+    const q = questions[order[current]];
+
+    document.getElementById("q-label").textContent = `Question ${current + 1} of ${questions.length}`;
+    document.getElementById("progress-fill").style.width = `${(current / questions.length) * 100}%`;
+    document.getElementById("score-display").textContent = `${score} / ${current}`;
+
+    document.getElementById("sentence").innerHTML =
+      q.s[0] + '<span class="rg-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + (q.s[1] || "");
+
+    const optDiv = document.getElementById("options");
+    optDiv.innerHTML = "";
+    shuffle([0, 1, 2, 3]).forEach((i) => {
+      const btn = document.createElement("button");
+      btn.className = "content-surface content-surface--interactive rg-opt";
+      btn.textContent = q.opts[i];
+      btn.onclick = () => handleAnswer(i, q, btn);
+      optDiv.appendChild(btn);
+    });
+
+    document.getElementById("feedback").classList.remove("show");
+    document.getElementById("next-btn").style.display = "none";
+  }
+
+  function handleAnswer(chosen, q, btn) {
+    if (answered) return;
+    answered = true;
+
+    const correct = chosen === q.ans;
+    if (correct) score++;
+
+    document.querySelectorAll(".rg-opt").forEach((b) => {
+      b.disabled = true;
+      if (q.opts.indexOf(b.textContent) === q.ans) b.classList.add("correct");
+      else if (b === btn && !correct) b.classList.add("wrong");
+    });
+
+    document.getElementById("sentence").innerHTML =
+      q.s[0] + `<span class="rg-blank" style="color:#3B6D11;border-bottom-color:#639922;">${q.opts[q.ans]}</span>` + (q.s[1] || "");
+
+    document.getElementById("verdict").innerHTML = correct
+      ? '<span class="rg-verdict-correct">Правильно!</span>'
+      : `<span class="rg-verdict-wrong">Not quite — the answer is «${q.opts[q.ans]}»</span>`;
+
+    const tagsDiv = document.getElementById("tags");
+    tagsDiv.innerHTML = "";
+    q.tags.forEach((t) => {
+      const span = document.createElement("span");
+      span.className = "surface-label px-2.5 py-0.5 text-xs";
+      span.textContent = t;
+      tagsDiv.appendChild(span);
+    });
+
+    document.getElementById("feedback-text").textContent = q.fb;
+    document.getElementById("feedback").classList.add("show");
+    document.getElementById("next-btn").style.display = "block";
+    document.getElementById("score-display").textContent = `${score} / ${current + 1}`;
+  }
+
+  function nextQ() {
+    current++;
+    current >= questions.length ? showEnd() : renderQ();
+  }
+
+  function showEnd() {
+    document.getElementById("q-area").style.display = "none";
+    document.getElementById("progress-fill").style.width = "100%";
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById("end-score").textContent = `${score}/${questions.length}`;
+    document.getElementById("end-label").textContent = `${pct}% correct`;
+    const msgs = [
+      [0,  49, "Don't worry — motion verbs are genuinely hard. Focus on the directed/habitual split first, then add prefixes one by one."],
+      [50, 74, "Solid progress. You've got the basic aspect logic. The tricky ones are probably the subtle prefix distinctions — за- vs. в-, от- vs. у-."],
+      [75, 89, "Really good. You understand the system. A few edge cases are slipping — things like приходил vs пришёл (round trip implication) take time."],
+      [90, 100, "Отличная работа! You genuinely understand this. The prefixes are clicking."],
+    ];
+    document.getElementById("end-message").textContent = msgs.find(([lo, hi]) => pct >= lo && pct <= hi)[2];
+    document.getElementById("end-area").style.display = "block";
+  }
+
+  window.restart = restart;
+  window.nextQ = nextQ;
+
+  buildSelector();
+</script>
