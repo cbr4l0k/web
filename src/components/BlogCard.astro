@@ -6,7 +6,7 @@ export interface Props {
   blog: {
     slug: string;
     title: string;
-    author: string;
+    author?: string;
     summary: string;
     status?: string;
     started?: string;
@@ -16,10 +16,10 @@ export interface Props {
 
 const { blog } = Astro.props;
 
-const metadata = [
-  { label: 'Author', value: blog.author }
-];
-
+const metadata = [];
+if (blog.author){
+metadata.push({ label: 'Author', value: blog.author })
+}
 if (blog.started && !blog.finished) {
   metadata.push({ label: 'Started', value: blog.started });
 }
