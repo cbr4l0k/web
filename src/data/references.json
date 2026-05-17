@@ -43,13 +43,6 @@
   ],
   "references": [
     {
-      "title": "0: NoHello[dot]com",
-      "description": "It always bothered me how much time people waste on pleasantries on digital communication, like... One message to say 'Hi' and then waiting for a reply, and then another message to say 'How are you?' and then waiting for a reply... IDK... It's just way too much friction for me. If you wanna talk: please call me, invite me to an online meeting, or maybe tell me the address of the coffee shop where we can meet. Otherwise, just send me the actual message you want to say. This guys explains it better than I do.",
-      "reference": "Please read it... is really good, and I think it will save you a lot of time.",
-      "url": "https://nohello.net/",
-      "category": 2
-    },
-    {
       "title": "Dialectics After Derrida",
       "description": "En este articulo se hace una reflexión sobre la relevancia de Derrrida, más allá de las frases de cajón que se le atribuyen. Una de las cuestiones más interesantes que se mencionan, es cómo la ",
       "reference": "A talk by Geoff Boucher... I should look up that guy.",
@@ -148,13 +141,6 @@
       "category": 0
     },
     {
-      "title": "Pangolin",
-      "description": "Reverse proxy management. ",
-      "reference": "Docs",
-      "url": "https://docs.pangolin.net/",
-      "category": 9
-    },
-    {
       "title": "37signals",
       "description": "I just love how this company works (minus ruby). This home page is art and should be placed in a frame in every business schools.",
       "reference": "Read it... is short",
@@ -209,6 +195,13 @@
       "reference": "\u003c3",
       "url": "https://phrack.org/issues/7/3#article",
       "category": 11
+    },
+    {
+      "title": "There's way to much entertainment",
+      "description": "If there's a quote I wanna save from this article, it would be: \"The human being was not built for this degree of passivity. We are creatures designed for effort, orientation, devotion, memory, craft.\"",
+      "reference": "Link",
+      "url": "https://notesfromundergroundd.substack.com/p/the-crime-of-doing-nothing-the-tragedy",
+      "category": 8
     }
   ]
 }
