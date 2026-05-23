@@ -9,7 +9,7 @@ const { reading } = Astro.props;
 const hasQuotes = reading.quotes && reading.quotes.length > 0;
 ---
 
-<li class={`content-surface p-2 reading-item ${hasQuotes ? 'content-surface--interactive cursor-pointer' : ''}`}>
+<li class="content-surface p-2 reading-item">
   <div class="flex items-start sm:items-center justify-between gap-3 mb-1">
     <div class="flex items-start gap-2 flex-1 min-w-0">
       {hasQuotes && (
@@ -18,7 +18,19 @@ const hasQuotes = reading.quotes && reading.quotes.length > 0;
         </svg>
       )}
       <div class="flex-1 min-w-0">
-        <h4 class="text-base sm:text-sm font-semibold text-[#222] leading-tight">{reading.title}</h4>
+        <h4 class="text-base sm:text-sm font-semibold text-[#222] leading-tight">
+          {hasQuotes ? (
+            <button
+              type="button"
+              class="reading-toggle text-left font-semibold cursor-pointer"
+              aria-expanded="false"
+            >
+              {reading.title}
+            </button>
+          ) : (
+            reading.title
+          )}
+        </h4>
         <p class="text-xs opacity-70 mt-1">{reading.author}</p>
       </div>
     </div>
@@ -54,6 +66,26 @@ const hasQuotes = reading.quotes && reading.quotes.length > 0;
     opacity: 1 !important;
   }
 
+  .reading-toggle {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+  }
+
+  .reading-toggle:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .reading-toggle:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
   @media (max-width: 640px) {
     .reading-item {
       padding: 1rem;
@@ -63,30 +95,17 @@ const hasQuotes = reading.quotes && reading.quotes.length > 0;
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const readingItems = document.querySelectorAll('.reading-item');
+    const readingToggles = document.querySelectorAll('.reading-toggle');
 
-    readingItems.forEach(item => {
-      const content = item.querySelector('.reading-content');
-      const hasQuotes = content && content.children.length > 0;
+    readingToggles.forEach(toggle => {
+      const item = toggle.closest('.reading-item');
 
-      if (hasQuotes) {
-        item.addEventListener('click', function(e) {
-          this.classList.toggle('expanded');
-        });
+      toggle.addEventListener('click', function() {
+        if (!item) return;
 
-        // Make keyboard accessible
-        item.setAttribute('tabindex', '0');
-        item.setAttribute('role', 'button');
-        item.setAttribute('aria-expanded', 'false');
-
-        item.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.classList.toggle('expanded');
-            this.setAttribute('aria-expanded', this.classList.contains('expanded').toString());
-          }
-        });
-      }
+        item.classList.toggle('expanded');
+        this.setAttribute('aria-expanded', item.classList.contains('expanded').toString());
+      });
     });
   });
 </script>

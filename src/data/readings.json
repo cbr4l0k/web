@@ -1,109 +1,322 @@
 [
-    {
-        "title": "Wim Hof Method: Activate Your Full Human Potential",
-        "author": "Wim Hof",
-        "quotes": [
-            {
-                "quote": "Whether you think you can, or you think you can't, you're right."
-            },
-            {
-                "quote": "Because the cold is merciless but righteous, we can learn from it. And what it shows us is that we have an innate capacity to deal with stress.",
-                "note": "Cuando uno se enfrenta al frío extremo, y se despierta ese rechazo natural —grabado en nuestros instintos— que se puede asociar con el miedo a la muerte, y se traciende la sensación del dolor, se experimenta un tipo de libertad que es difícil de describir con palabras. En mi caso fue el silencio absoluto, cuando salí del agua helada, tomé un respiro profundo y todo lo que me estaba acomplejando, doliendo, o preocupando, dejó de estar ahí... ese tipo de incomodidades se disuelven en el frío."
-            },
-            {
-                "quote": "The Jews have a term for it, «tikkun olam». It means that we bear a responsibility not only for our own moral, spiritual, and material walfare, but also for the walfare of society at large.",
-                "note": "This is something my father once thought me as a child. In different terms —never mentioned the jews haha—, but with the same meaning. And is the reason that I have to go back to Colombia. Not because of love, but because of a deep sense of responsability."
-            }
-        ],
-        "date": "31/01/2025"
-    },
-    {
-        "title": "La Insoportable Levedad del Ser",
-        "author": "Milan Kundera",
-        "quotes": [],
-        "date": "28/02/2025"
-    },
-    {
-        "title": "Los Ojos del Hermano Eterno",
-        "author": "Stefan Zweig",
-        "quotes": [],
-        "date": "31/03/2025"
-    },
-    {
-        "title": "El Amor En Los Tiempos Del Cólera",
-        "author": "Gabriel García Márquez",
-        "quotes": [],
-        "date": "30/04/2025"
-    },
-    {
-        "title": "La Broma",
-        "author": "Milan Kundera",
-        "quotes": [],
-        "date": "31/05/2025"
-    },
-    {
-        "title": "Generación Post-Alfa",
-        "author": "Franco «Bifo» Berardi",
-        "quotes": [],
-        "date": "30/06/2025"
-    },
-    {
-        "title": "Reinventar las Organizaciones",
-        "author": "Frédéric Laloux",
-        "quotes": [],
-        "date": "15/07/2025"
-    },
-    {
-        "title": "El Señor de las Moscas",
-        "author": "William Golding",
-        "quotes": [],
-        "date": "31/07/2025"
-    },
-    {
-        "title": "En la Colonia Penitenciaria",
-        "author": "Franz Kafka",
-        "quotes": [],
-        "date": "15/08/2025"
-    },
-    {
-        "title": "La Depresión No Existe",
-        "author": "Juan Carlos Rincón",
-        "quotes": [],
-        "date": "27/09/2025"
-    },
-    {
-        "title": "How to Know a Person",
-        "author": "David Brooks",
-        "quotes": [],
-        "date": "27/08/2025"
-    },
-    {
-        "title": "Noches Blancas",
-        "author": "Fyodor Dostoevsky",
-        "quotes": [],
-        "date": "15/12/2024"
-    },
-    {
-        "title": "El espíritu de la esperanza",
-        "author": "Byung-Chul Han",
-        "date": "09/11/2025",
-        "quotes": [
-            {
-                "quote": "Pensando en nosotros, he puesto mis esperanzas en ti.",
-                "note": "Creo que los últimos 10 años de mi vida, han sido un esfuerzon inconsciente por convertir al «otro» en «nosotros»; lograr entender el valor rizomático de las relaciones. Si lo perdiera todo, incluso a mí mismo, seguiría apostando por el «nosotros». El «nosotros» siempre llegará mas lejos que el «tú» o el «yo», cada uno por su lado."
-            }
-        ]
-    },
-    {
-        "title": "La Iliada",
-        "author": "Homero",
-        "date": "27/02/2026",
-        "quotes": []
-    },
-    {
-        "title": "La agonía del Eros",
-        "author": "Byung-Chul Han",
-        "date": "31/03/2026",
-        "quotes": []
-    }
+        {
+            "title": "Wim Hof Method: Activate Your Full Human Potential",
+            "author": "Wim Hof",
+            "date": "31/01/2025",
+            "quotes": [
+                {
+                    "quote": "Whether you think you can, or you think you can't, you're right."
+                },
+                {
+                    "quote": "Because the cold is merciless but righteous, we can learn from it. And what it shows us is that we have an innate capacity to deal with stress.",
+                    "note": "Cuando uno se enfrenta al frío extremo, y se despierta ese rechazo natural —grabado en nuestros instintos— que se puede asociar con el miedo a la muerte, y se trasciende la sensación del dolor, se experimenta un tipo de libertad que es difícil de describir con palabras. En mi caso fue el silencio absoluto, cuando salí del agua helada, tomé un respiro profundo y todo lo que me estaba acomplejando, doliendo, o preocupando, dejó de estar ahí... ese tipo de incomodidades se disuelven en el frío."
+                },
+                {
+                    "quote": "The Jews have a term for it, «tikkun olam». It means that we bear a responsibility not only for our own moral, spiritual, and material welfare, but also for the welfare of society at large.",
+                    "note": "This is something my father once taught me as a child. In different terms —never mentioned the Jews haha—, but with the same meaning. And is the reason that I have to go back to Colombia. Not because of love, but because of a deep sense of responsibility."
+                }
+            ]
+        },
+        {
+            "title": "La Insoportable Levedad del Ser",
+            "author": "Milan Kundera",
+            "date": "28/02/2025",
+            "quotes": []
+        },
+        {
+            "title": "Los Ojos del Hermano Eterno",
+            "author": "Stefan Zweig",
+            "date": "31/03/2025",
+            "quotes": []
+        },
+        {
+            "title": "El Amor En Los Tiempos Del Cólera",
+            "author": "Gabriel García Márquez",
+            "date": "30/04/2025",
+            "quotes": []
+        },
+        {
+            "title": "La Broma",
+            "author": "Milan Kundera",
+            "date": "31/05/2025",
+            "quotes": []
+        },
+        {
+            "title": "Generación Post-Alfa",
+            "author": "Franco «Bifo» Berardi",
+            "date": "30/06/2025",
+            "quotes": []
+        },
+        {
+            "title": "Reinventar las Organizaciones",
+            "author": "Frédéric Laloux",
+            "date": "15/07/2025",
+            "quotes": []
+        },
+        {
+            "title": "El Señor de las Moscas",
+            "author": "William Golding",
+            "date": "31/07/2025",
+            "quotes": []
+        },
+        {
+            "title": "En la Colonia Penitenciaria",
+            "author": "Franz Kafka",
+            "date": "15/08/2025",
+            "quotes": [
+                {
+                    "quote": "¿Él no conoce su propia sentencia? —No—repitió el oficial; se detuvo entonces un momento, como si esperara del viajero una argumentación más detallada de su pregunta, y añadió—: Sería inútil comunicársela. La experimentará en su propio cuerpo."
+                }
+            ]
+        },
+        {
+            "title": "La Depresión No Existe",
+            "author": "Juan Carlos Rincón",
+            "date": "27/09/2025",
+            "quotes": []
+        },
+        {
+            "title": "How to Know a Person",
+            "author": "David Brooks",
+            "date": "27/08/2025",
+            "quotes": [
+                {
+                    "quote": "I’m going to trust you, before you trust me."
+                },
+                {
+                    "quote": "The good person tries to cast a selfless attention and to see what the other person sees. This kind of attention leads to the greatness of small acts: welcoming a newcomer to your workplace, detecting anxiety in somebody’s voice and asking what’s wrong, knowing how to host a party so that everyone feels included. Most of the time, morality is about the skill of being considerate toward others in the complex situations of life. It’s about being a genius at the close at hand."
+                },
+                {
+                    "quote": "Whoever wants life must go softly towards life, softly as one would go towards a deer and fawn that are nestling under a tree. One gesture of violence, one violent assertion of self-will and life is gone….But with quietness, with an abandon of self-assertion and a fullness of the deep true self one can approach another human being, and know the delicate best of life, the touch."
+                },
+                {
+                    "quote": "Modern man listens more willingly to witnesses than teachers, and if he does listen to teachers, it’s because they are witnesses."
+                },
+                {
+                    "quote": "Well-being depends less on objective events than on how those events are perceived, dealt with, and shared with others."
+                },
+                {
+                    "quote": "How does this person interpret what happened? How does this person see things? How do they construct their reality?"
+                },
+                {
+                    "quote": "How does this look to you? Do you see the same situation I see? Then we need to ask: What are the experiences and beliefs that cause you to see it that way?"
+                },
+                {
+                    "quote": "A good conversation sparks you to have thoughts you never had before. A good conversation starts in one place and ends up in another."
+                },
+                {
+                    "quote": "In her book, Murphy notes that Japanese culture encourages people to pause and reflect before replying. A study of Japanese businesspeople found that they are typically comfortable with eight-second pauses between one comment and another, roughly twice as long as Americans generally tolerate. They’re wise to take that pause."
+                },
+                {
+                    "quote": "Humble questions are open-ended. They’re encouraging the other person to take control and take the conversation where they want it to go. These are questions that begin with phrases like “How did you…,” “What’s it like…,” “Tell me about…,” and “In what ways…”"
+                }
+            ]
+        },
+        {
+            "title": "Noches Blancas",
+            "author": "Fyodor Dostoevsky",
+            "date": "15/12/2024",
+            "quotes": []
+        },
+        {
+            "title": "El espíritu de la esperanza",
+            "author": "Byung-Chul Han",
+            "date": "09/11/2025",
+            "quotes": [
+                {
+                    "quote": "Pensando en nosotros, he puesto mis esperanzas en ti.",
+                    "note": "Creo que los últimos 10 años de mi vida, han sido un esfuerzo inconsciente por convertir al «otro» en «nosotros»; lograr entender el valor rizomático de las relaciones. Si lo perdiera todo, incluso a mí mismo, seguiría apostando por el «nosotros». El «nosotros» siempre llegará más lejos que el «tú» o el «yo», cada uno por su lado."
+                }
+            ]
+        },
+        {
+            "title": "La Iliada",
+            "author": "Homero",
+            "date": "27/02/2026",
+            "quotes": []
+        },
+        {
+            "title": "La agonía del Eros",
+            "author": "Byung-Chul Han",
+            "date": "31/03/2026",
+            "quotes": [
+                {
+                    "quote": "«El otro aparece solo a través de un no poder poder». La experiencia amorosa es toda ella un entramado de impotencia, precio que hay que pagar para cualquier revelación del otro."
+                },
+                {
+                    "quote": "No solo el exceso de oferta de otros otros conduce a la crisis del amor, sino también la erosión del otro, que tiene lugar en todos los ámbitos de la vida y va unida a un excesivo narcisismo de la propia mismidad."
+                },
+                {
+                    "quote": "Solo hay significaciones allí donde él se reconoce a sí mismo de algún modo.",
+                    "note": "Cuando todo el mundo se ajusta a mí, como individuo, solo puedo entender al otro desde lo que soy. Estamos siendo entrenados para que lo que no se ajuste a nosotros, no sea exactamente lo que buscamos, sea lo suficiente incómodo como para desear entenderlo"
+                },
+                {
+                    "quote": "Así, la sociedad del consumo aspira a eliminar la alteridad atópica a favor de diferencias consumibles, heterotópicas.",
+                    "note": "Es el consumo el que genera la ilusión de que una relación debe ser un juego en búsqueda de equilibrio, donde yo debo dar, recíprocamente a lo que la contraparte entregue... Pero eso es ver al otro desde el 'yo' que aporta, se vuelve la necesidad de reflejar lo que yo doy en una relación. Aquí lo que se plantea, según lo que entiendo, es dar como homenaje y celebración del otro, sin esperar nada a cambio; pero, no desde una perspectiva altruista que entiende eso como un favor, sino desde la una entrega casi religiosa, que se puede representar desde la adoración y la devoción."
+                },
+                {
+                    "quote": "El tú puedes incluso ejerce más coacción que el tú debes."
+                },
+                {
+                    "quote": "El amor se positiva hoy para convertirse en una fórmula de disfrute. De ahí que deba engendrar ante todo sentimientos agradables. No es una acción, ni una narración, ni ningún drama, sino una emoción y una excitación sin consecuencias. Está libre de la negatividad de la herida, del asalto o de la caída."
+                },
+                {
+                    "quote": "En la memoria lo pasado cambia continuamente. Es un proceso progresivo, vivo, narrativo.12 En eso se distingue del archivador de datos. En este medio técnico, a lo que ha sido se le quita toda vivacidad. Este medio carece de tiempo. Reina un presente total, que suprime precisamente el instante."
+                },
+                {
+                    "quote": "Su apetito se alimenta de lo que todavía no es."
+                },
+                {
+                    "quote": "El consumo de la utopía romántica,"
+                },
+                {
+                    "quote": "Quien no tiene la capacidad de muerte no arriesga su vida."
+                },
+                {
+                    "quote": "Solo llegaría al final cuando nosotros fuéramos de hecho libres, cuando no fuéramos ni amos ni esclavos, ni esclavos del amo, ni amos del esclavo."
+                },
+                {
+                    "quote": "El capitalismo absolutiza la mera vida. Su fin no es la vida buena. Su compulsión a la acumulación y al crecimiento se dirige precisamente contra la muerte, que se le presenta como pérdida absoluta. Para Aristóteles, la pura adquisición de capital es reprobable porque no se preocupa de la vida buena, sino solamente de la mera supervivencia.",
+                    "note": "Eudaimónico"
+                },
+                {
+                    "quote": "la «vida del espíritu» no es la mera vida «que teme la muerte y se mantiene intacta frente a la devastación», sino la vida que «la soporta y se conserva en ella». El espíritu agradece su vitalidad precisamente a su capacidad para la muerte. El absoluto no es lo «positivo, que hace la vista gorda frente a lo negativo». Más bien, el espíritu «mira a la cara a lo negativo» y «se demora en ello».",
+                    "note": "La vida del espíritu es la esperanza"
+                },
+                {
+                    "quote": "La «verdadera esencia del amor» consiste en «renunciar a la conciencia de sí mismo, en olvidarse de sí en otra mismidad»",
+                    "note": "Realmente estás listo para morir?"
+                },
+                {
+                    "quote": "amor como conclusión absoluta pasa a través de la muerte. Ciertamente se muere en lo otro, pero a esta muerte le sigue un retorno hacia sí.",
+                    "note": "Será que en ese día, donde la geometría inundaba mi visión. Acompañado por un alma generosa, y mirando desde el suelo aquel brillo que como si brotara de la copa de los árboles, genera una atmósfera tal como si hubiese salido de una épica griega. Ahí, pensando en todo: la vida, familia, amigos, aquellos que están, y aquellos que se fueron... Y llegué a la realización que mi propósito de vida, era amar, era morir."
+                },
+                {
+                    "quote": "un tiempo en el que, por el exceso de abrir y deslimitar, se ha perdido la capacidad de cerrar, de concluir."
+                },
+                {
+                    "quote": "«Sin duda cuando te amo, al amarte me reencuentro en ti que piensas en mí, y me recupero en ti que conservas lo que había perdido por mi propia negligencia».15"
+                },
+                {
+                    "quote": "Y el amante se apodera de sí mismo por otro, y cada uno de los amantes se aleja de sí mismo y se acerca al otro, y muertos en sí, resucitan en el otro",
+                    "note": "Me atrae mucho la idea del renacimiento por medio de la otredad. Como si dejarse desposeer por un otro, es lo único que abre las puertas a lo nuevo, al futuro. Uno entra en contacto con el otro, más que por amor, por esperanza"
+                },
+                {
+                    "quote": "Al lugar que, según Heidegger, hace posible el habitar humano es inherente «lo divino». Lo constituyen la historia, la memoria y la identidad. Pero estas faltan en los «no lugares» turísticos, por los que desfilamos sin demorarnos.",
+                    "note": "Una cosa es una foto dentro de un sinfín de otras fotos, como si se estuviera coleccionando lugares, se pierde en un mar de información, su relevancia es superficial, pues más allá de capital pseudocultural que trae, no deja marcas. O no de la profundidad de caminar días, meses, o años por dichos lugares. No es necesario indexar la información relacionada con estos lugares, pues están no solo impregnados en la memoria, sino en la personalidad. Y este tipo de relación con el espacio, puede ser un tipo de amor Hegeliano, erotismo. Ya que se entrega el uno para con el espacio, y se deja afectar, al punto que el ser que uno era fuera del espacio, de este espacio, deja de existir. Y tanto el espacio, como 'uno' se sumergen en la lógica de la eternidad. Ya que la esencia de cada uno queda impregnada en el otro, cosa que requiere de tiempo y entrega."
+                },
+                {
+                    "quote": "Y, según ella, hoy internet contribuye a «la posición del individuo moderno como sujeto deseante que anhela ciertas experiencias, fantasea con diversos objetos o estilos de vida y vive en un universo imaginario o virtual»."
+                },
+                {
+                    "quote": "Los vallados fronterizos o los muros que hoy se erigen ya no excitan la fantasía, porque no engendran al otro. Más bien, atraviesan de un extremo a otro el infierno de lo igual, que sigue solamente las leyes económicas que separan a los ricos de los pobres. Es el capital el que produce estos nuevos límites. Pero el dinero en principio lo hace todo igual. Nivela diferencias esenciales. Esos límites, como instituciones de delimitación externa y excluyente eliminan las fantasías relativas al otro. No son umbrales o pasadizos que conduzcan a otro lugar.",
+                    "note": "Bueno, lo puede hacer todo igual en términos de deseo, generaliza el problema a un lenguaje común"
+                },
+                {
+                    "quote": ". Es timótica, por ejemplo, la ira, que rompe radicalmente con lo establecido y hace comenzar un nuevo estado. Hoy cede su puesto a los enfados o los descontentos.",
+                    "note": "Esto puede entrar dentro de modelos relacionados con el control; no como causa, sino como razonamiento detrás del fenómeno. El sentir, pero sentir profundamente, requiere tiempo... Implica dejarse caer en lo desconocido, ser vulnerable, pues la gravedad de la caída solo la dirá el impacto, y uno no sabe qué tan duro irá a uno caer. Pero si en vez de dejarse uno caer, se limita a vivir de pequeños saltos, es más fácil, se puede cuadrar en cualquier franja horaria, no tiene tanto riesgo, pero tampoco genera cambios, todo queda igual... Se quiere estar es cómodos."
+                },
+                {
+                    "quote": "«como dos instrumentos de música completamente distintos en su timbre y en su fuerza, pero que, convocados por un gran músico en el mismo fragmento, convergen misteriosamente»",
+                    "note": "Al final una orquesta tiene más que solo tambores, o solo guitarras, o pianos, etc... Es el conjunto como tal el que le da valor)"
+                },
+                {
+                    "quote": "El pensamiento se hace «más fuerte», «más inquietante» en el momento en que, tocado por el aletazo del Eros, intenta llevar al lenguaje al otro atópico, carente de lenguaje"
+                },
+                {
+                    "quote": "Fuera toda teoría de la conducta humana, desde la lingüística hasta la sociología. Olvídese de la taxonomía, la ontología y la psicología. ¿Quién sabe por qué la gente hace lo que hace? La cuestión es que lo hace, y podemos seguirle la pista y medirlo con una fidelidad sin precedentes. Con suficientes datos, los números hablan por ellos mismos.",
+                    "note": "Una de las cosas que me parecen problemáticas, es que ya no se trata de entender la razón de los comportamientos, sino entender qué tipo de estímulo puede traducirse en comportamientos distintos, de forma celular."
+                },
+                {
+                    "quote": "Teorías fuertes, como, por ejemplo, la teoría platónica de las ideas o la Fenomenología del espíritu de Hegel, no son modelos que puedan sustituirse por el análisis de datos. Allí está, como fondo, un pensar en sentido amplio. La teoría constituye una decisión esencial, que hace aparecer el mundo de modo completamente distinto, bajo una luz del todo diferente. Es una decisión primaria, primordial, que dictamina qué es pertinente a algo y qué no lo es, qué es y tiene que ser y qué no. Como narración altamente selectiva, traza un camino de discriminación a través de lo «no transitado» todavía.",
+                    "note": "No tengo nada que decir sobre esto, más allá de mi completa admiración por haberlo dicho."
+                },
+                {
+                    "quote": "teoría, que está en el fondo del pensamiento, es una donación previa. Trasciende la positividad de lo dado y hace que esto, de pronto, aparezca bajo otra luz."
+                },
+                {
+                    "quote": "Pero enterarse de las cosas todavía no es ningún conocimiento.",
+                    "note": "Se puede relacionar con esta noción que en el vipassana me enseñaron sobre los 3 niveles del conocimiento"
+                },
+                {
+                    "quote": "¿Qué quiere decir amigo, cuando se convierte […] en condición para el ejercicio del pensamiento? O bien amante, ¿no será acaso más bien amante? ¿Y acaso el amigo no va a introducir de nuevo hasta en el pensamiento una relación vital con el Otro al que se pensaba haber excluido del pensamiento puro?61"
+                }
+            ]
+        },
+        {
+            "title": "El Fin del Mundo y Un Despiadado País de las Maravillas",
+            "author": "Haruki Murakami",
+            "date": "23/05/2026",
+            "quotes": [
+                {
+                    "quote": "In general about the book...",
+                    "note": "Not my favorite book, in general the writer is great... for real, just amazing. Even though I liked most of the characters, the scientist and his granddaughter are awful, everything related to them was cringe, and could have been skipped and nothing would have been lost by the decision."
+                },
+                {
+                    "quote": "—Porque así está establecido —dijo—. Porque es así. De la misma manera que el sol sale por el este y se pone por el oeste.",
+                    "note": "Es más fácil aceptar las cosas como si fueran axiomas que realmente indagar el propósito detrás de ellas... Puede que uno se encuentre con una respuesta incómoda o problemática. Hacer caso es más comodo que hacerse responsable de las consecuencias."
+                },
+                {
+                    "quote": "En lugar de torre del reloj, en realidad tal vez hubiera sido más exacto decir que tenía la forma de una torre del reloj. Porque, un día, sus agujas se inmovilizaron y el reloj perdió por completo su función.",
+                    "note": "¿Lo que el objeto (o persona) hace también configura la definición del objeto? ¿Una película que no se puede ver deja de ser una película? Un hombre que no es libre, deja de ser hombre?"
+                },
+                {
+                    "quote": "En todos los sitios a los que voy a trabajar, cuando llega la hora del descanso acostumbro a echarme un rato en el sofá, y lo cierto es que hay poquísimos que valgan realmente la pena. Los sofás son en su mayoría verdaderas chapuzas; parecen comprados para salir del paso, y a menudo, incluso en el caso de los más lujosos, esos cuya calidad se aprecia a simple vista, al acostarte en ellos te llevas una gran decepción. No comprendo cómo la gente es tan descuidada a la hora de elegir un sofá."
+                },
+                {
+                    "quote": "«Si mueres este año, no tendrás que morir el año que viene»."
+                },
+                {
+                    "quote": "—No dejes que el cansancio se adueñe de tu corazón [ 1 ]—dijo ella—. Mi madre siempre me lo decía. Me decía que, aunque el cansancio llegue a dominar nuestro cuerpo, debemos seguir siendo dueños de nuestro corazón."
+                },
+                {
+                    "quote": "El tofu lo introduje en un bol con agua."
+                },
+                {
+                    "quote": "—En cinco jugadas se puede ganar cualquier partida —aseguró el coronel—. Merece la pena intentarlo, ¿no crees? En cinco jugadas cabe la posibilidad de que el adversario cometa un error. Hasta el final, nunca se puede cantar victoria. —Voy a intentarlo —dije."
+                },
+                {
+                    "quote": "lo que puedan enseñarte los demás acaba en sí mismo, lo que aprendes por tu propia cuenta forma parte de ti."
+                },
+                {
+                    "quote": "Llevo este programa implantado en mi interior. En otras palabras, no soy más que un túnel de la inconsciencia. Todo pasa a través de mí. De ahí que, cada vez que efectúo un shuffling, me sienta terriblemente vulnerable e inseguro. El lavado de cerebro es distinto. Aunque sea un proceso largo y pesado, mientras lo realizo puedo sentirme orgulloso de mí mismo. Porque allí concentro toda mi capacidad. Por el contrario, en el shuffling nada pintan mi orgullo ni mi capacidad. Soy un simple objeto de uso. Alguien procesa algo, sin que yo me dé cuenta, utilizando una conciencia que me pertenece pero que desconozco. Por lo que atañe a la ejecución del shuffling, ni siquiera me considero digno de llamarme calculador.",
+                    "note": "Es Claude Code haciendo caso"
+                },
+                {
+                    "quote": "—Con la nieve. Con el primer copo de nieve que cae, empieza el invierno. Y cuando la nieve acumulada en las isletas empieza a fundirse, el invierno llega a su fin."
+                },
+                {
+                    "quote": "Las tendencias del ser humano se consolidan antes de los veinticinco años, aproximadamente, y después, por más esfuerzos que uno haga, no puede cambiar, en lo esencial, su naturaleza. El problema radica en cómo reacciona el mundo exterior ante las tendencias de uno."
+                },
+                {
+                    "quote": "Que no abra mi corazón es un problema únicamente mío. Tú no tienes la culpa. No comprendo bien mi corazón, y por eso estoy confuso."
+                },
+                {
+                    "quote": "—A uno mismo —respondí—. El corazón es así. Sin corazón no llegas a ninguna parte. —Alcé los ojos hacia la luna. La luna de invierno flotaba en el cielo de la ciudad cercada por la alta muralla y emitía una luz tan clara que casi parecía incongruente—. Tú no tienes la culpa de nada —añadí."
+                },
+                {
+                    "quote": "Debemos confiar en ello. Ya te lo he dicho antes, ¿no? Que si crees que todo va a salir bien, tu miedo desaparece. Puedes pensar en un recuerdo divertido, en las personas a las que has amado, en lo que te ha hecho llorar, en tu niñez, en tus planes para el futuro, en la música que te gusta: cualquier cosa vale. Si piensas en ello, no tendrás miedo."
+                },
+                {
+                    "quote": "Cuando una persona quiere alcanzar algo, piensa de manera espontánea en t res cosas: ¿qué he conseguido hasta el momento? ¿En qué posición me encuentro ahora? ¿Qué debo hacer de aquí en adelante? Si uno no puede contestar a estas tres cosas, sólo le queda el miedo, la falta de confianza en sí mismo y el cansancio."
+                },
+                {
+                    "quote": "El problema está en que la ciudad se levanta sobre lo antinatural y lo erróneo. Y como todo es antinatural y distorsionado, todas las piezas encajan a la perfección. Y forman un todo redondo.",
+                    "note": "Peligroso es tener axiomas erróneos como fundamentos, pues estos simplemente se asumen, no se cuestionan, se aceptan."
+                },
+                {
+                    "quote": "—De vez en cuando cavan un agujero —contó el anciano—. Puede que, en el fondo, sea lo mismo que mi pasión por el ajedrez. No tiene sentido, no lleva a ninguna parte. Pero eso no importa. Nadie necesita que tenga un sentido, nadie desea llegar a ninguna parte. Nosotros, aquí, abrimos un agujero puro tras otro. Actos sin finalidad, esfuerzos sin progreso, pasos que no conducen a ninguna parte, ¿no te parece maravilloso? Nadie resulta herido, nadie hiere. Nadie adelanta, nadie es adelantado. Sin victoria, sin derrota."
+                },
+                {
+                    "quote": "Este es el precio de la perfección. ¿Qué sentido tiene una perfección como ésta? Una perfección que se perpetúa a sí misma haciendo cargar al más débil, al más impotente, con todo.",
+                    "note": "Es una perfección para seres imperfectos. ¿Es la perfección ignorar los problemas, para que otros lo resuelvan? La perfección carece de responsabilidad."
+                },
+                {
+                    "quote": "Porque ésta —esta vida llena de pérdidas— era yo. Era el único camino que tenía yo de ser yo mismo. Por más personas que me hubiesen abandonado a mí, por más personas a las que hubiese abandonado yo, por más bellos sentimientos, magníficas cualidades y sueños que hubiese perdido, yo únicamente podía ser yo."
+                },
+                {
+                    "quote": "Una vez que has perdido una cosa, aunque esa cosa deje de existir, la sigues perdiendo eternamente."
+                }
+            ]
+        }
 ]
